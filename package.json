@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "mocha ./test/* --exit"
+    "server": "nodemon server.js",
+    "test": "mocha ./test/* --exit",
+    "client": "npm start --prefix client",
+    "clientinstall": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -22,5 +26,9 @@
     "express": "^4.17.1",
     "mocha": "^8.1.1",
     "supertest": "^4.0.2"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.4"
   }
 }
