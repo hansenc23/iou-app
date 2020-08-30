@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const { mongoUri } = require('./config/config');
 const app = express();
 
 //CORS
@@ -19,7 +20,7 @@ const server = app.listen(port, () => {
 });
 
 mongoose
-  .connect('mongodb+srv://dbadmin:test123@iou-db.377ul.mongodb.net/iou-app?retryWrites=true&w=majority', { useNewUrlParser: true })
+  .connect(mongoUri, { useNewUrlParser: true })
   .then(() => {
     console.log('MongoDB connected');
   })
