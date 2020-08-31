@@ -7,15 +7,13 @@ import {
     Redirect,
 } from "react-router-dom";
 
-//import TestApi from './TestApi';
+import Navbar from "./components/navbar/Navbar";
+import Requests from "./components/pages/requests/Requests";
+import Favours from "./components/pages/favours/Favours";
+import Leaderboard from "./components/pages/leaderboard/Leaderboard";
+import Login from "./components/pages/login/Login";
 
-import Navbar from "./Components/Navbar";
-import Requests from "./Components/Pages/Requests";
-import Favours from "./Components/Pages/Favours";
-import Leaderboard from "./Components/Pages/Leaderboard";
-import Login from "./Components/Pages/Login";
-
-import './App.css';
+import './styles/App.css';
 
 function PublicRoute({ component: Component, authenticated, ...rest }) {
     return (
@@ -70,19 +68,19 @@ class App extends Component {
                         <Navbar/>
                         <Switch>
                             <PublicRoute
-                                path="/favours"
-                                component={Favours}
-                            />
-                            <PublicRoute
                                 path="/requests"
                                 component={Requests}
+                            />
+                            <PublicRoute
+                                path="/favours"
+                                component={Favours}
                             />
                             <PublicRoute
                                 path="/leaderboard"
                                 component={Leaderboard}
                             />
                             <PublicRoute
-                                path="/leaderboard"
+                                path="/login"
                                 component={Login}
                             />
                         </Switch>
