@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import Login from "../pages/login/Login";
 
 class Navbar extends Component {
 
@@ -8,28 +9,31 @@ class Navbar extends Component {
         return (
             <div id="navbar">
                 <div className="page_links">
-                    <div className="linkTitle">
+                    <div className="links_label">
                         <Link to="/requests">Requests</Link>
                     </div>
-                    <div className="linkTitle">
+                    <div className="links_label">
                         <Link to="/favours">Favours</Link>
                     </div>
-                    <div className="linkTitle">
+                    <div className="links_label">
                         <Link to="/leaderboard">Leaderboard</Link>
                     </div>
                 </div>
+
                 <div className="logo">
                     IOWEYOU
                 </div>
-                <div className="userAccount_links">
-                    <div className="linkTitle">
+
+                <div className="authentication_links">
+                    <div className="links_label">
                         <Link to="/login">Login</Link>
                     </div>
-                    <div className="signup">
-                        <button type="button" className="signup_btn"> Sign Up </button>
+                    <div className="links_label">
+                        <button className= "signup_link_label">
+                            <Link to="/signup">Sign Up</Link>
+                        </button>
                     </div>
                 </div>
-
             </div>
         )
     }

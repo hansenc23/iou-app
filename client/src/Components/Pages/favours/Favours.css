@@ -1,4 +1,4 @@
-#Favours{
+#Favours {
     display: flex;
     flex-direction: row;
     padding-top: 80px;
@@ -8,9 +8,6 @@
     background-color: #f3f0ea;
     margin-left: 0;
     transition: 2s;
-}
-#main.out {
-    margin-left: 100%;
 }
 .all_favours_area {
     display: flex;
@@ -176,6 +173,7 @@ button:focus {
     box-shadow: 0 0 3px 3px rgba(133, 135, 141, 0.12);
     padding-left: 6%;
     padding-right: 6%;
+    border-radius: 12px;
 }
 .create_favours_card:hover {
     /* for right side the, -shadow: -2px -2px 15px 0 rgba(0,0,0,0.2); */

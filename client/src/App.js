@@ -12,6 +12,7 @@ import Requests from "./components/pages/requests/Requests";
 import Favours from "./components/pages/favours/Favours";
 import Leaderboard from "./components/pages/leaderboard/Leaderboard";
 import Login from "./components/pages/login/Login";
+import Signup from "./components/pages/Signup/Signup";
 
 import './styles/App.css';
 
@@ -82,6 +83,10 @@ class App extends Component {
                             <PublicRoute
                                 path="/login"
                                 component={Login}
+                            />
+                            <PublicRoute
+                                path="/signup"
+                                component={Signup}
                             />
                         </Switch>
                     </Router>

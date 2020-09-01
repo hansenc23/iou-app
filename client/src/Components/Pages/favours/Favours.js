@@ -84,6 +84,19 @@ function Favours() {
                             </div>
                         </div>
                     </div>
+                    <div className= "favour_card_right">
+                        <div className="user_label_right">
+                            @You
+                        </div>
+                        <div className="card_content_right">
+                            <div className="date_right">
+                                25 Aug
+                            </div>
+                            <div className="value_label_right">
+                                Owe <strong> @HernanBas </strong> <strong> drinks </strong>
+                            </div>
+                        </div>
+                    </div>
                     <div className= "favour_card_left">
                         <div className="user_label_left">
                             @PabloPicasso
@@ -107,19 +120,6 @@ function Favours() {
                             </div>
                             <div className="date_left">
                                 23 Aug
-                            </div>
-                        </div>
-                    </div>
-                    <div className= "favour_card_right">
-                        <div className="user_label_right">
-                            @You
-                        </div>
-                        <div className="card_content_right">
-                            <div className="date_right">
-                                22 Aug
-                            </div>
-                            <div className="value_label_right">
-                                Owe <strong> @HernanBas </strong> <strong> drinks </strong>
                             </div>
                         </div>
                     </div>
