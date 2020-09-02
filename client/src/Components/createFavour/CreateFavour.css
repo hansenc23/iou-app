@@ -1,0 +1,107 @@
+.create_favours_area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30px;
+    margin-right: 190px;
+    padding: 20px;
+    min-width: 500px;
+    width: 45%;
+}
+.create_favours_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: fit-content;
+    min-width: 180px;
+    height: 75%;
+    box-shadow: 0 0 3px 3px rgba(133, 135, 141, 0.12);
+    background-color: transparent;
+    border-radius: 12px;
+    padding: 40px;
+}
+.create_favours_card:hover {
+    /* for right side the, -shadow: -2px -2px 15px 0 rgba(0,0,0,0.2); */
+    box-shadow: -2px -2px 10px 0 rgb(226, 226, 226);
+}
+.create_favour_content {
+    width: fit-content;
+}
+.create_favour_label {
+
+}
+.create_favour_form {
+    height: fit-content;
+    width: fit-content;
+    padding-bottom: 20px;
+}
+.btn_container {
+    display: flex;
+    flex-direction: row;;
+    height: 40px;
+    width: fit-content;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.create_favour_btn {
+    width: 160px;
+    height: inherit;
+    background-color: hotpink;
+    color: #f3f0ea;
+    font-weight: bold;
+    font-size: 17px;
+    border-radius: 25px;
+    justify-content: center;
+    align-items: center;
+}
+.cancel_favour_btn {
+    background-color: transparent;
+    color: black;
+    size: 30px;
+    vertical-align: middle;
+}
+.create_favour_first_line {
+    display: flex;
+    align-content:flex-start;
+    width: inherit;
+    font-family: Poppins;
+    font-weight: bold;
+    font-size: 40px;
+    color: black
+}
+.create_favour_second_line {
+    display: flex;
+    align-content:flex-start;
+    font-family: Poppins;
+    width: inherit;
+    font-weight: bold;
+    font-size: 40px;
+    color: black
+}
+.create_favour_third_line{
+    display: flex;
+    flex-direction: row;
+    font-family: Poppins;
+    font-weight: bold;
+    font-size: 40px;
+    color: black
+}
+.favour_type_field {
+    color: hotpink;
+}
+.lets_label, .a_label, .from_label {
+    font-family: Poppins;
+    font-weight: bold;
+    font-size: 40px;
+    padding-right: 9px;
+}
+.value_field {
+    color: hotpink;
+    padding-right: 9px;
+}
+.who_field {
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "./Leaderboard.css";
+import "./LeaderboardPage.css";
 
-function Leaderboard() {
+function LeaderboardPage() {
 
     //const [] = useState(0);
 
@@ -14,4 +14,4 @@ function Leaderboard() {
     );
 }
 
-export default Leaderboard;
+export default LeaderboardPage;

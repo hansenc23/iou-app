@@ -1,7 +1,7 @@
 import React, { useState, useEffect }from "react";
-import "./Requests.css";
+import "./RequestsPage.css";
 
-function Requests() {
+function RequestsPage() {
 
     //const [] = useState(0);
 
@@ -14,4 +14,4 @@ function Requests() {
     );
 }
 
-export default Requests;
+export default RequestsPage;

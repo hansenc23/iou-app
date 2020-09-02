@@ -7,12 +7,12 @@ import {
     Redirect,
 } from "react-router-dom";
 
-import Navbar from "./components/navbar/Navbar";
-import Requests from "./components/pages/requests/Requests";
-import Favours from "./components/pages/favours/Favours";
-import Leaderboard from "./components/pages/leaderboard/Leaderboard";
-import Login from "./components/pages/login/Login";
-import Signup from "./components/pages/Signup/Signup";
+import Navbar from "./navbar/Navbar";
+import RequestsPage from "./pages/requestsPage/RequestsPage";
+import Favours from "./pages/favoursPage/FavoursPage";
+import LeaderboardPage from "./pages/leaderboardPage/LeaderboardPage";
+import Login from "./pages/loginPage/LoginPage";
+import Signup from "./pages/signupPage/SignupPage";
 
 import './styles/App.css';
 
@@ -70,7 +70,7 @@ class App extends Component {
                         <Switch>
                             <PublicRoute
                                 path="/requests"
-                                component={Requests}
+                                component={RequestsPage}
                             />
                             <PublicRoute
                                 path="/favours"
@@ -78,7 +78,7 @@ class App extends Component {
                             />
                             <PublicRoute
                                 path="/leaderboard"
-                                component={Leaderboard}
+                                component={LeaderboardPage}
                             />
                             <PublicRoute
                                 path="/login"

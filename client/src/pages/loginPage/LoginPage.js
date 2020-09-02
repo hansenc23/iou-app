@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./Login.css";
+import "./LoginPage.css";
 import TextField from "@material-ui/core/TextField";
 
-function Login() {
+function LoginPage() {
 
     return (
         <div id="Login">
@@ -29,4 +29,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default LoginPage;

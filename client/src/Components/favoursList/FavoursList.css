@@ -1,0 +1,57 @@
+.all_favours_area {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 800px;
+    height: calc(100vh - 85px);
+    margin-left: 230px;
+}
+.favours_title {
+    font-weight: 700;
+    color: #000000;
+    font-size: 50px;
+    font-family: "Poppins";
+    padding-left: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.filter_btn {
+    display: flex;
+    flex-direction: row;
+    min-width: 300px;
+    text-align: justify;
+    font-size: 50px;
+    padding-bottom: 8px;
+    outline: none;
+    padding-left: 15px;
+}
+
+.all_btn, .owe_btn, .owing_btn, .settled_btn {
+    height: 30px;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: Roboto;
+    background-color: transparent;
+    color: black;
+}
+button {
+    display: flex;
+    flex: auto;
+    border: medium none;
+    color: #000000;
+    font-size: 16px;
+    background: #fff;
+}
+button {
+    color: #000;
+    transition: all 200ms ease-in-out;
+}
+button:hover {
+    opacity: 0.7;
+    color: dodgerblue;
+}
+button:focus {
+    font-weight: bold;
+    color: dodgerblue;
+    outline:0;
+}

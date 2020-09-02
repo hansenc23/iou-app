@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./Signup.css";
+import "./SignupPage.css";
 import TextField from '@material-ui/core/TextField';
 
-function Signup() {
+function SignupPage() {
 
     return (
         <div id="Signup">
@@ -31,4 +31,4 @@ function Signup() {
     );
 }
 
-export default Signup;
+export default SignupPage;
