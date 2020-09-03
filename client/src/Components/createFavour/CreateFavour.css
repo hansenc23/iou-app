@@ -1,4 +1,4 @@
-.create_favours_area {
+#createFavour {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,33 +8,34 @@
     min-width: 500px;
     width: 45%;
 }
-.create_favours_card {
+.createFavour_card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: fit-content;
     min-width: 180px;
     height: 75%;
-    box-shadow: 0 0 3px 3px rgba(133, 135, 141, 0.12);
+    box-shadow: 0 0 4px 4px rgba(133, 135, 141, 0.12);
     background-color: transparent;
     border-radius: 12px;
-    padding: 40px;
+    padding: 20px;
 }
-.create_favours_card:hover {
+.createFavour_card:hover {
     /* for right side the, -shadow: -2px -2px 15px 0 rgba(0,0,0,0.2); */
     box-shadow: -2px -2px 10px 0 rgb(226, 226, 226);
 }
-.create_favour_content {
+.createFavour_content {
     width: fit-content;
 }
-.create_favour_label {
+.createFavour_label {
 
 }
-.create_favour_form {
+.createFavour_form {
     height: fit-content;
     width: fit-content;
     padding-bottom: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 .btn_container {
     display: flex;
@@ -43,10 +44,11 @@
     width: fit-content;
     justify-content: flex-start;
     align-items: flex-start;
+    padding-left: 40px;
 }
-.create_favour_btn {
+.confirm_favour_btn {
     width: 160px;
-    height: inherit;
+    height: 42px;
     background-color: hotpink;
     color: #f3f0ea;
     font-weight: bold;
@@ -55,13 +57,20 @@
     justify-content: center;
     align-items: center;
 }
+.confirm_favour_btn:hover{
+    color: dodgerblue;
+    opacity: 0.7;
+}
 .cancel_favour_btn {
     background-color: transparent;
     color: black;
-    size: 30px;
-    vertical-align: middle;
+    margin-left: 8px;
 }
-.create_favour_first_line {
+.cancel_favour_btn:hover{
+    color: red;
+    opacity: 0.7;
+}
+.createFavour_first_line {
     display: flex;
     align-content:flex-start;
     width: inherit;
@@ -70,38 +79,51 @@
     font-size: 40px;
     color: black
 }
-.create_favour_second_line {
+.createFavour_second_line {
     display: flex;
     align-content:flex-start;
     font-family: Poppins;
     width: inherit;
     font-weight: bold;
     font-size: 40px;
-    color: black
+    color: black;
+    margin-top: 4px;
 }
-.create_favour_third_line{
+.createFavour_third_line{
     display: flex;
     flex-direction: row;
     font-family: Poppins;
     font-weight: bold;
     font-size: 40px;
-    color: black
+    color: black;
+    margin-top: 4px;
 }
-.favour_type_field {
-    color: hotpink;
-}
-.lets_label, .a_label, .from_label {
+.lets_text, .a_text {
     font-family: Poppins;
     font-weight: bold;
     font-size: 40px;
-    padding-right: 9px;
+    padding-right: 10px;
 }
-.value_field {
+.type_field {
     color: hotpink;
-    padding-right: 9px;
 }
 .who_field {
     display: flex;
     flex-direction: row;
     width: 500px;
+}
+what_field {
+
+}
+.menu_label {
+    font-size: 40px;
+    font-family: Poppins;
+    font-weight: bold;
+    color: darkgrey;
+}
+.value_label {
+    font-size: 40px;
+    font-family: Poppins;
+    font-weight: bold;
+    color: hotpink;
 }

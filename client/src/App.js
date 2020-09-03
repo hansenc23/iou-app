@@ -16,35 +16,17 @@ import Signup from "./pages/signupPage/SignupPage";
 
 import './styles/App.css';
 
-function PublicRoute({ component: Component, authenticated, ...rest }) {
-    return (
-        <Route
-            {...rest}
-
-            render={(props) =>
-                authenticated === true ? (
-                    <Redirect to="/favours" />
-                ) : (
-                    <Component {...props} />
-                )
-            }
-        />
-    );
-}
-
 class App extends Component {
 
     constructor() {
         super();
         this.state = {
-            authenticated: false,
             loading: true,
         };
     }
 
     componentDidMount() {
         this.setState({
-            authenticated: false,
             loading: false,
         });
     }
@@ -68,23 +50,23 @@ class App extends Component {
                     <Router basename="/">
                         <Navbar/>
                         <Switch>
-                            <PublicRoute
+                            <Route
                                 path="/requests"
                                 component={RequestsPage}
                             />
-                            <PublicRoute
+                            <Route
                                 path="/favours"
                                 component={Favours}
                             />
-                            <PublicRoute
+                            <Route
                                 path="/leaderboard"
                                 component={LeaderboardPage}
                             />
-                            <PublicRoute
+                            <Route
                                 path="/login"
                                 component={Login}
                             />
-                            <PublicRoute
+                            <Route
                                 path="/signup"
                                 component={Signup}
                             />

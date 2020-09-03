@@ -6,7 +6,7 @@ const FavoursList =() => {
 
     return (
         <div>
-            <div className="all_favours_area">
+            <div id="favours_list" className="">
                 <div className="favours_title"> Favours</div>
                 <span className="filter_btn">
                     <button type="button" className="all_btn">All</button>

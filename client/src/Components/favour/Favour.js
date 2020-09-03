@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "./Favour.css";
 
 const Favour = () => {
 
+    const [userName, setUserName] = useState(0);
+    const [favourValue, setFavourValue] = useState(0);
+
     return (
-        <div className="favours_cards">
+        <div id = "favour" className="">
             <div className= "favour_card_left">
                 <div className="user_label_left">
                     @PabloPicasso

@@ -1,0 +1,26 @@
+/* these make sure it can work in any text element */
+.inline-text_copy--active,
+.inline-text_input--active {
+    font: inherit;
+    text-align: inherit;
+    padding: 0;
+    background: none;
+    border: none;
+    width: 400px;
+    outline: none;
+
+}
+.inline-text_copy--active {
+    cursor: pointer;
+    color: black;
+}
+.inline-text_copy--hidden,
+.inline-text_input--hidden {
+    display: none;
+    color: darkgrey;
+    outline: none;
+}
+.inline-text_input--active {
+    text-align: left;
+    color: darkgrey;
+}

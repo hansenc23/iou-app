@@ -9,7 +9,7 @@ function LeaderboardPage() {
 
     return (
         <div className="placeholder">
-            Requests page here
+            Leaderboard page here
         </div>
     );
 }
