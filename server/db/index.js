@@ -1,14 +1,17 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 console.log(process.env.MONGO_URL);
 
-mongoose.connect(process.env.MONGO_URL, {
+mongoose
+  .connect(process.env.MONGO_URL, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
-    useCreateIndex: true
-}).catch(e => {
-    console.error('Connection error', e.message)
-})
+    useCreateIndex: true,
+  })
+  .then(console.log('MongoDB Connected...'))
+  .catch((e) => {
+    console.error('Connection error', e.message);
+  });
 
-const db = mongoose.connection
+const db = mongoose.connection;
 
-module.exports = db
+module.exports = db;
