@@ -10,10 +10,30 @@ const CreateFavour = () => {
 
     const [storedUser, setStoredUser] = useState("@Whom?");
     const [storedValue, setStoredValue] = useState(-1);
+    const [storedType, setStoredType] = useState("Shout");
+    const [otherStoredType, setOtherStoredType] = useState("Owe");
 
     const handleChangeValue = (event) => {
         setStoredValue(event.target.value);
     };
+
+    const handleChangeType = (current) => {
+        if (storedType === "Shout") {
+            setStoredType("Owe");
+        }
+        else if (storedType === "Owe"){
+            setStoredType("Shout");
+        }
+    }
+
+    const handleChangeOtherType = (current) => {
+        if (otherStoredType === "Shout") {
+            setOtherStoredType("Owe");
+        }
+        else if (otherStoredType === "Owe"){
+            setOtherStoredType("Shout");
+        }
+    }
 
     return (
         <div id="createFavour" className="">
@@ -23,9 +43,15 @@ const CreateFavour = () => {
                     <div className="createFavour_form">
                         <div className="createFavour_first_line">
                             <div className="lets_text">Let's</div>
-                            <div className="type_field">Shout</div>
+                            <button className="type_field" type="type_field"
+                                    data-hover={otherStoredType}
+                                    data-active={storedType}
+                                    onClick={() => {handleChangeType(); handleChangeOtherType();}}>
+                                <span className="">{storedType}</span>
+                            </button>
                         </div>
                         <div className="createFavour_second_line">
+                            <div className="at_text"> </div>
                             <InlineText className="who_field"
                                         text={storedUser}
                                         onSetText={text => setStoredUser(text)}
@@ -35,10 +61,20 @@ const CreateFavour = () => {
                             <div className="a_text"> a </div>
                             <div className ="what_field">
                                 <Select value={storedValue}
+                                        className=""
+                                        style={{height:0}}
                                         onChange={handleChangeValue}
                                         displayEmpty
                                         inputProps={{ 'aria-label': 'Without label'}}
-                                        disableUnderline={true}>
+                                        disableUnderline={true}
+                                        MenuProps={{
+                                            getContentAnchorEl: null,
+                                            anchorOrigin: {
+                                                vertical: "bottom",
+                                                horizontal: "right",
+                                            }
+                                        }}
+                                >
                                     <MenuItem value={-1}>
                                         <div className="menu_label"> What? </div>
                                     </MenuItem>
@@ -60,7 +96,7 @@ const CreateFavour = () => {
                     </div>
                     <div className="btn_container">
                         <button
-                            className="confirm_favour_btn"> Confirm
+                            className="confirm_favour_btn"> <span>Confirm</span>
                         </button>
                         <button
                             className="cancel_favour_btn"

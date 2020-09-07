@@ -10,7 +10,7 @@ const Favour = () => {
         <div id = "favour" className="">
             <div className= "favour_card_left">
                 <div className="user_label_left">
-                    @PabloPicasso
+                    @JohnDoe
                 </div>
                 <div className = "card_content_left">
                     <div className="value_label_left">
@@ -23,7 +23,7 @@ const Favour = () => {
             </div>
             <div className= "favour_card_left">
                 <div className="user_label_left">
-                    @MarkRothko
+                    @AliciaGreen
                 </div>
                 <div className = "card_content_left">
                     <div className="value_label_left">
@@ -36,20 +36,20 @@ const Favour = () => {
             </div>
             <div className= "favour_card_right">
                 <div className="user_label_right">
-                    @You
+                    @NicoleBree
                 </div>
                 <div className="card_content_right">
                     <div className="date_right">
                         28 Aug
                     </div>
                     <div className="value_label_right">
-                        Owe <strong> @EdwardHopper </strong> <strong> lunch </strong>
+                        Owe <strong> @EdwardCrawford </strong> <strong> lunch </strong>
                     </div>
                 </div>
             </div>
             <div className= "favour_card_left">
                 <div className="user_label_left">
-                    @HenriMatisse
+                    @BobbyLee
                 </div>
                 <div className = "card_content_left">
                     <div className="value_label_left">
@@ -69,7 +69,7 @@ const Favour = () => {
                         26 Aug
                     </div>
                     <div className="value_label_right">
-                        Owe <strong> @MarkRothko </strong> <strong> coffee </strong>
+                        Owe <strong> @JulyLawson </strong> <strong> coffee </strong>
                     </div>
                 </div>
             </div>
@@ -82,13 +82,13 @@ const Favour = () => {
                         25 Aug
                     </div>
                     <div className="value_label_right">
-                        Owe <strong> @HernanBas </strong> <strong> drinks </strong>
+                        Owe <strong> @MadisonHall </strong> <strong> drinks </strong>
                     </div>
                 </div>
             </div>
             <div className= "favour_card_left">
                 <div className="user_label_left">
-                    @PabloPicasso
+                    @RichardDraper
                 </div>
                 <div className = "card_content_left">
                     <div className="value_label_left">
@@ -96,19 +96,6 @@ const Favour = () => {
                     </div>
                     <div className="date_left">
                         25 Aug
-                    </div>
-                </div>
-            </div>
-            <div className= "favour_card_left">
-                <div className="user_label_left">
-                    @JacksonPollock
-                </div>
-                <div className = "card_content_left">
-                    <div className="value_label_left">
-                        Owes you <strong> coffee </strong>
-                    </div>
-                    <div className="date_left">
-                        23 Aug
                     </div>
                 </div>
             </div>

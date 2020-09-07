@@ -2,11 +2,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 30px;
-    margin-right: 190px;
-    padding: 20px;
-    min-width: 500px;
-    width: 45%;
+    margin-top: 4%;
+    margin-left: 50px;
+    margin-right: 250px;
+    min-width: 400px;
+    width: 40%;
 }
 .createFavour_card {
     display: flex;
@@ -21,7 +21,6 @@
     padding: 20px;
 }
 .createFavour_card:hover {
-    /* for right side the, -shadow: -2px -2px 15px 0 rgba(0,0,0,0.2); */
     box-shadow: -2px -2px 10px 0 rgb(226, 226, 226);
 }
 .createFavour_content {
@@ -46,29 +45,47 @@
     align-items: flex-start;
     padding-left: 40px;
 }
-.confirm_favour_btn {
+.confirm_favour_btn{
+    position: relative;
+    transition: all .35s;
+    justify-content: center;
+    align-items: center;
     width: 160px;
     height: 42px;
     background-color: hotpink;
-    color: #f3f0ea;
+    color: white;
     font-weight: bold;
     font-size: 17px;
     border-radius: 25px;
-    justify-content: center;
-    align-items: center;
+}
+.confirm_favour_btn span{
+    z-index: 2;
+}
+.confirm_favour_btn:after{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(to bottom left, #7e51d0, #4b83e9);
+    border-radius: 25px;
+    transition: all .35s;
 }
 .confirm_favour_btn:hover{
-    color: dodgerblue;
-    opacity: 0.7;
+    color: #fff;
+}
+.confirm_favour_btn:hover:after{
+    width: 100%;
 }
 .cancel_favour_btn {
     background-color: transparent;
     color: black;
     margin-left: 8px;
+    margin-top: 2px;
 }
 .cancel_favour_btn:hover{
-    color: red;
-    opacity: 0.7;
+    color: dimgrey;
 }
 .createFavour_first_line {
     display: flex;
@@ -98,22 +115,50 @@
     color: black;
     margin-top: 4px;
 }
-.lets_text, .a_text {
+.lets_text {
     font-family: Poppins;
     font-weight: bold;
     font-size: 40px;
     padding-right: 10px;
 }
+.a_text{
+    font-family: Poppins;
+    font-weight: bold;
+    font-size: 40px;
+    padding-right: 15px;
+}
+.at_text {
+    font-family: Poppins;
+    font-weight: bold;
+    font-size: 40px;
+    padding-right: 0;
+}
 .type_field {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    font-size: 40px;
+    font-weight: bold;
+    outline: none;
     color: hotpink;
+    background: transparent;
+    font-family: Poppins;
+}
+
+.type_field:hover  {
+    color: darkgrey;
 }
 .who_field {
     display: flex;
     flex-direction: row;
     width: 500px;
 }
-what_field {
-
+.who_field:hover {
+    color: hotpink;
 }
 .menu_label {
     font-size: 40px;
