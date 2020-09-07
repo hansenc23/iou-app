@@ -10,13 +10,13 @@ register = async (req, res, next) => {
   //Validate data before creating a new user
   const { error } = registerValidation(req.body);
   if (error) {
-    return res.status(400).send(error.details[0].message);
+    return res.status(400).json(error.details[0].message);
   }
 
   //Check if user already exist in database
   const emailExist = await User.findOne({ email });
   if (emailExist) {
-    return res.status(400).send('Email already exist!');
+    return res.status(400).json('Email already exist!');
   }
 
   //Hash user password
@@ -37,7 +37,7 @@ register = async (req, res, next) => {
     res.send({ user: user._id });
     // res.send(newUser);
   } catch (err) {
-    res.status(400).send(err);
+    res.status(400).json(err);
   }
 };
 
@@ -47,29 +47,49 @@ login = async (req, res, next) => {
   //Validate login data
   const { error } = loginValidation(req.body);
   if (error) {
-    return res.status(400).send(error.details[0].message);
+    return res.status(400).json(error.details[0].message);
   }
 
   //Check if email exist in database
   const user = await User.findOne({ email });
   if (!user) {
-    return res.status(400).send('Email or password is invalid');
+    return res.status(400).json('Email or password is invalid');
   }
 
   //Check if password is valid
   const validPassword = await bcrypt.compare(password, user.password);
   if (!validPassword) {
-    return res.status(400).send('Email or password is invalid');
+    return res.status(400).json('Email or password is invalid');
   }
 
   //Create an assign a jwt
   const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
-  res.header('auth-token', token).send(token);
+  res.header('auth-token', token).json(token);
 
   // res.send('Logged in!');
+};
+
+getCurrentUser = async (req, res, next) => {
+  const userId = req.user._id;
+  try {
+    const user = await User.findOne({ _id: userId });
+    if (!user) {
+      return res.status(401).json('Not Authorized!');
+    }
+
+    res.status(200).json({
+      id: user._id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
 module.exports = {
   register,
   login,
+  getCurrentUser,
 };
