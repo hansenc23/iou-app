@@ -7,45 +7,26 @@ import {
     Redirect,
 } from "react-router-dom";
 
-//import TestApi from './TestApi';
+import Navbar from "./navbar/Navbar";
+import RequestsPage from "./pages/requestsPage/RequestsPage";
+import Favours from "./pages/favoursPage/FavoursPage";
+import LeaderboardPage from "./pages/leaderboardPage/LeaderboardPage";
+import Login from "./pages/loginPage/LoginPage";
+import Signup from "./pages/signupPage/SignupPage";
 
-import Navbar from "./Components/Navbar";
-import Requests from "./Components/Pages/Requests";
-import Favours from "./Components/Pages/Favours";
-import Leaderboard from "./Components/Pages/Leaderboard";
-import Login from "./Components/Pages/Login";
-
-import './App.css';
-
-function PublicRoute({ component: Component, authenticated, ...rest }) {
-    return (
-        <Route
-            {...rest}
-
-            render={(props) =>
-                authenticated === true ? (
-                    <Redirect to="/favours" />
-                ) : (
-                    <Component {...props} />
-                )
-            }
-        />
-    );
-}
+import './styles/App.css';
 
 class App extends Component {
 
     constructor() {
         super();
         this.state = {
-            authenticated: false,
             loading: true,
         };
     }
 
     componentDidMount() {
         this.setState({
-            authenticated: false,
             loading: false,
         });
     }
@@ -69,21 +50,25 @@ class App extends Component {
                     <Router basename="/">
                         <Navbar/>
                         <Switch>
-                            <PublicRoute
+                            <Route
+                                path="/requests"
+                                component={RequestsPage}
+                            />
+                            <Route
                                 path="/favours"
                                 component={Favours}
                             />
-                            <PublicRoute
-                                path="/requests"
-                                component={Requests}
-                            />
-                            <PublicRoute
+                            <Route
                                 path="/leaderboard"
-                                component={Leaderboard}
+                                component={LeaderboardPage}
                             />
-                            <PublicRoute
-                                path="/leaderboard"
+                            <Route
+                                path="/login"
                                 component={Login}
+                            />
+                            <Route
+                                path="/signup"
+                                component={Signup}
                             />
                         </Switch>
                     </Router>
