@@ -1,0 +1,11 @@
+#Favours {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: calc(100vh - 82px);
+    width: 100vw;
+    padding-top: 80px;
+    background-color: #f3f0ea;
+    transition: 2s;
+    overflow-x: hidden;
+}
