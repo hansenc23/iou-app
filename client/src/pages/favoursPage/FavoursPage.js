@@ -1,20 +1,19 @@
-import React, {useState, useEffect, Component} from 'react';
-import "./FavoursPage.css";
-import FavoursList from "../../components/favoursList/FavoursList";
-import CreateFavour from "../../components/createFavour/CreateFavour";
+import React, { useState, useEffect, Component } from 'react';
+import './FavoursPage.css';
+import FavoursList from '../../Components/favoursList/FavoursList';
+import CreateFavour from '../../Components/createFavour/CreateFavour';
 
-function FavoursPage () {
+function FavoursPage() {
+  const [] = useState(0);
 
-    const [] = useState(0);
+  useEffect(() => {});
 
-    useEffect(() => {});
-
-    return (
-        <div id="Favours" className="">
-            <FavoursList/>
-            <CreateFavour/>
-        </div>
-    );
+  return (
+    <div id='Favours' className=''>
+      <FavoursList />
+      <CreateFavour />
+    </div>
+  );
 }
 
 export default FavoursPage;
