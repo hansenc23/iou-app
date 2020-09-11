@@ -8,6 +8,8 @@ router.post('/register', authController.register);
 
 router.post('/login', authController.login);
 
+router.post('/delete', authController.deleteUser);
+
 router.get('/getCurrentUser', verifyToken, authController.getCurrentUser);
 
 module.exports = router;

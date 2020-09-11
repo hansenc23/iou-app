@@ -34,8 +34,8 @@ register = async (req, res, next) => {
   //Save user to database
   try {
     const newUser = await user.save();
-    res.send({ user: user._id });
-    // res.send(newUser);
+    // const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+    res.status(200).send({ user: user._id });
   } catch (err) {
     res.status(400).json(err);
   }
@@ -64,7 +64,8 @@ login = async (req, res, next) => {
 
   //Create an assign a jwt
   const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
-  res.header('auth-token', token).json(token);
+  return res.status(200).header('auth-token', token).json(token);
+  // return res.status(200).json({ success: true, asdf: token });
 
   // res.send('Logged in!');
 };
@@ -88,8 +89,23 @@ getCurrentUser = async (req, res, next) => {
   }
 };
 
+deleteUser = async (req, res, next) => {
+  const { id } = req.body;
+  try {
+    const response = await User.deleteOne({ _id: id });
+    if (response.deletedCount === 0) {
+      return res.status(400).json({ err: 'user not found' });
+    } else {
+      return res.status(200).json({ success: 'user deleted successfully' });
+    }
+  } catch (err) {
+    return res.status(400).json(err);
+  }
+};
+
 module.exports = {
   register,
   login,
   getCurrentUser,
+  deleteUser,
 };

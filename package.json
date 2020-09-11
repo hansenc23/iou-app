@@ -9,7 +9,8 @@
     "test": "mocha server/tests/* --exit",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "database-test": "jest --runInBand server/test/favorsDB.test.js"
+    "database-test": "jest --runInBand server/test/favorsDB.test.js",
+    "auth-test": "jest --runInBand server/test/userAuth.test.js"
   },
   "repository": {
     "type": "git",
@@ -33,11 +34,13 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mocha": "^8.1.1",
+    "mongodb": "^3.6.1",
     "mongoose": "^5.10.3",
     "supertest": "^4.0.2"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
+    "expect": "^26.4.2",
     "jest": "^24.9.0",
     "mongodb-memory-server": "^6.6.7",
     "nodemon": "^2.0.4"
