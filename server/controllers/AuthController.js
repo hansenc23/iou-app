@@ -40,7 +40,7 @@ register = async (req, res, next) => {
     return res
       .cookie('jwt', token, {
         httpOnly: true,
-        sameSite: 'strict',
+        sameSite: 'lax',
         secure: true,
       })
       .json('logged in!');
@@ -76,7 +76,7 @@ login = async (req, res, next) => {
   return res
     .cookie('jwt', token, {
       httpOnly: true,
-      sameSite: 'strict',
+      sameSite: 'lax',
       secure: true,
     })
     .json('logged in!');
