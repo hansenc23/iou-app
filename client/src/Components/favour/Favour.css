@@ -1,0 +1,88 @@
+#favour {
+    display: block;
+    min-width: 300px;
+    padding: 10px;
+    overflow: auto;
+    /*border: solid deepskyblue;*/
+}
+.favour_card_left {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px 10px 20px;
+    width: 420px;
+    min-height: 65px;
+    transition: 0.2s;
+    margin-bottom: 20px;
+    background-image: linear-gradient(to bottom left, #e5e5e5, #dedede);
+    text-align: left;
+    justify-content: space-evenly;
+    border-radius: 15px;
+    box-shadow: 1px 1px 7px rgb(227, 227, 227);
+}
+.favour_card_right {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px 10px 20px;
+    width: 420px;
+    min-height: 65px;
+    transition: 0.2s;
+    margin-bottom: 20px;
+    margin-left: 10vw;
+    background-image: linear-gradient(to bottom left, #7e51d0, #4b83e9);
+    text-align: right;
+    justify-content: space-evenly;
+    align-content: flex-end;
+    border-radius: 15px;
+    box-shadow: 1px 1px 4px rgb(145, 145, 145);
+}
+
+.favour_card_left:hover {
+    box-shadow: 2px 2px 10px rgb(153, 153, 153);
+}
+.favour_card_right:hover {
+    box-shadow: 2px 4px 7px rgb(129, 129, 129);
+}
+.user_label_left{
+    font-family: "Poppins";
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+}
+.card_content_left {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.value_label_left{
+    font-family: "Roboto";
+    font-size: 16px;
+    color: black;
+}
+.date_left {
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: 500;
+    color: #515151;
+}
+.user_label_right{
+    font-family: "Poppins";
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+}
+.value_label_right{
+    font-family: "Roboto";
+    font-size: 17px;
+    color: white;
+}
+.card_content_right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.date_right {
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+}

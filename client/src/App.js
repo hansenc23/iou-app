@@ -1,96 +1,38 @@
-import React, {Component} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
-import {
-    HashRouter as Router,
-    Switch,
-    Route,
-    Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-//import TestApi from './TestApi';
+import Navbar from './navbar/Navbar';
+import RequestsPage from './pages/requestsPage/RequestsPage';
+import Favours from './pages/favoursPage/FavoursPage';
+import LeaderboardPage from './pages/leaderboardPage/LeaderboardPage';
+import Login from './pages/loginPage/LoginPage';
+import Signup from './pages/signupPage/SignupPage';
+import { AuthProvider } from './context/AuthContext';
+import { AuthContext } from './context/AuthContext';
 
-import Navbar from "./Components/Navbar";
-import Requests from "./Components/Pages/Requests";
-import Favours from "./Components/Pages/Favours";
-import Leaderboard from "./Components/Pages/Leaderboard";
-import Login from "./Components/Pages/Login";
+import './styles/App.css';
 
-import './App.css';
-
-function PublicRoute({ component: Component, authenticated, ...rest }) {
-    return (
-        <Route
-            {...rest}
-
-            render={(props) =>
-                authenticated === true ? (
-                    <Redirect to="/favours" />
-                ) : (
-                    <Component {...props} />
-                )
-            }
-        />
-    );
-}
-
-class App extends Component {
-
-    constructor() {
-        super();
-        this.state = {
-            authenticated: false,
-            loading: true,
-        };
-    }
-
-    componentDidMount() {
-        this.setState({
-            authenticated: false,
-            loading: false,
-        });
-    }
-
-    render() {
-        return this.state.loading === true ? (
-            <div
-                className="spinner-border text-success"
-                role="status"
-                style={{
-                    position: "absolute",
-                    left: "50%",
-                    top: "50%",
-                }}
-            >
-                <span className="sr-only">Loading...</span>
-            </div>
-        ) : (
-            <div className="main">
-                <div className='App'>
-                    <Router basename="/">
-                        <Navbar/>
-                        <Switch>
-                            <PublicRoute
-                                path="/favours"
-                                component={Favours}
-                            />
-                            <PublicRoute
-                                path="/requests"
-                                component={Requests}
-                            />
-                            <PublicRoute
-                                path="/leaderboard"
-                                component={Leaderboard}
-                            />
-                            <PublicRoute
-                                path="/leaderboard"
-                                component={Login}
-                            />
-                        </Switch>
-                    </Router>
-                </div>
-            </div>
-        )
-    }
-}
+const App = () => {
+  return (
+    <div className='main'>
+      <div className='App'>
+        <AuthProvider>
+          <Router basename='/'>
+            <Navbar />
+            <Switch>
+              <Route path='/requests' component={RequestsPage} />
+              <Route path='/favours' component={Favours} />
+              <Route path='/leaderboard' component={LeaderboardPage} />
+              <Route path='/login' component={Login} />
+              <Route path='/signup' component={Signup} />
+              <Route path='/' component={RequestsPage} />
+            </Switch>
+          </Router>
+        </AuthProvider>
+      </div>
+    </div>
+  );
+};
 
 export default App;
