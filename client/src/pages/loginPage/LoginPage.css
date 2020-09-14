@@ -61,6 +61,7 @@
   align-items: center;
   margin-top: 80px;
   margin-bottom: 170px;
+  cursor: pointer;
 }
 .login_logo_msg {
   color: white;
