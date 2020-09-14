@@ -3,10 +3,10 @@
     flex-direction: column;
     justify-content: center;
     margin-top: 4%;
-    margin-left: 50px;
-    margin-right: 250px;
-    min-width: 400px;
-    width: 40%;
+    margin-left: 6vw;
+    margin-right: 11vw;
+    max-width: 800px;
+    width: 100%;
 }
 .createFavour_card {
     display: flex;
@@ -21,7 +21,7 @@
     padding: 20px;
 }
 .createFavour_card:hover {
-    box-shadow: -2px -2px 10px 0 rgb(226, 226, 226);
+    box-shadow: 0 0 10px 0 rgb(226, 226, 226);
 }
 .createFavour_content {
     width: fit-content;
@@ -93,7 +93,7 @@
     width: inherit;
     font-family: Poppins;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 36px;
     color: black
 }
 .createFavour_second_line {
@@ -102,7 +102,7 @@
     font-family: Poppins;
     width: inherit;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 36px;
     color: black;
     margin-top: 4px;
 }
@@ -111,26 +111,26 @@
     flex-direction: row;
     font-family: Poppins;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 36px;
     color: black;
     margin-top: 4px;
 }
 .lets_text {
     font-family: Poppins;
     font-weight: bold;
-    font-size: 40px;
-    padding-right: 10px;
+    font-size: 36px;
+    padding-right: 6px;
 }
 .a_text{
     font-family: Poppins;
     font-weight: bold;
-    font-size: 40px;
-    padding-right: 15px;
+    font-size: 36px;
+    padding-right: 10px;
 }
 .at_text {
     font-family: Poppins;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 36px;
     padding-right: 0;
 }
 .type_field {
@@ -141,7 +141,7 @@
     position: relative;
     overflow: hidden;
     text-decoration: none;
-    font-size: 40px;
+    font-size: 36px;
     font-weight: bold;
     outline: none;
     color: hotpink;
@@ -161,13 +161,13 @@
     color: hotpink;
 }
 .menu_label {
-    font-size: 40px;
+    font-size: 36px;
     font-family: Poppins;
     font-weight: bold;
     color: darkgrey;
 }
 .value_label {
-    font-size: 40px;
+    font-size: 36px;
     font-family: Poppins;
     font-weight: bold;
     color: hotpink;

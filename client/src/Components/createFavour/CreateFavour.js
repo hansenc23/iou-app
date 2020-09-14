@@ -4,7 +4,6 @@ import CancelRoundedIcon from "@material-ui/icons/CancelRounded";
 import InlineText from "../inlineText/InlineText";
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-//import SelectMenu from "../selectMenu/SelectMenu";
 
 const CreateFavour = () => {
 
