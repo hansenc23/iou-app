@@ -1,17 +1,21 @@
-import React, { useState, useEffect }from "react";
-import "./RequestsPage.css";
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+import './RequestsPage.css';
 
-function RequestsPage() {
+const RequestsPage = () => {
+  const { isAuth, setIsAuth, user, setUser, getUser } = useContext(AuthContext);
 
-    //const [] = useState(0);
+  //request page should be publicly accessible, so shouldnt require authenticated user
+  //todo: use below method on favors page to get logged in user
+  useEffect(() => {
+    getUser();
+  }, []);
 
-    //useEffect(() => {});
+  //const [] = useState(0);
 
-    return (
-        <div className="placeholder">
-            Requests page here
-        </div>
-    );
-}
+  //useEffect(() => {});
+
+  return <div className='placeholder'>Requests page here</div>;
+};
 
 export default RequestsPage;
