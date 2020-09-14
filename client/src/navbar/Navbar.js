@@ -11,7 +11,7 @@ class Navbar extends Component {
                 <div className="page_links">
                     <nav role="navigation">
                         <div id="menuToggle">
-                            <input type="checkbox" className="test"/>
+                            <input type="checkbox" className=""/>
                                 <span></span>
                                 <span></span>
                                 <span></span>
@@ -31,7 +31,7 @@ class Navbar extends Component {
                 </div>
 
                 <div className="logo">
-                     IOWEYOU
+                    IOWEYOU
                 </div>
 
                 <div className="authentication_links">

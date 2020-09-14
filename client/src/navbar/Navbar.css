@@ -1,7 +1,8 @@
 
 #navbar {
     width: 100%;
-    height: 85px;
+    min-width: 1000px;
+    height: 73px;
     box-shadow: 0 0.5rem 0.625rem rgba(41, 42, 45, 0.12);
     display: flex;
     color: #000;
@@ -22,7 +23,7 @@
     min-width: fit-content;
     font-size: 30px;
     font-weight: bold;
-    color: white;
+    color: #f3f0ea;
     font-family: Poppins;
 }
 .page_links {
@@ -65,7 +66,7 @@ ul li {
 }
 .authentication_links a {
     text-decoration: none;
-    color: white;
+    color: #f3f0ea;
     font-size: 14px;
     font-weight: bold;
 }
@@ -73,24 +74,18 @@ ul li {
     width: 120px;
     height: 35px;
     background-color: transparent;
-    color: white;
-    border: thin solid white;
+    color: #f3f0ea;
+    border: thin solid #f3f0ea;
     font-weight: bold;
     font-size: 14px;
     border-radius: 20px;
     display:table-cell;
     vertical-align: middle;
 }
-
-
-
-/* here navbar */
-
 nav {
     background-color: transparent;
     height: 65px;
 }
-
 #menuToggle {
     display: flex;
     flex-direction: column;
@@ -106,19 +101,21 @@ nav {
     display: flex;
     width: 40px;
     height: 32px;
+    right: 10px;
+    bottom: 1px;
     position: absolute;
     cursor: pointer;
     opacity: 0;
     z-index: 2;
-
 }
 #menuToggle span {
     display: flex;
-    width: 20px;
+    width: 100%;
+    max-width: 20px;
     height: 2px;
     margin-bottom: 5px;
     position: relative;
-    background: white;
+    background: #f3f0ea;
     border-radius: 3px;
     z-index: 1;
     transform-origin: 5px 0px;
@@ -127,21 +124,23 @@ nav {
     opacity 0.55s ease;
 }
 #menuToggle span:first-child {
-    transform-origin: 0% 0%;
+    transform-origin: 0 0;
 }
 #menuToggle span:nth-last-child(2) {
-    transform-origin: 0% 100%;
+    transform-origin: 0 100%;
 }
 #menuToggle input:checked ~ span {
     opacity: 1;
-    transform: rotate(45deg) translate(-3px, -1px);
+    transform: rotate(45deg) translate(0px, 1px);
+    width: 21px;
 }
 #menuToggle input:checked ~ span:nth-last-child(3) {
     opacity: 0;
     transform: rotate(0deg) scale(0.2, 0.2);
 }
 #menuToggle input:checked ~ span:nth-last-child(2) {
-    transform: rotate(-45deg) translate(0, -1px);
+    transform: rotate(-45deg) translate(2px,-1px);
+    width: 21px;
 }
 #menu {
     display: flex;
@@ -152,10 +151,10 @@ nav {
     height: 200px;
     justify-content: space-evenly;
     margin: -50px 0 0 -50px;
-    padding: 100px 50px 50px;
+    padding: 100px 45px 45px;
     background-color: transparent;
     -webkit-font-smoothing: antialiased;
-    transform-origin: 0% 0%;
+    transform-origin: 0 0;
     transform: translate(-100%, 0);
     transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
@@ -163,7 +162,6 @@ nav {
     padding: 10px 0;
     transition-delay: 2s;
 }
-
 #menuToggle input:checked ~ ul {
     transform: none;
 }
