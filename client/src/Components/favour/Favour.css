@@ -27,17 +27,20 @@
     min-height: 65px;
     transition: 0.2s;
     margin-bottom: 20px;
-    margin-left: 15vw;
+    margin-left: 10vw;
     background-image: linear-gradient(to bottom left, #7e51d0, #4b83e9);
     text-align: right;
     justify-content: space-evenly;
     align-content: flex-end;
     border-radius: 15px;
-    box-shadow: 1px 1px 7px rgb(145, 145, 145);
+    box-shadow: 1px 1px 4px rgb(145, 145, 145);
 }
 
-.favour_card_right:hover, .favour_card_left:hover {
+.favour_card_left:hover {
     box-shadow: 2px 2px 10px rgb(153, 153, 153);
+}
+.favour_card_right:hover {
+    box-shadow: 2px 4px 7px rgb(129, 129, 129);
 }
 .user_label_left{
     font-family: "Poppins";

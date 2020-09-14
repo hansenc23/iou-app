@@ -36,7 +36,7 @@ const Favour = () => {
             </div>
             <div className= "favour_card_right">
                 <div className="user_label_right">
-                    @NicoleBree
+                    @You
                 </div>
                 <div className="card_content_right">
                     <div className="date_right">
