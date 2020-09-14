@@ -41,6 +41,7 @@ register = async (req, res, next) => {
       .cookie('jwt', token, {
         httpOnly: true,
         sameSite: 'strict',
+        secure: true,
       })
       .json('logged in!');
   } catch (err) {
@@ -76,6 +77,7 @@ login = async (req, res, next) => {
     .cookie('jwt', token, {
       httpOnly: true,
       sameSite: 'strict',
+      secure: true,
     })
     .json('logged in!');
 
