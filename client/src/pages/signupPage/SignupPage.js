@@ -9,6 +9,7 @@ const SignupPage = () => {
   const [userRegData, setUserRegData] = useState({
     firstName: '',
     lastName: '',
+    username:'',
     email: '',
     password: '',
     confirmPassword: '',
@@ -17,7 +18,7 @@ const SignupPage = () => {
   const [alertBox, setAlertBox] = useState('');
   const { isAuth, setIsAuth, user, setUser, getUser } = useContext(AuthContext);
 
-  const { firstName, lastName, email, password, confirmPassword } = userRegData;
+  const { firstName, lastName, username, email, password, confirmPassword } = userRegData;
 
   useEffect(() => {
     if (alertBox) {
@@ -46,6 +47,9 @@ const SignupPage = () => {
     } else if (!lastName) {
       setAlertBox(<AlertMessage severity='error'>Please enter your last name </AlertMessage>);
       e.target.children[1].children[1].children[0].focus();
+    } else if (!username) {
+      setAlertBox(<AlertMessage severity='error'>Please enter your username</AlertMessage>);
+      e.target.children[2].children[1].children[0].focus();
     } else if (!email) {
       setAlertBox(<AlertMessage severity='error'>Please enter your email</AlertMessage>);
       e.target.children[2].children[1].children[0].focus();
@@ -67,6 +71,7 @@ const SignupPage = () => {
     const userData = {
       firstName,
       lastName,
+      username,
       email,
       password,
     };
@@ -93,6 +98,7 @@ const SignupPage = () => {
         setUserRegData({
           firstName: '',
           lastName: '',
+          username:'',
           email: '',
           password: '',
           confirmPassword: '',
@@ -116,7 +122,7 @@ const SignupPage = () => {
     <div id='Signup'>
       <div className='signup_container'>
         <div className='signup_logo_area'>
-          <div className='signup_logo_msg'>Hello There!</div>
+          <div className='signup_logo_msg'>Hello there!</div>
         </div>
         <div className='signup_form_area'>
           <div className='signup_form_title'>Create Account</div>
@@ -140,6 +146,16 @@ const SignupPage = () => {
               name='lastName'
               onChange={onChange}
               InputProps={{ style: { fontSize: 18, fontWeight: 600, fontFamily: 'Poppins' } }}
+            />
+            <TextField
+                id='outlined-basic'
+                variant='outlined'
+                label='Username'
+                size='small'
+                value={username}
+                name='username'
+                onChange={onChange}
+                InputProps={{ style: {fontSize: 18, fontWeight: 600, fontFamily: 'Poppins' } }}
             />
             <TextField
               id='outlined-basic'

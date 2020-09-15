@@ -129,7 +129,7 @@ function LoginPage() {
           </button>
         </div>
         <div className='login_logo_area'>
-          <div className='login_logo_msg'>Welcome Back!</div>
+          <div className='login_logo_msg'>Welcome back!</div>
         </div>
       </div>
     </div>
