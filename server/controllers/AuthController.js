@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const { registerValidation, loginValidation } = require('../middlewares/validator');
 
 register = async (req, res, next) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { username, firstName, lastName, email, password } = req.body;
 
   //Validate data before creating a new user
   const { error } = registerValidation(req.body);
@@ -25,6 +25,7 @@ register = async (req, res, next) => {
 
   //Create a new user
   const user = new User({
+    username,
     firstName,
     lastName,
     email,
@@ -40,7 +41,7 @@ register = async (req, res, next) => {
     return res
       .cookie('jwt', token, {
         httpOnly: true,
-        sameSite: 'lax',
+        sameSite: 'none',
         secure: true,
       })
       .json('logged in!');
@@ -76,7 +77,7 @@ login = async (req, res, next) => {
   return res
     .cookie('jwt', token, {
       httpOnly: true,
-      sameSite: 'lax',
+      sameSite: 'none',
       secure: true,
     })
     .json('logged in!');
@@ -127,10 +128,35 @@ logout = (req, res, next) => {
   return res.status(200).clearCookie('jwt').json('logged out');
 };
 
+
+// Post Request
+usernamePredict = async (req, res) => {
+  const { username } = req.body
+
+  try {
+
+    if (!username) throw Error("No input")
+
+    const response = await User.find({
+      username: {
+        $regex: `^${username}`
+      }
+    }, {
+      _id: 1, username: 1, firstName: 1, lastName: 1, email: 1
+    }).limit(1)
+
+    res.status(200).json(response)
+  } catch (err) {
+    return res.status(400).json(err.message);
+  }
+
+}
+
 module.exports = {
   register,
   login,
   getCurrentUser,
   deleteUser,
   logout,
+  usernamePredict
 };

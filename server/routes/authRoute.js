@@ -14,4 +14,6 @@ router.get('/logout', verifyToken, authController.logout);
 
 router.get('/getCurrentUser', verifyToken, authController.getCurrentUser);
 
+router.post('/username_predict', authController.usernamePredict)
+
 module.exports = router;
