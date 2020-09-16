@@ -4,6 +4,19 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { registerValidation, loginValidation } = require('../middlewares/validator');
 
+
+const cookie_config = process.env.NODE_ENV === "development" ?
+  {
+    httpOnly: true,
+  }
+  :
+  {
+    httpOnly: true,
+    sameSite: 'none',
+    secure: false,
+  }
+
+
 register = async (req, res, next) => {
   const { username, firstName, lastName, email, password } = req.body;
 
@@ -39,11 +52,7 @@ register = async (req, res, next) => {
     // res.status(200).json(token);
     // res.status(200).send({ user: user._id });
     return res
-      .cookie('jwt', token, {
-        httpOnly: true,
-        sameSite: 'none',
-        secure: true,
-      })
+      .cookie('jwt', token, cookie_config)
       .json('logged in!');
   } catch (err) {
     res.status(400).json(err);
@@ -75,11 +84,7 @@ login = async (req, res, next) => {
   const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '2h' });
 
   return res
-    .cookie('jwt', token, {
-      httpOnly: true,
-      sameSite: 'none',
-      secure: true,
-    })
+    .cookie('jwt', token, cookie_config)
     .json('logged in!');
 
   // return res.status(200).header('auth-token', token).json(token);
@@ -143,7 +148,7 @@ usernamePredict = async (req, res) => {
       }
     }, {
       _id: 1, username: 1, firstName: 1, lastName: 1, email: 1
-    }).limit(1)
+    }).limit(5)
 
     res.status(200).json(response)
   } catch (err) {
