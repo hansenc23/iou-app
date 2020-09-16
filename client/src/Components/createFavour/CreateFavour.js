@@ -19,9 +19,11 @@ const CreateFavour = () => {
   const [success, setSuccess] = useState(false)
 
   function handleClickCancel(isSuccess = false) {
+    // Reset all errors
+    // If isSuccess is true
     setError("")
     setSuccess(isSuccess)
-
+    // Reset Inputs
     setStoredValue("What");
     setStoreTypeTest('Bought')
     setUsernameInput("@Whom?")
@@ -29,10 +31,14 @@ const CreateFavour = () => {
 
   function handleOnChangeWhom(text, fromSelect = false) {
     reset()
+    // Set text input as UsernameInput
     setUsernameInput(text)
+    // Clear Username suggestions that i fetch from database
     setUsernameSuggestions([])
-
+    // Remove @ at the begining of string
     const username = text.split('@')[1]
+    // If username is not empty or null, and the function wasn't called from dropdown menu
+    // Post request server to predict username
     if (username && !fromSelect) {
       axios.post(`${CONFIG.API_URL}/auth/username_predict`, { username })
         .then(response => {
@@ -52,45 +58,54 @@ const CreateFavour = () => {
   function handleClickConfirm() {
     reset()
     // Validations
-
+    // Check if its default value
     if (storedValue !== "What") {
+      // Check if default value and it's null or empty
       if (usernameInput !== "@" || usernameInput) {
-
+        // Username split the @
         const username = usernameInput.split('@')[1]
 
-        axios.post(`${CONFIG.API_URL}/auth/username_predict`, { username })
-          .then(response => {
-            if (response.data.length > 0) {
-              const userDetails = response.data[0]
-
-              if (userDetails._id !== localStorage.getItem("id")) {
-                // Make post request to create favour
-                axios.post(`${CONFIG.API_URL}/favors/create`,
-                  {
-                    ower: setStoreTypeTest === "Owe" ? localStorage.getItem("id") : userDetails._id,
-                    owner: setStoreTypeTest === "Owe" ? userDetails._id : localStorage.getItem("id"),
-                    favor_detail: storedValue,
-                    picture_proof_id: "5f603354c3078f0ef91532dc"
-                  }
-                ).then(response => {
-                  if (response.data.success) {
-                    handleClickCancel(true)
-                  } else {
-                    setError("Error not successful");
-                  }
-                }).catch(e => {
-                  setError("Error", e);
-                })
-              } else {
-                setError("Error same user")
-              }
-
+        // Since this is the last step, we assume the username exist in database
+        // because user select from drop down
+        axios.post(`${CONFIG.API_URL}/auth/username_predict`, { username }).then(response => {
+          // Check if response is empty
+          if (response.data.length > 0) {
+            // Get the first object in array coz its the best match
+            const userDetails = response.data[0]
+            // If the user id from database and user id from own/bought is the same
+            // If username from database doesnt match the one user entered
+            // We dont do that
+            if (userDetails._id !== localStorage.getItem("id") && userDetails.username === username) {
+              // Make post request to create favour
+              axios.post(`${CONFIG.API_URL}/favors/create`,
+                {
+                  // Check if it's Ower or Owner
+                  ower: storeTypeTest === "Owe" ? localStorage.getItem("id") : userDetails._id,
+                  owner: storeTypeTest === "Owe" ? userDetails._id : localStorage.getItem("id"),
+                  favor_detail: storedValue,
+                  // PhotoID to be implement later
+                  picture_proof_id: "5f603354c3078f0ef91532dc"
+                }
+              ).then(response => {
+                // Check if response is a success
+                if (response.data.success) {
+                  handleClickCancel(true)
+                } else {
+                  setError("Error not successful");
+                }
+              }).catch(e => {
+                setError("Error", e);
+              })
             } else {
-              setError("Error no such user")
+              setError("Error same user")
             }
-          }).catch(e => {
-            setError("Error", e);
-          })
+
+          } else {
+            setError("Error no such user")
+          }
+        }).catch(e => {
+          setError("Error", e);
+        })
       } else {
         setError("Error no username input")
       }

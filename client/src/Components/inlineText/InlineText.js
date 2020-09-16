@@ -15,6 +15,7 @@ function InlineText({ text, onTextChange, usernameSuggestions }) {
         }
     }, [isInputActive]);
 
+    // Handle Input changes
     function handleInputChange(event) {
         onTextChange(event.target.value)
     }
@@ -23,11 +24,13 @@ function InlineText({ text, onTextChange, usernameSuggestions }) {
         setIsInputActive(true)
     }
 
+    // Handle input focus
     function handleInputOnBlur(event) {
         event.preventDefault()
         setIsInputActive(false)
     }
 
+    // Handle select options
     function handleSelect(event) {
         event.preventDefault()
         onTextChange(`@${event.target.value}`, true)
