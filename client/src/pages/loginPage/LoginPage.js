@@ -5,6 +5,8 @@ import AlertMessage from '../../Components/AlertMessage';
 import { AuthContext } from '../../context/AuthContext';
 import { Redirect } from 'react-router-dom';
 
+import CONFIG from '../../config'
+
 function LoginPage() {
   //login form data
   const [loginInfo, setLoginInfo] = useState({
@@ -55,7 +57,7 @@ function LoginPage() {
     };
 
     try {
-      const res = await fetch('https://www.iou-app.com/auth/login', {
+      const res = await fetch(`${CONFIG.API_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -95,45 +97,45 @@ function LoginPage() {
   const renderPage = isAuth ? (
     <Redirect to='/requests' />
   ) : (
-    <div id='Login'>
-      <div className='login_container'>
-        <div className='login_form_area'>
-          <div className='login_form_title'>Log in</div>
-          <form className='login_form' autoComplete='off' id='loginForm' onSubmit={formSubmit}>
-            <TextField
-              id='outlined-basic'
-              variant='outlined'
-              label='Email'
-              size='small'
-              type='email'
-              name='email'
-              value={email}
-              onChange={onChange}
-              InputProps={{ style: { fontSize: 22, fontWeight: 600, fontFamily: 'Poppins' } }}
-            />
-            <TextField
-              id='outlined-basic'
-              variant='outlined'
-              label='Password'
-              size='small'
-              type='password'
-              name='password'
-              value={password}
-              onChange={onChange}
-              InputProps={{ style: { fontSize: 22, fontWeight: 600, fontFamily: 'Poppins' } }}
-            />
-          </form>
-          {alertBox && alertBox}
-          <button type='submit' form='loginForm' className='login_btn'>
-            Log In
+      <div id='Login'>
+        <div className='login_container'>
+          <div className='login_form_area'>
+            <div className='login_form_title'>Log in</div>
+            <form className='login_form' autoComplete='off' id='loginForm' onSubmit={formSubmit}>
+              <TextField
+                id='outlined-basic'
+                variant='outlined'
+                label='Email'
+                size='small'
+                type='email'
+                name='email'
+                value={email}
+                onChange={onChange}
+                InputProps={{ style: { fontSize: 22, fontWeight: 600, fontFamily: 'Poppins' } }}
+              />
+              <TextField
+                id='outlined-basic'
+                variant='outlined'
+                label='Password'
+                size='small'
+                type='password'
+                name='password'
+                value={password}
+                onChange={onChange}
+                InputProps={{ style: { fontSize: 22, fontWeight: 600, fontFamily: 'Poppins' } }}
+              />
+            </form>
+            {alertBox && alertBox}
+            <button type='submit' form='loginForm' className='login_btn'>
+              Log In
           </button>
-        </div>
-        <div className='login_logo_area'>
-          <div className='login_logo_msg'>Welcome back!</div>
+          </div>
+          <div className='login_logo_area'>
+            <div className='login_logo_msg'>Welcome back!</div>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
 
   return renderPage;
 }

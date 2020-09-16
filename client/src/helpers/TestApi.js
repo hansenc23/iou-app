@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CONFIG from '../config'
 
 class TestApi extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class TestApi extends Component {
   }
 
   getData() {
-    fetch('https://www.iou-app.com/')
+    fetch(CONFIG.API_URL)
       .then((res) => res.json())
       .then((data) =>
         this.setState({
