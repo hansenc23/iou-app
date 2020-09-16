@@ -29,7 +29,6 @@ const CreateFavour = () => {
 
   function handleOnChangeWhom(text, fromSelect = false) {
     reset()
-
     setUsernameInput(text)
     setUsernameSuggestions([])
 
