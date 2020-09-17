@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react';
 import { Redirect } from 'react-router-dom';
-import CONFIG from '../config'
+import CONFIG from '../config';
 
 export const AuthContext = createContext();
 
@@ -43,7 +43,7 @@ export const AuthProvider = (props) => {
 
   const logout = async () => {
     try {
-      const res = await fetch(CONFIG.API_URL + '/auth/logout', {
+      const res = await fetch('/auth/logout', {
         method: 'GET',
         credentials: 'include',
       });
