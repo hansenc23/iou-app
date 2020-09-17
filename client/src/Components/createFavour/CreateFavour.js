@@ -1,32 +1,58 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './CreateFavour.css';
 import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
 import InlineText from '../inlineText/InlineText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import AlertMessage from '../AlertMessage'
+import AttachProof from "../attachProof/AttachProof";
+import Collapse from '@material-ui/core/Collapse';
 import axios from 'axios'
 
 import CONFIG from '../../config'
 
 const CreateFavour = () => {
   const [usernameInput, setUsernameInput] = useState("@Whom?")
-  const [storedValue, setStoredValue] = useState("What");
-  const [storeTypeTest, setStoreTypeTest] = useState('Bought')
+  const [storedValue, setStoredValue] = useState("What?")
+  const [storedTypeTest, setStoredTypeTest] = useState('Bought')
+  const [typeFieldClicked, setTypeFieldClicked] = useState("type_field_unclicked")
+  const [cancelBtnClicked, setCancelBtnClicked] = useState(false)
   const [usernameSuggestions, setUsernameSuggestions] = useState([])
 
+  const [open, setOpen] = useState(false);
   const [error, setError] = useState("")
+  const [info, setInfo] = useState("");
   const [success, setSuccess] = useState(false)
 
-  function handleClickCancel(isSuccess = false) {
-    // Reset all errors
-    // If isSuccess is true
-    setError("")
-    setSuccess(isSuccess)
+  function handleSuccess() {
+    //clear alerts
+    reset();
+
+    // Display success alert
+    setOpen(true);
+    setInfo("Favour has been created");
+
     // Reset Inputs
-    setStoredValue("What");
-    setStoreTypeTest('Bought')
-    setUsernameInput("@Whom?")
+    setStoredValue("What?");
+    setStoredTypeTest('Bought');
+    setUsernameInput("@Whom?");
+    setTypeFieldClicked("type_field_unclicked");
+  }
+
+  function handleClickCancel() {
+    //clear alerts
+    reset();
+
+    // Display clear alert
+    setOpen(true);
+    setInfo("Form cleared");
+
+    // Reset Inputs
+    setStoredValue("What?");
+    setStoredTypeTest('Bought');
+    setUsernameInput("@Whom?");
+    setTypeFieldClicked("type_field_unclicked");
+    setCancelBtnClicked(true);
   }
 
   function handleOnChangeWhom(text, fromSelect = false) {
@@ -35,7 +61,7 @@ const CreateFavour = () => {
     setUsernameInput(text)
     // Clear Username suggestions that i fetch from database
     setUsernameSuggestions([])
-    // Remove @ at the begining of string
+    // Remove @ at the beginning of string
     const username = text.split('@')[1]
     // If username is not empty or null, and the function wasn't called from dropdown menu
     // Post request server to predict username
@@ -45,29 +71,33 @@ const CreateFavour = () => {
           setUsernameSuggestions(response.data)
         })
     }
+    // If text is empty
+    if (text === "") {
+      setUsernameInput("@")
+    }
 
   }
 
   function handleStoreOnClick(event) {
     reset()
-
     event.preventDefault()
-    event.target.textContent === "Bought" ? setStoreTypeTest('Owe') : setStoreTypeTest('Bought')
+    event.target.textContent === "Bought" ? setStoredTypeTest('Owe') : setStoredTypeTest('Bought')
+    setTypeFieldClicked("type_field_clicked")
   }
 
   function handleClickConfirm() {
     reset()
     // Validations
     // Check if its default value
-    if (storedValue !== "What") {
+    if (storedValue !== "What?") {
       // Check if default value and it's null or empty
-      if (usernameInput !== "@" || usernameInput) {
+      if (usernameInput !== "@Whom?") {
         // Username split the @
         const username = usernameInput.split('@')[1]
 
         // Since this is the last step, we assume the username exist in database
         // because user select from drop down
-        axios.post(`${CONFIG.API_URL}/auth/username_predict`, { username }).then(response => {
+        axios.post(`${CONFIG.API_URL}/auth/username_predict`, {username}).then(response => {
           // Check if response is empty
           if (response.data.length > 0) {
             // Get the first object in array coz its the best match
@@ -78,67 +108,71 @@ const CreateFavour = () => {
             if (userDetails._id !== localStorage.getItem("id") && userDetails.username === username) {
               // Make post request to create favour
               axios.post(`${CONFIG.API_URL}/favors/create`,
-                {
-                  // Check if it's Ower or Owner
-                  ower: storeTypeTest === "Owe" ? localStorage.getItem("id") : userDetails._id,
-                  owner: storeTypeTest === "Owe" ? userDetails._id : localStorage.getItem("id"),
-                  favor_detail: storedValue,
-                  // PhotoID to be implement later
-                  picture_proof_id: "5f603354c3078f0ef91532dc"
-                }
+                  {
+                    // Check if it's Ower or Owner
+                    ower: storedTypeTest === "Owe" ? localStorage.getItem("id") : userDetails._id,
+                    owner: storedTypeTest === "Owe" ? userDetails._id : localStorage.getItem("id"),
+                    favor_detail: storedValue,
+                    // Photo proof to be implement later
+                    picture_proof_id: "5f603354c3078f0ef91532dc"
+                  }
               ).then(response => {
                 // Check if response is a success
                 if (response.data.success) {
-                  handleClickCancel(true)
+                  handleSuccess();
                 } else {
-                  setError("Error not successful");
+                  setError("Error: not successful");
                 }
               }).catch(e => {
-                setError("Error", e);
+                setError("Error:", e);
               })
             } else {
-              setError("Error same user")
+              setError("Invalid user");
             }
-
           } else {
-            setError("Error no such user")
+            setError("Invalid user");
           }
         }).catch(e => {
-          setError("Error", e);
+          setError("Error:", e);
         })
       } else {
-        setError("Error no username input")
+        setOpen(true);
+        setError("Invalid username");
       }
     } else {
-      setError("Error: no item selected")
+      setOpen(true);
+      setError("Please select a favour item");
     }
-
-
-
   }
 
   function reset() {
-    setError("")
-    setSuccess(false)
+    setError("");
+    setInfo("");
   }
+
+  //set timeout when alert is displayed
+  useEffect(() => {
+    if (error || success || info) {
+      setCancelBtnClicked(false);
+      setTimeout(() => {
+        setOpen(false);
+        setSuccess(false);
+      }, 4000);
+    }
+  });
 
   return (
     <div id='createFavour' className=''>
       <div className='createFavour_card'>
         <div className='createFavour_content'>
-          {error && <AlertMessage severity="error">{error}</AlertMessage>}
-          {success && <AlertMessage severity="success">Successfully Create New Favour</AlertMessage>}
-
-          <div className='createFavour_label'> </div>
           <div className='createFavour_form'>
             <div className='createFavour_first_line'>
-              <div className='lets_text'>I</div>
-              <button className='type_field' onClick={handleStoreOnClick}>
-                {storeTypeTest}
+              <div className='i_text'> I </div>
+              <button className={typeFieldClicked} onClick={handleStoreOnClick}>
+                {storedTypeTest}
               </button>
             </div>
             <div className='createFavour_second_line'>
-              <div className='at_text'> </div>
               <InlineText className='who_field'
                 text={usernameInput}
                 onTextChange={handleOnChangeWhom}
@@ -164,33 +198,45 @@ const CreateFavour = () => {
                     },
                   }}
                 >
-                  <MenuItem value={"What"}>
-                    <div className='menu_label'> What? </div>
+                  <MenuItem value={"What?"}>
+                    <div className='what_menu_label'> What? </div>
                   </MenuItem>
                   <MenuItem value="Coffee">
-                    <div className='value_label'> Coffee </div>
+                    <div className='what_value_label'> Coffee </div>
                   </MenuItem>
                   <MenuItem value="Chocolate">
-                    <div className='value_label'> Chocolate </div>
+                    <div className='what_value_label'> Chocolate </div>
                   </MenuItem>
                   <MenuItem value="Pizza">
-                    <div className='value_label'> Pizza </div>
+                    <div className='what_value_label'> Pizza </div>
                   </MenuItem>
                   <MenuItem value="Cupcake">
-                    <div className='value_label'> Cupcake </div>
+                    <div className='what_value_label'> Cupcake </div>
                   </MenuItem>
                 </Select>
               </div>
             </div>
+            <div className='createFavour_fourth_line'>
+              <AttachProof
+                  cancelClicked={cancelBtnClicked}
+              />
+            </div>
           </div>
           <div className='btn_container'>
-            <button className='confirm_favour_btn' onClick={handleClickConfirm}>
-              <span>Confirm</span>
+            <button className='create_favour_btn' onClick={handleClickConfirm}>
+              <span> Create Favour </span>
             </button>
             <button className='cancel_favour_btn' onClick={handleClickCancel}>
               <CancelRoundedIcon fontSize='large'> </CancelRoundedIcon>
             </button>
           </div>
+        </div>
+        <div className='alert_container'>
+          <Collapse in={open}>
+            {error && <AlertMessage severity="error"><strong>{error}</strong></AlertMessage>}
+            {success && <AlertMessage severity="success"><strong>Favour has been created</strong></AlertMessage>}
+            {info && <AlertMessage severity="info"> <strong>{info}</strong> </AlertMessage>}
+          </Collapse>
         </div>
       </div>
     </div>

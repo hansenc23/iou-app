@@ -1,9 +1,9 @@
 #favour {
     display: block;
-    min-width: 300px;
+    width: 100%;
     padding: 10px;
     overflow: auto;
-    /*border: solid deepskyblue;*/
+    margin-right: 10px;
 }
 .favour_card_left {
     display: flex;
@@ -16,23 +16,24 @@
     background-image: linear-gradient(to bottom left, #e5e5e5, #dedede);
     text-align: left;
     justify-content: space-evenly;
-    border-radius: 15px;
+    border-radius: 12px;
     box-shadow: 1px 1px 7px rgb(227, 227, 227);
 }
 .favour_card_right {
     display: flex;
     flex-direction: column;
     padding: 10px 20px 10px 20px;
-    width: 420px;
+    width: 100%;
+    max-width: 420px;
     min-height: 65px;
     transition: 0.2s;
     margin-bottom: 20px;
-    margin-left: 10vw;
+    margin-left: 14vw;
     background-image: linear-gradient(to bottom left, #7e51d0, #4b83e9);
     text-align: right;
     justify-content: space-evenly;
     align-content: flex-end;
-    border-radius: 15px;
+    border-radius: 12px;
     box-shadow: 1px 1px 4px rgb(145, 145, 145);
 }
 
