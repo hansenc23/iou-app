@@ -7,9 +7,9 @@ const RequestsPage = () => {
 
   //request page should be publicly accessible, so shouldnt require authenticated user
   //todo: use below method on favors page to get logged in user
-  useEffect(() => {
-    getUser();
-  }, []);
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
 
   //const [] = useState(0);
 

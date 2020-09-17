@@ -1,17 +1,25 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, { useState, useEffect, useContext, Component, Fragment } from 'react';
 import './FavoursPage.css';
 import FavoursList from '../../Components/favoursList/FavoursList';
 import CreateFavour from '../../Components/createFavour/CreateFavour';
+import { AuthContext } from '../../context/AuthContext';
+import { Redirect } from 'react-router-dom';
 
 function FavoursPage() {
-  const [] = useState(0);
+  const { isAuth, setIsAuth, user, setUser, getUser } = useContext(AuthContext);
 
-  useEffect(() => {});
+  const renderPage = isAuth ? (
+    <Fragment>
+      <FavoursList />
+      <CreateFavour />
+    </Fragment>
+  ) : (
+    <Redirect to='/login'>{alert('Please login to view favours')}</Redirect>
+  );
 
   return (
     <div id='Favours' className=''>
-      <FavoursList />
-      <CreateFavour />
+      {renderPage}
     </div>
   );
 }
