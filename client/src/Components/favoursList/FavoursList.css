@@ -26,8 +26,7 @@
     outline: none;
     padding-left: 15px;
 }
-
-.all_btn, .owe_btn, .owing_btn, .settled_btn {
+.all_favours_btn, .owe_btn, .owing_btn, .settled_btn {
     height: 30px;
     font-size: 18px;
     font-weight: 500;

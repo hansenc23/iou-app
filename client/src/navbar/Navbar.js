@@ -71,7 +71,9 @@ const Navbar = () => {
         </nav>
       </div>
 
-      <div className='logo'>IOWEYOU</div>
+      <button className='logo'>
+        <Link className='logo_link' to='/requests'> IOWEYOU </Link>
+      </button>
 
       {isAuth ? authLinks : guestLinks}
     </div>

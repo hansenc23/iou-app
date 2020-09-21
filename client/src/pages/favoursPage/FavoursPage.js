@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './FavoursPage.css';
 import FavoursList from '../../Components/favoursList/FavoursList';
 import CreateFavour from '../../Components/createFavour/CreateFavour';
@@ -9,7 +9,7 @@ function FavoursPage() {
   useEffect(() => {});
 
   return (
-    <div id='Favours' className=''>
+    <div id='FavoursPage' className=''>
       <FavoursList />
       <CreateFavour />
     </div>

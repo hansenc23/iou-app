@@ -24,6 +24,18 @@
   font-weight: bold;
   color: #f3f0ea;
   font-family: Poppins;
+  background-color: transparent;
+  justify-content: center;
+}
+.logo_link{
+  text-decoration: none;
+}
+.logo_link:hover{
+  opacity: 1;
+  color: #f3f0ea;
+}
+.logo_link:focus{
+  font-weight: bold;
 }
 .page_links {
   padding-right: 10px;
@@ -47,22 +59,18 @@ a:hover {
 a:focus {
   font-weight: 600;
 }
-
 .auth {
   color: white;
 }
-
 .user_name {
   font-size: 1rem;
   font-weight: 600;
 }
-
 .logout_link {
   font-size: 1rem;
   font-weight: 600;
   align-content: center;
 }
-
 ul {
   display: flex;
   margin: 0;
@@ -70,7 +78,6 @@ ul {
 ul li {
   padding: 0 16px;
 }
-
 .authentication_links {
   display: flex;
   font-size: 12px;
@@ -97,11 +104,9 @@ ul li {
   vertical-align: middle;
   cursor: pointer;
 }
-
 .signup_link :hover {
   color: white;
 }
-
 .logout_btn {
   padding: 0.5rem 1rem;
   background-color: transparent;

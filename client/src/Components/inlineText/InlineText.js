@@ -1,8 +1,64 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import DOMPurify from "dompurify";
+import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { makeStyles } from "@material-ui/core/styles";
+import Select from '@material-ui/core/Select';
 import "./InlineText.css";
 
+const useStyles = makeStyles({
+    root: {
+        "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+            borderColor: "black"
+        },
+        "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+            borderColor: "black"
+        },
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "black"
+        },
+        "& .MuiOutlinedInput-input": {
+            color: "black",
+            fontSize: "36px",
+            fontWeight: "bold",
+            fontFamily: "Poppins"
+        },
+        "&:hover .MuiOutlinedInput-input": {
+            color: "black",
+            fontSize: "36px",
+            fontWeight: "bold",
+            fontFamily: "Poppins"
+        },
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
+            color: "black",
+            fontSize: "36px",
+            fontWeight: "bold",
+            fontFamily: "Poppins"
+        },
+        "& .MuiInputLabel-outlined": {
+            color: "black",
+            fontSize: "36px",
+            fontWeight: "bold",
+            fontFamily: "Poppins"
+        },
+        "&:hover .MuiInputLabel-outlined": {
+            color: "black",
+            fontSize: "36px",
+            fontWeight: "bold",
+            fontFamily: "Poppins"
+        },
+        "& .MuiInputLabel-outlined.Mui-focused": {
+            color: "black",
+            fontSize: "36px",
+            fontWeight: "bold",
+            fontFamily: "Poppins"
+        }
+    }
+});
+
 function InlineText({ text, onTextChange, usernameSuggestions }) {
+
+    const classes = useStyles();
+
     const [isInputActive, setIsInputActive] = useState(false);
 
     const inputRef = useRef(null);
@@ -55,8 +111,6 @@ function InlineText({ text, onTextChange, usernameSuggestions }) {
                 className={`inline-text_input inline-text_input--${
                     isInputActive ? "active" : "hidden"
                     }`} />
-
-
             {
                 usernameSuggestions.length > 0 &&
                 <select onChange={handleSelect} defaultValue="">
@@ -72,7 +126,6 @@ function InlineText({ text, onTextChange, usernameSuggestions }) {
                     }
                 </select>
             }
-
         </span>
     );
 }

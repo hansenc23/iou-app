@@ -30,7 +30,7 @@ const CreateFavour = () => {
 
     // Display success alert
     setOpen(true);
-    setInfo("Favour has been created");
+    setSuccess(true);
 
     // Reset Inputs
     setStoredValue("What?");
@@ -45,7 +45,7 @@ const CreateFavour = () => {
 
     // Display clear alert
     setOpen(true);
-    setInfo("Form cleared");
+    setInfo("Cleared favour");
 
     // Reset Inputs
     setStoredValue("What?");
@@ -72,10 +72,9 @@ const CreateFavour = () => {
         })
     }
     // If text is empty
-    if (text === "") {
-      setUsernameInput("@")
+    if ((text === "") || (!text.startsWith("@"))) {
+      setUsernameInput("@");
     }
-
   }
 
   function handleStoreOnClick(event) {
@@ -85,7 +84,7 @@ const CreateFavour = () => {
     setTypeFieldClicked("type_field_clicked")
   }
 
-  function handleClickConfirm() {
+  function handleClickCreate() {
     reset()
     // Validations
     // Check if its default value
@@ -148,6 +147,7 @@ const CreateFavour = () => {
   function reset() {
     setError("");
     setInfo("");
+    setSuccess(false);
   }
 
   //set timeout when alert is displayed
@@ -223,7 +223,7 @@ const CreateFavour = () => {
             </div>
           </div>
           <div className='btn_container'>
-            <button className='create_favour_btn' onClick={handleClickConfirm}>
+            <button className='create_favour_btn' onClick={handleClickCreate}>
               <span> Create Favour </span>
             </button>
             <button className='cancel_favour_btn' onClick={handleClickCancel}>

@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import './RequestsPage.css';
+import RequestsList from "../../Components/requestList/RequestList";
+import RequestDetail from "../../Components/requestDetail/RequestDetail";
 
 const RequestsPage = () => {
   const { isAuth, setIsAuth, user, setUser, getUser } = useContext(AuthContext);
@@ -11,11 +13,12 @@ const RequestsPage = () => {
     getUser();
   }, []);
 
-  //const [] = useState(0);
-
-  //useEffect(() => {});
-
-  return <div className='placeholder'>Requests page here</div>;
+  return (
+      <div id='RequestsPage' className=''>
+          <RequestsList/>
+          <RequestDetail/>
+      </div>
+  );
 };
 
 export default RequestsPage;

@@ -1,0 +1,80 @@
+#requests_list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    min-width: 650px;
+    max-width: 800px;
+    height: calc(100vh - 115px);
+    margin-left: 14vw;
+    margin-right: 3vw;
+    margin-top: 25px;
+    padding-left: 40px;
+    padding-right: 10px;
+    background-color: #eae8e5;
+    border-radius: 20px;
+    box-shadow: 0 0 4px 3px rgba(133, 135, 141, 0.12);
+}
+.requests_list_container{
+
+}
+.header_container {
+    display: flex;
+    flex-direction: row;
+}
+.title_container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 470px;
+    padding-left: 30px;
+}
+.requests_label {
+    font-weight: 700;
+    color: #000000;
+    font-size: 45px;
+    font-family: "Poppins";
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+.date {
+    font-weight: 600;
+    font-size: 20px;
+    font-family: "Poppins";
+    color: #4b83e9;
+    margin-bottom: 40px;
+}
+.new_requests_btn_container{
+    padding: 40px;
+}
+.new_requests_btn{
+    background-color: black;
+    border-radius: 12px;
+    box-shadow: 2px 2px 4px rgb(145, 145, 145);
+    width: 55px;
+    height: 65px;
+    color: white;
+}
+.new_requests_btn:hover{
+    color: #f3f0ea;
+}
+.add_icon{
+    margin: auto;
+}
+button {
+    display: flex;
+    flex: auto;
+    border: medium none;
+    background: #fff;
+}
+button {
+    transition: all 200ms ease-in-out;
+}
+button:hover {
+    opacity: 0.7;
+    color: dodgerblue;
+}
+button:focus {
+    font-weight: bold;
+    outline:0;
+}

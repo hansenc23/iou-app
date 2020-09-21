@@ -21,3 +21,10 @@
     text-align: left;
     color: darkgrey;
 }
+
+.suggestions{
+    font-size: 36px;
+    font-family: Poppins;
+    font-weight: bold;
+    color: darkgrey;
+}
