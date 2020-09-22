@@ -130,6 +130,26 @@ getCurrentUser = async (req, res, next) => {
   }
 };
 
+getUser = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findOne({ _id: { $eq: id } });
+    if (!user) {
+      return res.status(400).json('User not found!');
+    }
+
+    return res.status(200).json({
+      id: user._id,
+      username: user.username,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
 deleteUser = async (req, res, next) => {
   const { id } = req.body;
   try {
@@ -182,5 +202,6 @@ module.exports = {
   getCurrentUser,
   deleteUser,
   logout,
+  getUser,
   usernamePredict,
 };

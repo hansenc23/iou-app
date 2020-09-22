@@ -7,6 +7,9 @@ import { Redirect } from 'react-router-dom';
 
 function FavoursPage() {
   const { isAuth, setIsAuth, user, setUser, getUser } = useContext(AuthContext);
+  useEffect(() => {
+    getUser();
+  }, []);
 
   const renderPage = isAuth ? (
     <Fragment>
@@ -14,7 +17,7 @@ function FavoursPage() {
       <CreateFavour />
     </Fragment>
   ) : (
-    <Redirect to='/login'>{alert('Please login to view favours')}</Redirect>
+    <Redirect to='/login'></Redirect>
   );
 
   return (
