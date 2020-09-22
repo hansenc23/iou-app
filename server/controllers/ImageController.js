@@ -10,15 +10,15 @@ const multer = require('multer');
 const path = require('path');
 
 const s3 = new aws.S3({
-  accessKeyId: 'AKIAVTMN7XP5VB4JM2OM',
-  secretAccessKey: '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',
-  Bucket: 'iou-app-bucket',
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  Bucket: process.env.S3_BUCKET,
 });
 
 const imageProofUpload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: 'iou-app-bucket',
+    bucket: process.env.S3_BUCKET,
     acl: 'public-read',
     key: function (req, file, cb) {
       cb(null, path.basename(file.originalname, path.extname(file.originalname)) + '-' + Date.now() + path.extname(file.originalname));
