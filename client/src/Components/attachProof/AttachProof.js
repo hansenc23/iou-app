@@ -63,7 +63,7 @@ const AttachProof = (props) => {
       <Modal
         aria-labelledby='transition-modal-title'
         aria-describedby='transition-modal-description'
-        className='modal'
+        className='attachProof_modal'
         open={open}
         onClose={handleClose}
         closeAfterTransition
@@ -73,7 +73,7 @@ const AttachProof = (props) => {
         }}
       >
         <Slide direction='up' in={open} mountOnEnter unmountOnExit>
-          <div className='modal_container'>
+          <div className='attachProof_modal_container'>
             <div className='attach_proof_title'>Where's the Proof?</div>
             <button onClick={uploadImageClick} className='upload_proof_btn'>
               <PhotoCameraIcon className='upload_proof_icon' fontSize='large' />
@@ -82,8 +82,8 @@ const AttachProof = (props) => {
             </button>
 
             {/* {Placeholder for image preview} */}
-            <div class='img-preview'>
-              <h1>preview</h1>
+            <div className="img_preview">
+              <span className="preview_label"> Preview </span>
               {/* <img classsrc='https://iou-app-bucket.s3-ap-southeast-2.amazonaws.com/twarren_rtx3080-1600772064734.jpg' /> */}
             </div>
 
