@@ -44,23 +44,6 @@
     color: #4b83e9;
     margin-bottom: 40px;
 }
-.new_requests_btn_container{
-    padding: 40px;
-}
-.new_requests_btn{
-    background-color: black;
-    border-radius: 12px;
-    box-shadow: 2px 2px 4px rgb(145, 145, 145);
-    width: 55px;
-    height: 65px;
-    color: white;
-}
-.new_requests_btn:hover{
-    color: #f3f0ea;
-}
-.add_icon{
-    margin: auto;
-}
 button {
     display: flex;
     flex: auto;

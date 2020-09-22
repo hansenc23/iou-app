@@ -1,13 +1,13 @@
 #attach_proof {
 
 }
-.modal{
+.attachProof_modal{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.modal_container{
+.attachProof_modal_container{
     position: absolute;
     background-color: #f3f0ea;
     box-shadow: 0 0 4px 4px rgba(133, 135, 141, 0.12);

@@ -18,7 +18,7 @@ function FavoursPage() {
   );
 
   return (
-    <div id='Favours' className=''>
+    <div id='FavoursPage' className=''>
       {renderPage}
     </div>
   );

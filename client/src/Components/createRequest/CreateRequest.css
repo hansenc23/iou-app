@@ -1,0 +1,45 @@
+#createRequest{
+
+}
+.new_requests_btn_container{
+    padding: 40px;
+}
+.new_requests_btn{
+    background-color: black;
+    border-radius: 12px;
+    box-shadow: 2px 2px 4px rgb(145, 145, 145);
+    width: 55px;
+    height: 65px;
+    color: white;
+}
+.new_requests_btn:hover{
+    color: #f3f0ea;
+}
+.add_icon{
+    margin: auto;
+}
+.createRequest_modal{
+    display: flex;
+    position: absolute;
+}
+.createRequest_modal_container{
+    display:flex;
+    flex-direction: column;
+    horiz-align: left;
+    background-color: #f3f0ea;
+    box-shadow: 0 0 4px 4px rgba(133, 135, 141, 0.12);
+    padding: 30px;
+    outline: none;
+    border-radius: 10px;
+    width: 20%;
+    min-width: 500px;
+    height: 600px;
+    max-height: 100%;
+    text-align: center;
+}
+.request_tile_field{
+
+}
+.request_description_field{
+
+}

@@ -47,7 +47,7 @@ const AttachProof = (props) => {
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
-                className="modal"
+                className="attachProof_modal"
                 open={open}
                 onClose={handleClose}
                 closeAfterTransition
@@ -57,7 +57,7 @@ const AttachProof = (props) => {
                 }}
             >
                 <Slide direction="up" in={open} mountOnEnter unmountOnExit>
-                    <div className="modal_container">
+                    <div className="attachProof_modal_container">
                         <div className="attach_proof_title">
                             Where's the Proof?
                         </div>

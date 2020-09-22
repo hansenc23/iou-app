@@ -6,7 +6,7 @@
 
 # Favor API Documentation
 
-## GET Favors by ID
+## GET Favors byf ID
 `GET /favors/:id`
 ### Parameters
 Name | Type | Mandatory | Description
