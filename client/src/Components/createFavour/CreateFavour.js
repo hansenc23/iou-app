@@ -134,7 +134,6 @@ const CreateFavour = () => {
                           ower: storedTypeTest === 'Owe' ? localStorage.getItem('id') : userDetails._id,
                           owner: storedTypeTest === 'Owe' ? userDetails._id : localStorage.getItem('id'),
                           favor_detail: storedValue,
-                          // Photo proof to be implement later
                           picture_proof_id: data.location,
                         })
                         .then((response) => {

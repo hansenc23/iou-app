@@ -6,6 +6,27 @@
   align-items: center;
   justify-content: center;
 }
+
+.createFavour_fourth_line {
+  display: flex;
+  align-content: flex-start;
+  width: inherit;
+  font-family: Poppins;
+  font-weight: bold;
+  font-size: 36px;
+}
+.here_text {
+  font-family: Poppins;
+  font-weight: bold;
+  font-size: 36px;
+  padding-right: 8px;
+}
+.attachProof_modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .attachProof_modal_container {
   position: absolute;
   background-color: #f3f0ea;
@@ -15,7 +36,6 @@
   border-radius: 10px;
   width: 20%;
   min-width: 400px;
-  /* height: 390px; */
   height: 500px;
   max-height: 100%;
   text-align: center;
@@ -32,7 +52,7 @@
   font-family: Poppins;
   font-weight: bold;
   font-size: 36px;
-  padding-right: 8px;
+  padding-right: 6px;
 }
 .proof_modal_btn_unattached {
   font-family: Poppins;
