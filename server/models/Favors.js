@@ -17,7 +17,7 @@ const Favors = new Schema({
         require: true
     },
     picture_proof_id: {
-        type: Schema.Types.ObjectId,
+        type: String,
         require: true
     },
     create_time: {
