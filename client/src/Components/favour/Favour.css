@@ -1,9 +1,8 @@
 #favour {
     display: block;
-    width: 100%;
+    width: 95%;
     padding: 10px;
     overflow: auto;
-    margin-right: 10px;
 }
 .favour_card_left {
     display: flex;
@@ -28,7 +27,7 @@
     min-height: 65px;
     transition: 0.2s;
     margin-bottom: 20px;
-    margin-left: 14vw;
+    margin-left: 12vw;
     background-image: linear-gradient(to bottom left, #7e51d0, #4b83e9);
     text-align: right;
     justify-content: space-evenly;

@@ -55,7 +55,7 @@ const AttachProof = (props) => {
   return (
     <div id='attach_proof'>
       <div className='createFavour_fourth_line'>
-        <div className='here_text'> here's </div>
+        <div className='here_text'> Here's </div>
         <button className={proofFieldClicked} onClick={handleOpen}>
           Proof
         </button>
