@@ -10,6 +10,6 @@ router.post('/create', FavorsController.createNewFavors)
 router.post('/update', verifyToken, FavorsController.updateFavorStatus)
 router.post('/delete', verifyToken, FavorsController.deleteFavorById)
 
-router.get('/all/:type/:id', FavorsController.getAllByTypeAndId)
+router.get('/all/:type/:id/:end', FavorsController.getAllByTypeAndId)
 
 module.exports = router

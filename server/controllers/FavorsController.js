@@ -14,12 +14,13 @@ getFavorById = (req, res) => {
 }
 
 getAllByTypeAndId = async (req, res) => {
-    const findCondition = req.params.type === 'ower' ? { "ower": req.params.id } : { "owner": req.params.id }
+    let findCondition = req.params.type === 'ower' ? { "ower": req.params.id } : { "owner": req.params.id }
+    findCondition.end_time = req.params.end === "false" ? null : {$ne:null}
 
-    FavorModel.find(findCondition).then(response => {
-        return res.status(200).json({ success: true, data: response })
-    }).catch(error => {
-        return res.status(200).json({ success: false, error: "something went wrong", msg: error })
+    const response  = await FavorModel.find(findCondition).populate('ower').populate('owner').exec(function (error, result) {
+        if (error) res.status(200).json({ success: false, error: "something went wrong", msg: error })
+        
+        return res.status(200).json({ success: true, data: result })
     })
 }
 

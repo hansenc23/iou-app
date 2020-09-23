@@ -39,10 +39,11 @@ Name | Type | Mandatory | Description
 id|String|Yes|Favor ID
 
 ## GET All Favors by User ID
-`GET /favors/all/:type/:id`
+`GET /favors/all/:type/:id/:end`
 ### Parameters
 Name | Type | Mandatory | Description
 --- | --- | --- | ---
 type|String|Yes|ower / owner
 id|String|Yes|User ID
+end|String|Yes|true / false
 
