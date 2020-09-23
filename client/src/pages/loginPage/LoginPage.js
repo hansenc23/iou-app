@@ -79,7 +79,7 @@ function LoginPage() {
 
       console.log(data);
     } catch (err) {
-      console.log(err);
+      alert('Internal Server Error (500)');
     }
   };
 

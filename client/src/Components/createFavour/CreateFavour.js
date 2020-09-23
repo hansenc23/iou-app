@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './CreateFavour.css';
 import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
 import InlineText from '../inlineText/InlineText';
@@ -7,18 +7,22 @@ import Select from '@material-ui/core/Select';
 import AlertMessage from '../AlertMessage';
 import AttachProof from '../attachProof/AttachProof';
 import Collapse from '@material-ui/core/Collapse';
+import Spinner from '../Spinner';
+import { ImageContext } from '../../context/ImageContext';
 import axios from 'axios';
 
 import CONFIG from '../../config';
 
 const CreateFavour = () => {
+  const { selectedImage, setSelectedImage, uploadImage, uploadedImageUrl, setUploadedImageUrl } = useContext(ImageContext);
   const [usernameInput, setUsernameInput] = useState('@Whom?');
   const [storedValue, setStoredValue] = useState('What?');
   const [storedTypeTest, setStoredTypeTest] = useState('Bought');
   const [typeFieldClicked, setTypeFieldClicked] = useState('type_field_unclicked');
   const [cancelBtnClicked, setCancelBtnClicked] = useState(false);
   const [usernameSuggestions, setUsernameSuggestions] = useState([]);
-
+  const [isCreating, setIsCreating] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [error, setError] = useState('');
   const [info, setInfo] = useState('');
@@ -29,6 +33,7 @@ const CreateFavour = () => {
     reset();
 
     // Display success alert
+    setLoading(false);
     setOpen(true);
     setInfo('Favour has been created');
 
@@ -106,27 +111,52 @@ const CreateFavour = () => {
               // If username from database doesnt match the one user entered
               // We dont do that
               if (userDetails._id !== localStorage.getItem('id') && userDetails.username === username) {
-                // Make post request to create favour
-                axios
-                  .post('/favors/create', {
-                    // Check if it's Ower or Owner
-                    ower: storedTypeTest === 'Owe' ? localStorage.getItem('id') : userDetails._id,
-                    owner: storedTypeTest === 'Owe' ? userDetails._id : localStorage.getItem('id'),
-                    favor_detail: storedValue,
-                    // Photo proof to be implement later
-                    picture_proof_id: '5f603354c3078f0ef91532dc',
-                  })
-                  .then((response) => {
-                    // Check if response is a success
-                    if (response.data.success) {
-                      handleSuccess();
-                    } else {
-                      setError('Error: not successful');
-                    }
-                  })
-                  .catch((e) => {
-                    setError('Error:', e);
-                  });
+                if (selectedImage !== null) {
+                  // setIsCreating(true);
+                  setLoading(true);
+                  uploadImage()
+                    .then((data) => {
+                      /*
+                        could not implement error checking, if i uncomment the code below to check error it can handle error checking but when i upload the image without an error it wouldn't execute the axios request for creating favors. pls help :)
+                      
+                      */
+                      // Check error
+                      // if (data.error.code === 'LIMIT_FILE_SIZE') {
+                      //   setLoading(false);
+                      //   setOpen(true);
+                      //   setError('Error: Max size is 2MB');
+                      // }
+
+                      // Make post request to create favour
+                      axios
+                        .post('/favors/create', {
+                          // Check if it's Ower or Owner
+                          ower: storedTypeTest === 'Owe' ? localStorage.getItem('id') : userDetails._id,
+                          owner: storedTypeTest === 'Owe' ? userDetails._id : localStorage.getItem('id'),
+                          favor_detail: storedValue,
+                          // Photo proof to be implement later
+                          picture_proof_id: data.location,
+                        })
+                        .then((response) => {
+                          // Check if response is a success
+                          if (response.data.success) {
+                            handleSuccess();
+                            setIsCreating(false);
+                          } else {
+                            setError('Error: not successful');
+                          }
+                        })
+                        .catch((e) => {
+                          console.log(e);
+                        });
+                    })
+                    .catch((error) => {
+                      setError('No working');
+                    });
+                } else {
+                  setOpen(true);
+                  setError('Please select an image');
+                }
               } else {
                 setError('Invalid user');
               }
@@ -150,6 +180,9 @@ const CreateFavour = () => {
   function reset() {
     setError('');
     setInfo('');
+    setSelectedImage(null);
+    setUploadedImageUrl('');
+    setIsCreating(false);
   }
 
   //set timeout when alert is displayed
@@ -219,7 +252,7 @@ const CreateFavour = () => {
             </div>
           </div>
           <div className='btn_container'>
-            <button className='create_favour_btn' onClick={handleClickConfirm}>
+            <button className='create_favour_btn' onClick={handleClickConfirm} disabled={isCreating}>
               <span> Create Favour </span>
             </button>
             <button className='cancel_favour_btn' onClick={handleClickCancel}>
@@ -228,6 +261,7 @@ const CreateFavour = () => {
           </div>
         </div>
         <div className='alert_container'>
+          <div>{loading ? <Spinner /> : ''}</div>
           <Collapse in={open}>
             {error && (
               <AlertMessage severity='error'>
