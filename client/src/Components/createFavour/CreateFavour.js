@@ -35,7 +35,7 @@ const CreateFavour = () => {
     // Display success alert
     setLoading(false);
     setOpen(true);
-    setInfo('Favour has been created');
+    setSuccess('Favour has been created');
 
     // Reset Inputs
     setStoredValue('What?');
@@ -88,7 +88,7 @@ const CreateFavour = () => {
     setTypeFieldClicked('type_field_clicked');
   }
 
-  function handleClickConfirm() {
+  async function handleClickConfirm() {
     reset();
     // Validations
     // Check if its default value
@@ -111,51 +111,91 @@ const CreateFavour = () => {
               // If username from database doesnt match the one user entered
               // We dont do that
               if (userDetails._id !== localStorage.getItem('id') && userDetails.username === username) {
-                if (selectedImage !== null) {
-                  // setIsCreating(true);
-                  setLoading(true);
-                  uploadImage()
-                    .then((data) => {
-                      /*
-                        could not implement error checking, if i uncomment the code below to check error it can handle error checking but when i upload the image without an error it wouldn't execute the axios request for creating favors. pls help :)
-                      
-                      */
-                      // Check error
-                      // if (data.error.code === 'LIMIT_FILE_SIZE') {
-                      //   setLoading(false);
-                      //   setOpen(true);
-                      //   setError('Error: Max size is 2MB');
-                      // }
-
-                      // Make post request to create favour
-                      axios
-                        .post('/favors/create', {
-                          // Check if it's Ower or Owner
-                          ower: storedTypeTest === 'Owe' ? localStorage.getItem('id') : userDetails._id,
-                          owner: storedTypeTest === 'Owe' ? userDetails._id : localStorage.getItem('id'),
-                          favor_detail: storedValue,
-                          picture_proof_id: data.location,
-                        })
-                        .then((response) => {
-                          // Check if response is a success
-                          if (response.data.success) {
-                            handleSuccess();
-                            setIsCreating(false);
-                          } else {
-                            setError('Error: not successful');
-                          }
-                        })
-                        .catch((e) => {
-                          console.log(e);
-                        });
-                    })
-                    .catch((error) => {
-                      setError('No working');
-                    });
-                } else {
+                setLoading(true);
+                if (selectedImage === null) {
+                  setLoading(false);
                   setOpen(true);
                   setError('Please select an image');
+                } else {
+                  uploadImage()
+                    .then((data) => {
+                      if (data.error) {
+                        setLoading(false);
+                        setOpen(true);
+                        setError('Upload failed. Invalid file type or size is too large. (Max 2MB)');
+                      } else {
+                        axios
+                          .post('/favors/create', {
+                            // Check if it's Ower or Owner
+                            ower: storedTypeTest === 'Owe' ? localStorage.getItem('id') : userDetails._id,
+                            owner: storedTypeTest === 'Owe' ? userDetails._id : localStorage.getItem('id'),
+                            favor_detail: storedValue,
+                            picture_proof_id: data.location,
+                          })
+                          .then((response) => {
+                            // Check if response is a success
+                            if (response.data.success) {
+                              handleSuccess();
+                              setSelectedImage(null);
+                              setIsCreating(false);
+                            } else {
+                              setError('Error: not successful');
+                            }
+                          })
+                          .catch((e) => {
+                            console.log(e);
+                          });
+                      }
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                    });
                 }
+                // if (selectedImage !== null) {
+                //   // setIsCreating(true);
+                //   setLoading(true);
+                //   uploadImage()
+                //     .then((data) => {
+                //       /*
+                //         could not implement error checking, if i uncomment the code below to check error it can handle error checking but when i upload the image without an error it wouldn't execute the axios request for creating favors. pls help :)
+
+                //       */
+                //       // Check error
+                //       // if (data.error.code === 'LIMIT_FILE_SIZE') {
+                //       //   setLoading(false);
+                //       //   setOpen(true);
+                //       //   setError('Error: Max size is 2MB');
+                //       // }
+
+                //   // Make post request to create favour
+                //   axios
+                //     .post('/favors/create', {
+                //       // Check if it's Ower or Owner
+                //       ower: storedTypeTest === 'Owe' ? localStorage.getItem('id') : userDetails._id,
+                //       owner: storedTypeTest === 'Owe' ? userDetails._id : localStorage.getItem('id'),
+                //       favor_detail: storedValue,
+                //       picture_proof_id: data.location,
+                //     })
+                //     .then((response) => {
+                //       // Check if response is a success
+                //       if (response.data.success) {
+                //         handleSuccess();
+                //         setIsCreating(false);
+                //       } else {
+                //         setError('Error: not successful');
+                //       }
+                //     })
+                //     .catch((e) => {
+                //       console.log(e);
+                //     });
+                // })
+                // .catch((error) => {
+                //   setError('No working');
+                // });
+                // } else {
+                //   setOpen(true);
+                //   setError('Please select an image');
+                // }
               } else {
                 setError('Invalid user');
               }
@@ -179,8 +219,6 @@ const CreateFavour = () => {
   function reset() {
     setError('');
     setInfo('');
-    setSelectedImage(null);
-    setUploadedImageUrl('');
     setIsCreating(false);
   }
 
