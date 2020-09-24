@@ -12,15 +12,15 @@
     justify-content: space-between;
     text-align: left;
     width: 100%;
-    max-width: 490px;
+    max-width: 480px;
     height: 100%;
-    min-height: 160px;
+    min-height: 115px;
     transition: 0.2s;
     border-radius: 16px;
     background-image: linear-gradient(to bottom left, #8856bf, #4b83e9);
     box-shadow: 1px 1px 10px rgb(145, 145, 145);
-    margin-bottom: 40px;
-    padding: 20px 20px 20px 20px;
+    margin-bottom: 35px;
+    padding: 20px 20px 13px 20px;
 }
 .request_card:hover {
     box-shadow: 1px 1px 14px rgb(100, 100, 100);
@@ -40,16 +40,16 @@
     margin-right: 5px;
 }
 .request_title{
-    font-weight: 650;
+    font-weight: 600;
     color: white;
-    font-size: 27px;
+    font-size: 22px;
     font-family: "Poppins";
     margin-bottom: 4px;
 }
 .request_owner{
-    font-weight: 500;
+    font-weight: 300;
     color: white;
-    font-size: 15px;
+    font-size: 13px;
     font-family: "Poppins";
 }
 .content_container_right{
@@ -66,9 +66,9 @@
     border: thin solid white;
     border-radius: 12px;
     width: 100%;
-    max-width: 60px;
+    max-width: 50px;
     height:100%;
-    min-height: 60px;
+    min-height: 50px;
     margin-bottom: 5px;
 }
 .num_of_rewards_label{
@@ -107,7 +107,7 @@
     font-size: 14px;
     font-weight: 400;
     font-family: "Poppins";
-    color: #f3f2f2;
+    color: white;
     margin-right: 15px;
 }
 .view_detail_btn:hover{
@@ -118,7 +118,7 @@
     font-size: 14px;
     font-weight: 400;
     font-family: "Poppins";
-    color: #f3f2f2;
+    color: white;
 }
 .add_reward_btn:hover{
     color: black;
@@ -128,10 +128,10 @@
     font-size: 14px;
     font-weight: 600;
     font-family: "Poppins";
-    color: lightgreen;
+    color: #76d776;
 }
 .complete_request_btn:hover{
-    color: mediumspringgreen;
+    color: lawngreen;
 }
 .date_container{
     display: flex;

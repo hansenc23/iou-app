@@ -2,7 +2,7 @@
 
 }
 .new_requests_btn_container{
-    padding: 40px;
+    padding: 40px 40px 40px 40px;
 }
 .new_requests_btn{
     background-color: black;
@@ -41,17 +41,17 @@
     width: fit-content;
     margin-bottom: 45px;
 }
-.request_title_header{
+.create_request_title_header{
     display: flex;
     flex-direction: row;
     width: fit-content;
 }
-.request_title_icon {
+.create_request_title_icon {
     margin-top: 8px;
     margin-right: 18px;
     color: #7e51d0;
 }
-.request_title{
+.create_request_title{
     font-family: Poppins;
     font-size: 26px;
     font-weight: 650;

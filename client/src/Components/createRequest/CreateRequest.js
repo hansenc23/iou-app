@@ -69,15 +69,15 @@ const CreateRequest = () => {
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 BackdropProps={{
-                    timeout: 2000,
+                    timeout: 100,
                 }}
             >
                 <Fade in={open}>
                     <div className="createRequest_modal_container">
-                        <div className="request_tile_container">
-                            <div className="request_title_header">
+                        <div className="create_request_title_header">
+                            <div className="create_request_title_header">
                                 <FiberNewIcon className="request_title_icon"/>
-                                <div className="request_title">
+                                <div className="create_request_title">
                                     <NewRequestTitle
                                         className=""
                                         text={storedTitle}
@@ -86,7 +86,7 @@ const CreateRequest = () => {
                                 </div>
                             </div>
                             <div className="requested_by_text">
-                                Requested by gianriyanto
+                                Requested by <strong> @gianriyanto </strong>
                             </div>
 
                         </div>
