@@ -3,13 +3,12 @@ import Modal from '@material-ui/core/Modal';
 import Slide from '@material-ui/core/Slide';
 import Backdrop from '@material-ui/core/Backdrop';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
-import Collapse from '@material-ui/core/Collapse';
-import axios from 'axios';
 import AlertMessage from '../AlertMessage';
 import { ImageContext } from '../../context/ImageContext';
 import './AttachProof.css';
 
 const AttachProof = (props) => {
+
   const { selectedImage, setSelectedImage, uploadImage, setUploadedImageUrl } = useContext(ImageContext);
   const [errorMsg, setErrorMsg] = useState(null);
   const [successMsg, setSuccessMsg] = useState(null);
