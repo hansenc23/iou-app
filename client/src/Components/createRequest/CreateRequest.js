@@ -74,9 +74,9 @@ const CreateRequest = () => {
             >
                 <Fade in={open}>
                     <div className="createRequest_modal_container">
-                        <div className="create_request_title_header">
+                        <div className="create_request_tile_container">
                             <div className="create_request_title_header">
-                                <FiberNewIcon className="request_title_icon"/>
+                                <FiberNewIcon className="create_request_title_icon"/>
                                 <div className="create_request_title">
                                     <NewRequestTitle
                                         className=""
@@ -88,7 +88,6 @@ const CreateRequest = () => {
                             <div className="requested_by_text">
                                 Requested by <strong> @gianriyanto </strong>
                             </div>
-
                         </div>
                         <div className="request_description_container">
                             <div className="request_description_header">

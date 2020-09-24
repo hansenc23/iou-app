@@ -17,7 +17,7 @@ const Favour = ({ type }) => {
   };
 
   const handleCloseProofModal = () => {
-    //open Modal
+    //close Modal
     setOpenProofModal(false);
   };
 

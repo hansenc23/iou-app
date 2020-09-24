@@ -37,16 +37,19 @@
 .logo_link:focus{
   font-weight: bold;
 }
-.page_links {
+.page_link {
   padding-right: 10px;
-  font-size: 20px;
-  font-weight: 500;
+  font-weight: bold;
+  font-size: 18px;
   text-decoration: none;
   width: 200px;
+  height: fit-content;
+  font-family: Roboto;
+  margin-right: 10px;
 }
-.page_links a {
+.page_link a {
   text-decoration: none;
-  color: black;
+  color: #f3f0ea;
 }
 a {
   color: white;
@@ -64,26 +67,19 @@ a:focus {
 }
 .user_name {
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 .logout_link {
   font-size: 1rem;
   font-weight: 600;
   align-content: center;
 }
-ul {
-  display: flex;
-  margin: 0;
-}
-ul li {
-  padding: 0 16px;
-}
 .authentication_links {
   display: flex;
   font-size: 12px;
   margin-right: 40px;
   justify-content: space-between;
-  width: 180px;
+  width: 165px;
 }
 .authentication_links a {
   text-decoration: none;
@@ -119,20 +115,27 @@ ul li {
   vertical-align: middle;
   cursor: pointer;
 }
-
 .logout_btn:hover {
   color: white;
 }
-
+ul {
+  display: flex;
+  margin: 0;
+  transform: translate(100px 200px);
+}
+ul li {
+  padding: 0 16px;
+}
 nav {
   background-color: transparent;
   height: 65px;
+  width: 150px;
 }
 #menuToggle {
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 25px;
+  top: 26px;
   left: 30px;
   z-index: 1;
   -webkit-user-select: none;
@@ -185,18 +188,18 @@ nav {
 }
 #menu {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   text-align: left;
   position: absolute;
   width: 110px;
   height: 200px;
   justify-content: space-evenly;
-  margin: -50px 0 0 -50px;
-  padding: 100px 45px 45px;
+  margin: -108px 0 0 80px;
+  padding: 104px 45px 45px;
   background-color: transparent;
   -webkit-font-smoothing: antialiased;
   transform-origin: 0 0;
-  transform: translate(-100%, 0);
+  transform: translate(-200%, 0);
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
 #menu li {
