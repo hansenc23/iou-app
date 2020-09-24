@@ -151,51 +151,6 @@ const CreateFavour = () => {
                       console.log(err);
                     });
                 }
-                // if (selectedImage !== null) {
-                //   // setIsCreating(true);
-                //   setLoading(true);
-                //   uploadImage()
-                //     .then((data) => {
-                //       /*
-                //         could not implement error checking, if i uncomment the code below to check error it can handle error checking but when i upload the image without an error it wouldn't execute the axios request for creating favors. pls help :)
-
-                //       */
-                //       // Check error
-                //       // if (data.error.code === 'LIMIT_FILE_SIZE') {
-                //       //   setLoading(false);
-                //       //   setOpen(true);
-                //       //   setError('Error: Max size is 2MB');
-                //       // }
-
-                //   // Make post request to create favour
-                //   axios
-                //     .post('/favors/create', {
-                //       // Check if it's Ower or Owner
-                //       ower: storedTypeTest === 'Owe' ? localStorage.getItem('id') : userDetails._id,
-                //       owner: storedTypeTest === 'Owe' ? userDetails._id : localStorage.getItem('id'),
-                //       favor_detail: storedValue,
-                //       picture_proof_id: data.location,
-                //     })
-                //     .then((response) => {
-                //       // Check if response is a success
-                //       if (response.data.success) {
-                //         handleSuccess();
-                //         setIsCreating(false);
-                //       } else {
-                //         setError('Error: not successful');
-                //       }
-                //     })
-                //     .catch((e) => {
-                //       console.log(e);
-                //     });
-                // })
-                // .catch((error) => {
-                //   setError('No working');
-                // });
-                // } else {
-                //   setOpen(true);
-                //   setError('Please select an image');
-                // }
               } else {
                 setError('Invalid user');
               }
