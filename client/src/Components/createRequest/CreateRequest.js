@@ -124,7 +124,7 @@ const CreateRequest = () => {
                                         value={rewardItem}
                                         onChange={handleChange}
                                         renderValue={(selected) => (
-                                            <div className="request_reward_chips">
+                                            <div className="">
                                                 {selected.map((value) => (
                                                     <Chip key={value} label={value} className="request_reward_chip"/>
                                                 ))}
@@ -133,7 +133,7 @@ const CreateRequest = () => {
                                         MenuProps={{ PaperProps: { style: { maxHeight: 50, backgroundColor: '#f3f0ea'}}}}
                                     >
                                         {rewardItems.map((item) => (
-                                            <MenuItem key={item} value={item}>
+                                            <MenuItem className="menu_test" key={item} value={item}>
                                                 {item}
                                             </MenuItem>
                                         ))}

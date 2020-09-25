@@ -47,13 +47,13 @@
     width: fit-content;
 }
 .create_request_title_icon {
-    margin-top: 8px;
+    margin-top: 10px;
     margin-right: 18px;
     color: #7e51d0;
 }
 .create_request_title{
     font-family: Poppins;
-    font-size: 26px;
+    font-size: 29px;
     font-weight: 650;
     margin-bottom: 5px;
 }

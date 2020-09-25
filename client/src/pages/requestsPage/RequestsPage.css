@@ -1,7 +1,7 @@
 #RequestsPage {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     height: calc(100vh - 82px);
     min-height: calc(100vh - 100px);
     width: 100vw;

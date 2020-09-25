@@ -62,30 +62,47 @@ a:hover {
 a:focus {
   font-weight: 600;
 }
-.auth {
-  color: white;
-}
-.user_name {
-  font-size: 1rem;
-  font-weight: 500;
-}
-.logout_link {
-  font-size: 1rem;
-  font-weight: 600;
-  align-content: center;
-}
 .authentication_links {
   display: flex;
   font-size: 12px;
   margin-right: 40px;
   justify-content: space-between;
-  width: 165px;
+  width: 185px;
 }
 .authentication_links a {
   text-decoration: none;
   color: #f3f0ea;
   font-size: 14px;
   font-weight: bold;
+}
+.auth {
+  color: white;
+}
+.user_name {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 18px;
+}
+.logout_link {
+  font-size: 1rem;
+  font-weight: 600;
+  align-content: center;
+}
+.logout_btn {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: white;
+  border: thin solid white;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 20px;
+  display: table-cell;
+  vertical-align: middle;
+  cursor: pointer;
+  width: 100px;
+}
+.logout_btn:hover {
+  color: white;
 }
 .signup_link_label {
   width: 120px;
@@ -101,21 +118,6 @@ a:focus {
   cursor: pointer;
 }
 .signup_link :hover {
-  color: white;
-}
-.logout_btn {
-  padding: 0.5rem 1rem;
-  background-color: transparent;
-  color: white;
-  border: thin solid white;
-  font-weight: bold;
-  font-size: 14px;
-  border-radius: 20px;
-  display: table-cell;
-  vertical-align: middle;
-  cursor: pointer;
-}
-.logout_btn:hover {
   color: white;
 }
 ul {
@@ -192,9 +194,9 @@ nav {
   text-align: left;
   position: absolute;
   width: 110px;
-  height: 200px;
+  height: 30px;
   justify-content: space-evenly;
-  margin: -108px 0 0 80px;
+  margin: -109px 0 0 90px;
   padding: 104px 45px 45px;
   background-color: transparent;
   -webkit-font-smoothing: antialiased;
