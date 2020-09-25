@@ -11,8 +11,6 @@ import Spinner from "../Spinner";
 import { ImageContext } from "../../context/ImageContext";
 import axios from "axios";
 
-import CONFIG from "../../config";
-
 const CreateFavour = ({ setType }) => {
   const {
     selectedImage,
@@ -98,163 +96,94 @@ const CreateFavour = ({ setType }) => {
     setTypeFieldClicked("type_field_clicked");
   }
 
-  async function handleClickConfirm() {
+  function handleClickConfirm() {
     reset();
 
-    try {
-      if (storedValue === "What?") throw Error("Please select a favour item");
-      if (usernameInput === "@Whom?") throw Error("Invalid username");
-      const username = usernameInput.split("@")[1];
+    // Validations
+    // Check if its default value
+    if (storedValue !== "What?") {
+      // Check if default value and it's null or empty
+      if (usernameInput !== "@Whom?") {
+        // Username split the @
+        const username = usernameInput.split("@")[1];
 
-      const usernamePredict = await axios.post("/auth/username_predict", { username });
-      if (usernamePredict.data.length === 0) throw Error("Invalid Username");
+        // Since this is the last step, we assume the username exist in database
+        // because user select from drop down
 
-      const userDetailsFromDB = usernamePredict.data[0];
-
-      if (userDetailsFromDB._id === localStorage.getItem("id"))
-        throw Error("You can not add Favour to yourself");
-
-      setLoading(true);
-
-      if (selectedImage === null) {
-        setLoading(false);
+        axios
+          .post("/auth/username_predict", { username })
+          .then((response) => {
+            // Check if response is empty
+            if (response.data.length > 0) {
+              // Get the first object in array coz its the best match
+              const userDetails = response.data[0];
+              // If the user id from database and user id from own/bought is the same
+              if (userDetails._id !== localStorage.getItem("id")) {
+                setLoading(true);
+                if (selectedImage !== null) {
+                  uploadImage().then((data) => {
+                    if (!data.error || !data) {
+                      axios
+                        .post("/favors/create", {
+                          // Check if it's Ower or Owner
+                          ower:
+                            storedTypeTest === "Owe"
+                              ? localStorage.getItem("id")
+                              : userDetails._id,
+                          owner:
+                            storedTypeTest === "Owe"
+                              ? userDetails._id
+                              : localStorage.getItem("id"),
+                          favor_detail: storedValue,
+                          picture_proof_id: data.location,
+                        })
+                        .then((response) => {
+                          // Check if response is a success
+                          if (response.data.success) {
+                            handleSuccess();
+                            setSelectedImage(null);
+                            setIsCreating(false);
+                            setType("isLoading");
+                            setType("all");
+                          }
+                          setError("Error: not successful");
+                        });
+                    }
+                    uploadError(
+                      "Upload failed. Invalid file type or size is too large. (Max 2MB)"
+                    );
+                  });
+                }
+                uploadError("Please select an image");
+              }
+              setError("Invalid user");
+            }
+            setError("Invalid user");
+          })
+          .catch((e) => {
+            setError("Error:", e);
+          });
+      } else {
         setOpen(true);
-        throw Error("Please select an image");
+        setError("Invalid username");
       }
-
-      const uploadTheImageReponse = await uploadImage();
-      if (uploadTheImageReponse.error) {
-        setLoading(false);
-        setOpen(true);
-        throw Error(
-          "Upload failed. Invalid file type or size is too large. (Max 2MB)"
-        );
-      }
-
-      const createFavorResponse = await axios.post("/favors/create", {
-        // Check if it's Ower or Owner
-        ower:
-          storedTypeTest === "Owe"
-            ? localStorage.getItem("id")
-            : userDetailsFromDB._id,
-        owner:
-          storedTypeTest === "Owe"
-            ? userDetailsFromDB._id
-            : localStorage.getItem("id"),
-        favor_detail: storedValue,
-        picture_proof_id: data.location,
-      });
-
-      if (!createFavorResponse.data.success)
-        throw Error("Something went wrong");
-      handleSuccess();
-      setSelectedImage(null);
-      setIsCreating(false);
-      setType("isLoading");
-      setType("all");
-
-    } catch (error) {
-      setError(error);
+    } else {
+      setOpen(true);
+      setError("Please select a favour item");
     }
-
-    // // Validations
-    // // Check if its default value
-    // if (storedValue !== "What?") {
-    //   // Check if default value and it's null or empty
-    //   if (usernameInput !== "@Whom?") {
-    //     // Username split the @
-    //     const username = usernameInput.split("@")[1];
-
-    //     // Since this is the last step, we assume the username exist in database
-    //     // because user select from drop down
-    //     axios
-    //       .post("/auth/username_predict", { username })
-    //       .then((response) => {
-    //         // Check if response is empty
-    //         if (response.data.length > 0) {
-    //           // Get the first object in array coz its the best match
-    //           const userDetails = response.data[0];
-    //           // If the user id from database and user id from own/bought is the same
-    //           // If username from database doesnt match the one user entered
-    //           // We dont do that
-    //           if (
-    //             userDetails._id !== localStorage.getItem("id") &&
-    //             userDetails.username === username
-    //           ) {
-    //             setLoading(true);
-    //             if (selectedImage === null) {
-    //               setLoading(false);
-    //               setOpen(true);
-    //               setError("Please select an image");
-    //             } else {
-    //               uploadImage()
-    //                 .then((data) => {
-    //                   if (data.error) {
-    //                     setLoading(false);
-    //                     setOpen(true);
-    //                     setError(
-    //                       "Upload failed. Invalid file type or size is too large. (Max 2MB)"
-    //                     );
-    //                   } else {
-    //                     axios
-    //                       .post("/favors/create", {
-    //                         // Check if it's Ower or Owner
-    //                         ower:
-    //                           storedTypeTest === "Owe"
-    //                             ? localStorage.getItem("id")
-    //                             : userDetails._id,
-    //                         owner:
-    //                           storedTypeTest === "Owe"
-    //                             ? userDetails._id
-    //                             : localStorage.getItem("id"),
-    //                         favor_detail: storedValue,
-    //                         picture_proof_id: data.location,
-    //                       })
-    //                       .then((response) => {
-    //                         // Check if response is a success
-    //                         if (response.data.success) {
-    //                           handleSuccess();
-    //                           setSelectedImage(null);
-    //                           setIsCreating(false);
-    //                           setType("isLoading");
-    //                           setType("all");
-    //                         } else {
-    //                           setError("Error: not successful");
-    //                         }
-    //                       })
-    //                       .catch((e) => {
-    //                         console.log(e);
-    //                       });
-    //                   }
-    //                 })
-    //                 .catch((err) => {
-    //                   console.log(err);
-    //                 });
-    //             }
-    //           } else {
-    //             setError("Invalid user");
-    //           }
-    //         } else {
-    //           setError("Invalid user");
-    //         }
-    //       })
-    //       .catch((e) => {
-    //         setError("Error:", e);
-    //       });
-    //   } else {
-    //     setOpen(true);
-    //     setError("Invalid username");
-    //   }
-    // } else {
-    //   setOpen(true);
-    //   setError("Please select a favour item");
-    // }
   }
 
   function reset() {
     setError("");
     setInfo("");
+    setLoading(false);
     setIsCreating(false);
+  }
+
+  function uploadError(error) {
+    setLoading(false);
+    setOpen(true);
+    setError(error);
   }
 
   //set timeout when alert is displayed
