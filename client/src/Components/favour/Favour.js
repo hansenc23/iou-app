@@ -46,6 +46,8 @@ const Favour = ({ type }) => {
               });
           }
         });
+    } else if (type === "isLoading") {
+      setIouData([])
     } else {
       const apiUrl =
         type === "owe"

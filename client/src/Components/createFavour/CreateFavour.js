@@ -13,7 +13,7 @@ import axios from 'axios';
 
 import CONFIG from '../../config';
 
-const CreateFavour = () => {
+const CreateFavour = ({setType}) => {
   const { selectedImage, setSelectedImage, uploadImage, uploadedImageUrl, setUploadedImageUrl } = useContext(ImageContext);
   const [usernameInput, setUsernameInput] = useState('@Whom?');
   const [storedValue, setStoredValue] = useState('What?');
@@ -138,6 +138,8 @@ const CreateFavour = () => {
                               handleSuccess();
                               setSelectedImage(null);
                               setIsCreating(false);
+                              setType("isLoading")
+                              setType("all");
                             } else {
                               setError('Error: not successful');
                             }
