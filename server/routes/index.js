@@ -2,6 +2,7 @@ const express = require('express');
 const favorsRoute = require('./favorsRoute');
 const authRoute = require('./authRoute');
 const imageRoute = require('./imageRoute');
+const requestRoute = require('./requestRoute');
 
 const router = express.Router();
 
@@ -18,5 +19,7 @@ router.use('/favors', favorsRoute);
 router.use('/auth', authRoute);
 
 router.use('/image', imageRoute);
+
+router.use('/request', requestRoute);
 
 module.exports = router;
