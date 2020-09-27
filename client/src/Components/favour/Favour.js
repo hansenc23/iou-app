@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import "./Favour.css";
 import axios from "axios";
 
-import IOwnComponent from "./IOwnComponent";
 import IOweComponent from "./IOweComponent";
+import IOwnComponent from "./IOwnComponent";
 
 const Favour = ({ type, setType }) => {
   const [iouData, setIouData] = useState([]);
