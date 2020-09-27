@@ -68,11 +68,14 @@ createNewFavors = async (req, res) => {
 };
 
 updateFavorStatus = (req, res) => {
-  const { id, end_time } = req.body;
+  const { id, end_time, proof_url } = req.body;
+
+  if (!end_time || !id)
+    return res.status(400).json({ success: false, error: "Missing input" });
 
   FavorModel.findByIdAndUpdate(
     { _id: id },
-    { end_time: end_time },
+    { end_time: end_time, proof_url: proof_url },
     (error, result) => {
       if (error) return res.status(400).json({ success: false, error });
 

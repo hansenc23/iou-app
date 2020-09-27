@@ -1,42 +1,45 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import './Favour.css';
-import axios from 'axios';
-import moment from 'moment';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Zoom from '@material-ui/core/Zoom';
+import React, { useState, useEffect, useContext, useRef } from "react";
+import "./Favour.css";
+import axios from "axios";
 
-const Favour = ({ type }) => {
+import IOwnComponent from "./IOwnComponent";
+import IOweComponent from "./IOweComponent";
+
+const Favour = ({ type, setType }) => {
   const [iouData, setIouData] = useState([]);
-  const [openProofModal, setOpenProofModal] = React.useState(false);
-  const [img_url, setImgUrl] = useState('');
-
-  const handleOpenProofModal = () => {
-    //open Modal
-    setOpenProofModal(true);
-  };
-
-  const handleCloseProofModal = () => {
-    //close Modal
-    setOpenProofModal(false);
-  };
 
   useEffect(() => {
-    if (type === 'all' || type === 'settled') {
-      axios.get(`/favors/all/ower/${localStorage.getItem('id')}/${type === 'all' ? 'false' : 'true'}`).then((owe) => {
-        if (owe.data.success) {
-          axios.get(`/favors/all/owner/${localStorage.getItem('id')}/${type === 'all' ? 'false' : 'true'}`).then((owner) => {
-            if (owner.data.success) {
-              setIouData(sortIouData([...owe.data.data, ...owner.data.data]));
-            }
-          });
-        }
-      });
-    } else if (type === 'isLoading') {
+    if (type === "all" || type === "settled") {
+      axios
+        .get(
+          `/favors/all/ower/${localStorage.getItem("id")}/${
+            type === "all" ? "false" : "true"
+          }`
+        )
+        .then((owe) => {
+          if (owe.data.success) {
+            axios
+              .get(
+                `/favors/all/owner/${localStorage.getItem("id")}/${
+                  type === "all" ? "false" : "true"
+                }`
+              )
+              .then((owner) => {
+                if (owner.data.success) {
+                  setIouData(
+                    sortIouData([...owe.data.data, ...owner.data.data])
+                  );
+                }
+              });
+          }
+        });
+    } else if (type === "isLoading") {
       setIouData([]);
     } else {
       const apiUrl =
-        type === 'owe' ? `/favors/all/ower/${localStorage.getItem('id')}/false` : `/favors/all/owner/${localStorage.getItem('id')}/false`;
+        type === "owe"
+          ? `/favors/all/ower/${localStorage.getItem("id")}/false`
+          : `/favors/all/owner/${localStorage.getItem("id")}/false`;
 
       axios.get(apiUrl).then((response) => {
         setIouData(sortIouData(response.data.data));
@@ -53,73 +56,18 @@ const Favour = ({ type }) => {
 
     return copyArray;
   }
+
   return (
-    <div id='favour' className=''>
+    <div id="favour" className="">
       {iouData.length !== 0 &&
         iouData.map((each, i) => {
-          // User owe the other person
-          if (each.ower._id === localStorage.getItem('id')) {
-            return (
-              <div className='favour_card_right' key={i} onClick={handleOpenProofModal}>
-                <div className='user_label_right'>@You</div>
-                <div className='card_content_right'>
-                  <img id='image_proof' src={each.picture_proof_id} alt='' />
-
-                  <div className='value_label_right'>
-                    Owe <strong> @{each.owner.username} </strong> <strong> {each.favor_detail} </strong>
-                  </div>
-                </div>
-                <div className='date_right'>{moment(each.create_time).format('DD MMM')}</div>
-              </div>
-            );
+          if (each.ower._id === localStorage.getItem("id")) {
+            // The favours that people owe to the current user
+            return <IOwnComponent each={each} key={i} setType={setType} />;
           } else {
-            return (
-              <div className='favour_card_left' key={i} onClick={handleOpenProofModal}>
-                <div className='user_label_left'>@{each.ower.username}</div>
-                <div className='card_content_left'>
-                  <div className='value_label_left'>
-                    Owes you <strong> {each.favor_detail} </strong>
-                  </div>
-
-                  <img id='image_proof' src={each.picture_proof_id} alt='' />
-                </div>
-                <div className='date_left'>{moment(each.create_time).format('DD MMM')}</div>
-              </div>
-            );
+            return <IOweComponent each={each} key={i} setType={setType} />;
           }
         })}
-
-      {/* 
-        idk why, if use modal it shows the same picture for all favor card
-        
-      {iouData.map((each, i) => {
-        return (
-          <Modal
-            aria-labelledby='transition-modal-title'
-            aria-describedby='transition-modal-description'
-            className='view_favour_proof'
-            open={openProofModal}
-            onClose={handleCloseProofModal}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-              timeout: 1000,
-            }}
-            key={i}
-          >
-            <Zoom in={openProofModal}>
-              <div className='view_favour_proof_container'>
-                <div className='view_proof_header'>Here's Proof</div>
-                <div className='view_proof_preview'>
-                  <span className='proof_preview_label'>
-                    <img src={each.picture_proof_id} alt='' />
-                  </span>
-                </div>
-              </div>
-            </Zoom>
-          </Modal>
-        );
-      })} */}
     </div>
   );
 };

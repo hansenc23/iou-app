@@ -46,7 +46,7 @@ const FavoursList = ({ type, setType }) => {
             Settled
           </button>
         </span>
-        <Favour type={type} />
+        <Favour type={type} setType={setType} />
       </div>
     </div>
   );
