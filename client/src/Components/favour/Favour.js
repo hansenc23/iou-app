@@ -63,9 +63,9 @@ const Favour = ({ type, setType }) => {
         iouData.map((each, i) => {
           if (each.ower._id === localStorage.getItem("id")) {
             // The favours that people owe to the current user
-            return <IOwnComponent each={each} key={i} setType={setType} />;
-          } else {
             return <IOweComponent each={each} key={i} setType={setType} />;
+          } else {
+            return <IOwnComponent each={each} key={i} setType={setType} />;
           }
         })}
     </div>
