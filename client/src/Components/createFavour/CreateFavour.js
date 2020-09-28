@@ -15,7 +15,6 @@ const CreateFavour = ({ setType }) => {
   const { selectedImage, setSelectedImage, uploadImage, uploadedImageUrl, setUploadedImageUrl } = useContext(ImageContext);
   const [usernameInput, setUsernameInput] = useState('@Whom?');
   const [storedFavor, setStoredFavor] = useState('What?');
-  const [storedTypeTest, setStoredTypeTest] = useState('Bought');
   const [storedAction, setStoredAction] = useState('Action?');
   const [typeFieldClicked, setTypeFieldClicked] = useState('type_field_unclicked');
   const [cancelBtnClicked, setCancelBtnClicked] = useState(false);
@@ -82,6 +81,8 @@ const CreateFavour = ({ setType }) => {
   }
 
   async function handleCreateFavor() {
+    reset();
+
     if (storedAction === 'Action?') {
       setOpen(true);
       setError('Please select an action');
@@ -193,6 +194,7 @@ const CreateFavour = ({ setType }) => {
   function reset() {
     setError('');
     setInfo('');
+    setOpen(false);
     setLoading(false);
     setIsCreating(false);
   }
