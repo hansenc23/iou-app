@@ -1,63 +1,7 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import { makeStyles } from "@material-ui/core/styles";
-import Select from '@material-ui/core/Select';
+import React, { useState, useEffect, useRef } from "react";
 import "./InlineText.css";
 
-const useStyles = makeStyles({
-    root: {
-        "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderColor: "black"
-        },
-        "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderColor: "black"
-        },
-        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "black"
-        },
-        "& .MuiOutlinedInput-input": {
-            color: "black",
-            fontSize: "36px",
-            fontWeight: "bold",
-            fontFamily: "Poppins"
-        },
-        "&:hover .MuiOutlinedInput-input": {
-            color: "black",
-            fontSize: "36px",
-            fontWeight: "bold",
-            fontFamily: "Poppins"
-        },
-        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
-            color: "black",
-            fontSize: "36px",
-            fontWeight: "bold",
-            fontFamily: "Poppins"
-        },
-        "& .MuiInputLabel-outlined": {
-            color: "black",
-            fontSize: "36px",
-            fontWeight: "bold",
-            fontFamily: "Poppins"
-        },
-        "&:hover .MuiInputLabel-outlined": {
-            color: "black",
-            fontSize: "36px",
-            fontWeight: "bold",
-            fontFamily: "Poppins"
-        },
-        "& .MuiInputLabel-outlined.Mui-focused": {
-            color: "black",
-            fontSize: "36px",
-            fontWeight: "bold",
-            fontFamily: "Poppins"
-        }
-    }
-});
-
 function InlineText({ text, onTextChange, usernameSuggestions }) {
-
-    const classes = useStyles();
 
     const [isInputActive, setIsInputActive] = useState(false);
 
@@ -113,8 +57,8 @@ function InlineText({ text, onTextChange, usernameSuggestions }) {
                     }`} />
             {
                 usernameSuggestions.length > 0 &&
-                <select onChange={handleSelect} defaultValue="">
-                    <option value="" disabled>Select username</option>
+                <select className="username_suggestions" onChange={handleSelect} defaultValue="">
+                    <option className="suggestion_item" value="test" > </option>
                     {
                         usernameSuggestions.map((each, i) => {
                             return (
