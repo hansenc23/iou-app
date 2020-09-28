@@ -81,33 +81,27 @@ const CreateFavour = ({ setType }) => {
     }
   }
 
-  // function handleStoreOnClick(event) {
-  //   reset();
-  //   event.preventDefault();
-  //   event.target.textContent === 'Bought' ? setStoredTypeTest('Owe') : setStoredTypeTest('Bought');
-  //   setTypeFieldClicked('type_field_clicked');
-  // }
-
   async function handleCreateFavor() {
-    //input validations
     if (storedAction === 'Action?') {
       setOpen(true);
       setError('Please select an action');
-    } else if (usernameInput === '@Whom?' || usernameInput === '@') {
+    }
+
+    if (usernameInput === '@Whom?' || usernameInput === '@') {
       setOpen(true);
       setError('Invalid username');
-    } else if (storedFavor === 'What?') {
+    }
+
+    if (storedFavor === 'What?') {
       setOpen(true);
       setError('Please select a favor');
-    } else if (selectedImage === null) {
-      setOpen(true);
-      setError('Please select an image');
-    } else {
+    }
+
+    if (storedAction === 'Owe') {
       //Username split the @
       const username = usernameInput.split('@')[1];
       try {
         const response = await axios.post('/auth/username_predict', { username });
-
         if (response.data.length > 0) {
           //Get the first object in data array
           const userDetails = response.data[0];
@@ -117,38 +111,81 @@ const CreateFavour = ({ setType }) => {
             setError('Cannot create favour to yourself!');
           } else {
             setLoading(true);
-            const resImage = await uploadImage();
-            if (resImage.error) {
+            const res = await axios.post('/favors/create', {
+              // Check if it's Ower or Owner
+              ower: storedAction === 'Owe' ? localStorage.getItem('id') : userDetails._id,
+              owner: storedAction === 'Owe' ? userDetails._id : localStorage.getItem('id'),
+              favor_detail: storedFavor,
+              picture_proof_id: 'null',
+            });
+            if (res.status === 200) {
               setLoading(false);
+              handleSuccess();
+              setSelectedImage(null);
+              setIsCreating(false);
+              setType('isLoading');
+              setType('all');
               setOpen(true);
-              setError('Upload failed. Invalid file type or size is too large. (Max: 2MB)');
+              setSuccess('Favor created successfully!');
             } else {
-              const res = await axios.post('/favors/create', {
-                // Check if it's Ower or Owner
-                ower: storedAction === 'Owe' ? localStorage.getItem('id') : userDetails._id,
-                owner: storedAction === 'Owe' ? userDetails._id : localStorage.getItem('id'),
-                favor_detail: storedFavor,
-                picture_proof_id: resImage.location,
-              });
-
-              if (res.status === 200) {
-                setLoading(false);
-                handleSuccess();
-                setSelectedImage(null);
-                setIsCreating(false);
-                setType('isLoading');
-                setType('all');
-                setOpen(true);
-                setSuccess('Favor created successfully!');
-              } else {
-                setLoading(false);
-                console.log('Create favor failed');
-              }
+              setLoading(false);
+              console.log('Create favor failed');
             }
           }
         }
       } catch (err) {
         console.log(err);
+      }
+    } else if (storedAction === 'Bought') {
+      if (selectedImage === null) {
+        setOpen(true);
+        setError('Please upload an image');
+      } else {
+        //Username split the @
+        const username = usernameInput.split('@')[1];
+        try {
+          const response = await axios.post('/auth/username_predict', { username });
+          if (response.data.length > 0) {
+            //Get the first object in data array
+            const userDetails = response.data[0];
+            // If the user id from database and user id from own/bought is the same
+            if (userDetails._id === localStorage.getItem('id')) {
+              setOpen(true);
+              setError('Cannot create favour to yourself!');
+            } else {
+              setLoading(true);
+              const resImage = await uploadImage();
+              if (resImage.error) {
+                setLoading(false);
+                setOpen(true);
+                setError('Upload failed. Invalid file type or size is too large. (Max: 2MB)');
+              } else {
+                const res = await axios.post('/favors/create', {
+                  // Check if it's Ower or Owner
+                  ower: storedAction === 'Owe' ? localStorage.getItem('id') : userDetails._id,
+                  owner: storedAction === 'Owe' ? userDetails._id : localStorage.getItem('id'),
+                  favor_detail: storedFavor,
+                  picture_proof_id: resImage.location,
+                });
+                if (res.status === 200) {
+                  setLoading(false);
+                  handleSuccess();
+                  setSelectedImage(null);
+                  setIsCreating(false);
+                  setType('isLoading');
+                  setType('all');
+                  setOpen(true);
+                  setSuccess('Favor created successfully!');
+                } else {
+                  setLoading(false);
+                  console.log('Create favor failed');
+                }
+              }
+            }
+          }
+        } catch (err) {
+          console.log(err);
+        }
       }
     }
   }
@@ -213,38 +250,6 @@ const CreateFavour = ({ setType }) => {
                 </Select>
               </div>
             </div>
-            {/* <div className='createFavour_first_line'>
-              <div className='a_text'> I </div>
-              <button className={typeFieldClicked} onClick={handleStoreOnClick}>
-                {storedTypeTest}
-              </button>
-              <Select
-                value={storedValue}
-                className=''
-                style={{ height: 0 }}
-                onChange={(event) => setStoredValue(event.target.value)}
-                displayEmpty
-                inputProps={{ 'aria-label': 'Without label' }}
-                disableUnderline={true}
-                MenuProps={{
-                  getContentAnchorEl: null,
-                  anchorOrigin: {
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                  },
-                }}
-              >
-                <MenuItem value={'What?'}>
-                  <div className='what_menu_label'> ? </div>
-                </MenuItem>
-                <MenuItem value='Coffee'>
-                  <div className='what_value_label'> Bought </div>
-                </MenuItem>
-                <MenuItem value='Chocolate'>
-                  <div className='what_value_label'> Owe </div>
-                </MenuItem>
-              </Select>
-            </div> */}
             <div className='createFavour_second_line'>
               <InlineText className='who_field' text={usernameInput} onTextChange={handleOnChangeWhom} usernameSuggestions={usernameSuggestions} />
             </div>
@@ -288,9 +293,7 @@ const CreateFavour = ({ setType }) => {
                 </Select>
               </div>
             </div>
-            <div className='createFavour_fourth_line'>
-              <AttachProof cancelClicked={cancelBtnClicked} />
-            </div>
+            <div className='createFavour_fourth_line'>{storedAction === 'Bought' ? <AttachProof cancelClicked={cancelBtnClicked} /> : ''}</div>
           </div>
           <div className='btn_container'>
             <button className='create_favour_btn' onClick={handleCreateFavor} disabled={isCreating}>

@@ -1,5 +1,5 @@
-const FavorModel = require("../models/Favors");
-const mongoose = require("mongoose");
+const FavorModel = require('../models/Favors');
+const mongoose = require('mongoose');
 
 getFavorById = (req, res) => {
   const { id } = req.params;
@@ -13,22 +13,16 @@ getFavorById = (req, res) => {
 };
 
 getAllByTypeAndId = async (req, res) => {
-  let findCondition =
-    req.params.type === "ower"
-      ? { ower: req.params.id }
-      : { owner: req.params.id };
-  findCondition.end_time = req.params.end === "false" ? null : { $ne: null };
+  let findCondition = req.params.type === 'ower' ? { ower: req.params.id } : { owner: req.params.id };
+  findCondition.end_time = req.params.end === 'false' ? null : { $ne: null };
 
-  const populateFields = ["email", "username", "firstName", "lastName"];
+  const populateFields = ['email', 'username', 'firstName', 'lastName'];
 
   const response = await FavorModel.find(findCondition)
-    .populate("ower", populateFields)
-    .populate("owner", populateFields)
+    .populate('ower', populateFields)
+    .populate('owner', populateFields)
     .exec(function (error, result) {
-      if (error)
-        res
-          .status(200)
-          .json({ success: false, error: "something went wrong", msg: error });
+      if (error) res.status(200).json({ success: false, error: 'something went wrong', msg: error });
 
       return res.status(200).json({ success: true, data: result });
     });
@@ -39,8 +33,7 @@ createNewFavors = async (req, res) => {
 
   try {
     // Check if variable are empty
-    if (!ower || !owner || !favor_detail || !picture_proof_id)
-      throw Error("Missing fields");
+    if (!ower || !owner || !favor_detail || !picture_proof_id) throw Error('Missing fields');
 
     // Create new Mongoose model
     const newFavor = new FavorModel({
@@ -51,7 +44,7 @@ createNewFavors = async (req, res) => {
     });
 
     // Check if a new FavorModel was created without error
-    if (!newFavor) throw Error("Can not create new FavorModel.");
+    if (!newFavor) throw Error('Can not create new FavorModel.');
 
     newFavor.save().then((favor) => {
       return res.status(200).json({
@@ -68,20 +61,15 @@ createNewFavors = async (req, res) => {
 };
 
 updateFavorStatus = (req, res) => {
-  const { id, end_time, proof_url } = req.body;
+  const { id, end_time, picture_proof_id } = req.body;
 
-  if (!end_time || !id)
-    return res.status(400).json({ success: false, error: "Missing input" });
+  if (!end_time || !id) return res.status(400).json({ success: false, error: 'Missing input' });
 
-  FavorModel.findByIdAndUpdate(
-    { _id: id },
-    { end_time: end_time, proof_url: proof_url },
-    (error, result) => {
-      if (error) return res.status(400).json({ success: false, error });
+  FavorModel.findByIdAndUpdate({ _id: id }, { end_time: end_time, picture_proof_id: picture_proof_id }, (error, result) => {
+    if (error) return res.status(400).json({ success: false, error });
 
-      return res.status(200).json({ success: true, data: result });
-    }
-  );
+    return res.status(200).json({ success: true, data: result });
+  });
 };
 
 deleteFavorById = (req, res) => {
