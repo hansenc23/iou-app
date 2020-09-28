@@ -35,6 +35,10 @@
     font-weight: 500;
     color: black;
 }
+.sub_title_date{
+    font-weight: 350;
+    color: darkgrey;
+}
 .request_detail_btn_container{
     height: fit-content;
     margin-bottom: 40px;
@@ -148,6 +152,7 @@
     font-weight: 400;
     font-family: "Poppins";
     color: black;
+    cursor: pointer;
 }
 .add_reward_item_btn:hover{
     color: black;

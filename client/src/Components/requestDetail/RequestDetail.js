@@ -16,7 +16,8 @@ const RequestDetail =() => {
                         Clean The Fridge
                 </div>
                 <div className="request_sub_title_label">
-                    Requested by <strong>@gracekelly</strong>
+                    <span> Requested by <strong> @gracekelly </strong></span>
+                    <span className="sub_title_date"> on 25 Sep </span>
                 </div>
             </div>
             <div className="request_detail_btn_container">
