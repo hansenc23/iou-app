@@ -1,25 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import "./Favour.css";
 import axios from "axios";
-import moment from "moment";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Zoom from "@material-ui/core/Zoom";
 
-const Favour = ({ type }) => {
+import IOweComponent from "./IOweComponent";
+import IOwnComponent from "./IOwnComponent";
 
+const Favour = ({ type, setType }) => {
   const [iouData, setIouData] = useState([]);
-  const [openProofModal, setOpenProofModal] = React.useState(false);
-
-  const handleOpenProofModal = () => {
-    //open Modal
-    setOpenProofModal(true);
-  };
-
-  const handleCloseProofModal = () => {
-    //close Modal
-    setOpenProofModal(false);
-  };
 
   useEffect(() => {
     if (type === "all" || type === "settled") {
@@ -47,7 +34,7 @@ const Favour = ({ type }) => {
           }
         });
     } else if (type === "isLoading") {
-      setIouData([])
+      setIouData([]);
     } else {
       const apiUrl =
         type === "owe"
@@ -69,67 +56,18 @@ const Favour = ({ type }) => {
 
     return copyArray;
   }
+
   return (
     <div id="favour" className="">
       {iouData.length !== 0 &&
         iouData.map((each, i) => {
-          // User owe the other person
           if (each.ower._id === localStorage.getItem("id")) {
-            return (
-              <div className="favour_card_right" key={i} onClick={handleOpenProofModal}>
-                <div className="user_label_right">@You</div>
-                <div className="card_content_right">
-                  <div className="date_right">
-                    {moment(each.create_time).format("DD MMM")}
-                  </div>
-                  <div className="value_label_right">
-                    Owe <strong> @{each.owner.username} </strong>{" "}
-                    <strong> {each.favor_detail} </strong>
-                  </div>
-                </div>
-              </div>
-            );
+            // The favours that people owe to the current user
+            return <IOweComponent each={each} key={i} setType={setType} />;
           } else {
-            return (
-              <div className="favour_card_left" key={i} onClick={handleOpenProofModal}>
-                <div className="user_label_left">@{each.ower.username}</div>
-                <div className="card_content_left">
-                  <div className="value_label_left">
-                    Owes you <strong> {each.favor_detail} </strong>
-                  </div>
-                  <div className="date_left">
-                    {moment(each.create_time).format("DD MMM")}
-                  </div>
-                </div>
-              </div>
-            );
+            return <IOwnComponent each={each} key={i} setType={setType} />;
           }
         })}
-
-        <Modal
-            aria-labelledby='transition-modal-title'
-            aria-describedby='transition-modal-description'
-            className='view_favour_proof'
-            open={openProofModal}
-            onClose={handleCloseProofModal}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-              timeout: 1000,
-            }}
-        >
-          <Zoom in={openProofModal}>
-            <div className="view_favour_proof_container">
-              <div className='view_proof_header'>Here's Proof</div>
-              <div className='view_proof_preview'>
-                <span className='proof_preview_label'>
-                  Image Preview
-                </span>
-              </div>
-            </div>
-          </Zoom>
-
-        </Modal>
     </div>
   );
 };

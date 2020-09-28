@@ -4,6 +4,7 @@
     padding: 10px;
     overflow: auto;
 }
+
 .favour_card_left {
     display: flex;
     flex-direction: column;
@@ -18,6 +19,7 @@
     border-radius: 12px;
     box-shadow: 1px 1px 7px rgb(227, 227, 227);
 }
+
 .favour_card_right {
     display: flex;
     flex-direction: column;
@@ -39,60 +41,71 @@
 .favour_card_left:hover {
     box-shadow: 2px 2px 10px rgb(153, 153, 153);
 }
+
 .favour_card_right:hover {
     box-shadow: 2px 4px 7px rgb(129, 129, 129);
 }
-.user_label_left{
+
+.user_label_left {
     font-family: "Poppins";
     font-weight: bold;
     font-size: 18px;
     color: black;
 }
+
 .card_content_left {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.value_label_left{
+
+.value_label_left {
     font-family: "Roboto";
     font-size: 16px;
     color: black;
 }
+
 .date_left {
     font-family: "Roboto";
     font-size: 16px;
     font-weight: 500;
     color: #515151;
 }
-.user_label_right{
+
+.user_label_right {
     font-family: "Poppins";
     font-weight: bold;
     font-size: 18px;
     color: white;
 }
-.value_label_right{
+
+.value_label_right {
     font-family: "Roboto";
     font-size: 17px;
     color: white;
 }
+
 .card_content_right {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
+
 .date_right {
     font-family: "Roboto";
     font-size: 16px;
     font-weight: 500;
     color: #ffffff;
 }
-.view_favour_proof{
+
+.view_favour_proof {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.view_favour_proof_container{
+
+.view_favour_proof_container {
     position: absolute;
     background-color: #f3f0ea;
     box-shadow: 0 0 4px 4px rgba(133, 135, 141, 0.12);
@@ -105,7 +118,8 @@
     max-height: 100%;
     text-align: center;
 }
-.view_proof_header{
+
+.view_proof_header {
     word-spacing: 5px;
     font-family: Poppins;
     font-weight: bold;
@@ -113,6 +127,7 @@
     color: black;
     margin-bottom: 30px;
 }
+
 .view_proof_preview {
     display: flex;
     flex-direction: column;
@@ -124,14 +139,48 @@
     height: 190px;
     margin: 15px auto 15px;
 }
+
 .view_proof_preview img {
     height: 100%;
     width: 100%;
     border-radius: 10px;
 }
-.proof_preview_label{
+
+.proof_preview_label {
     margin: auto;
     font-family: Poppins;
     font-weight: 550;
     font-size: 15px;
+}
+
+#image_proof {
+    height: 90px;
+    width: 125px;
+    border-radius: 4px;
+}
+
+.spanNoSelectPointer {
+    cursor: pointer;
+    user-select: none;
+}
+
+.iconAlignVertically {
+    display: flex;
+    align-items: center;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
 }
