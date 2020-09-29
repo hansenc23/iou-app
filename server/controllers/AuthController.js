@@ -7,6 +7,7 @@ const { registerValidation, loginValidation, validateEmail } = require('../middl
 const cookie_config = {
   httpOnly: true,
   sameSite: 'none',
+  secure: true,
 };
 
 // process.env.NODE_ENV === 'development'
