@@ -1,45 +1,31 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
-import "./Favour.css";
-import axios from "axios";
+import React, { useState, useEffect, useContext, useRef } from 'react';
+import './Favour.css';
+import axios from 'axios';
 
-import IOweComponent from "./IOweComponent";
-import IOwnComponent from "./IOwnComponent";
+import IOweComponent from './IOweComponent';
+import IOwnComponent from './IOwnComponent';
 
 const Favour = ({ type, setType }) => {
   const [iouData, setIouData] = useState([]);
 
   useEffect(() => {
-    if (type === "all" || type === "settled") {
-      axios
-        .get(
-          `/favors/all/ower/${localStorage.getItem("id")}/${
-            type === "all" ? "false" : "true"
-          }`
-        )
-        .then((owe) => {
-          if (owe.data.success) {
-            axios
-              .get(
-                `/favors/all/owner/${localStorage.getItem("id")}/${
-                  type === "all" ? "false" : "true"
-                }`
-              )
-              .then((owner) => {
-                if (owner.data.success) {
-                  setIouData(
-                    sortIouData([...owe.data.data, ...owner.data.data])
-                  );
-                }
-              });
-          }
-        });
-    } else if (type === "isLoading") {
+    if (type === 'all' || type === 'settled') {
+      axios.get(`https://www.iou-app.com/favors/all/ower/${localStorage.getItem('id')}/${type === 'all' ? 'false' : 'true'}`).then((owe) => {
+        if (owe.data.success) {
+          axios.get(`https://www.iou-app.com/favors/all/owner/${localStorage.getItem('id')}/${type === 'all' ? 'false' : 'true'}`).then((owner) => {
+            if (owner.data.success) {
+              setIouData(sortIouData([...owe.data.data, ...owner.data.data]));
+            }
+          });
+        }
+      });
+    } else if (type === 'isLoading') {
       setIouData([]);
     } else {
       const apiUrl =
-        type === "owe"
-          ? `/favors/all/ower/${localStorage.getItem("id")}/false`
-          : `/favors/all/owner/${localStorage.getItem("id")}/false`;
+        type === 'owe'
+          ? `https://www.iou-app.com/favors/all/ower/${localStorage.getItem('id')}/false`
+          : `https://www.iou-app.com/favors/all/owner/${localStorage.getItem('id')}/false`;
 
       axios.get(apiUrl).then((response) => {
         setIouData(sortIouData(response.data.data));
@@ -58,10 +44,10 @@ const Favour = ({ type, setType }) => {
   }
 
   return (
-    <div id="favour" className="">
+    <div id='favour' className=''>
       {iouData.length !== 0 &&
         iouData.map((each, i) => {
-          if (each.ower._id === localStorage.getItem("id")) {
+          if (each.ower._id === localStorage.getItem('id')) {
             // The favours that people owe to the current user
             return <IOweComponent each={each} key={i} setType={setType} />;
           } else {
