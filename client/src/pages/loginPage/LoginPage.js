@@ -5,15 +5,17 @@ import AlertMessage from '../../Components/AlertMessage';
 import { AuthContext } from '../../context/AuthContext';
 import { Redirect } from 'react-router-dom';
 
+import CONFIG from '../../config';
+
 function LoginPage() {
   //login form data
   const [loginInfo, setLoginInfo] = useState({
-    email: '',
+    emailOrUsername: '',
     password: '',
   });
 
   //destructured login data
-  const { email, password } = loginInfo;
+  const { emailOrUsername, password } = loginInfo;
 
   //alert state
   const [alertBox, setAlertBox] = useState('');
@@ -39,8 +41,8 @@ function LoginPage() {
     e.preventDefault();
 
     // check if email and password is empty
-    if (!email) {
-      setAlertBox(<AlertMessage severity='error'>Please enter your email</AlertMessage>);
+    if (!emailOrUsername) {
+      setAlertBox(<AlertMessage severity='error'>Please enter your email or username</AlertMessage>);
     } else if (!password) {
       setAlertBox(<AlertMessage severity='error'>Please enter your password</AlertMessage>);
     } else {
@@ -49,19 +51,14 @@ function LoginPage() {
   };
 
   const postLoginData = async () => {
-    const loginData = {
-      email,
-      password,
-    };
-
     try {
-      const res = await fetch('https://www.iou-app.com/auth/login', {
+      const res = await fetch('/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: JSON.stringify(loginData),
+        body: JSON.stringify(loginInfo),
       });
 
       const data = await res.json();
@@ -70,7 +67,7 @@ function LoginPage() {
       if (res.status === 200) {
         localStorage.setItem('isAuth', 'true');
         setLoginInfo({
-          email: '',
+          emailOrUsername: '',
           password: '',
         });
         loadUser();
@@ -82,7 +79,7 @@ function LoginPage() {
 
       console.log(data);
     } catch (err) {
-      console.log(err);
+      alert('Internal Server Error (500)');
     }
   };
 
@@ -103,11 +100,10 @@ function LoginPage() {
             <TextField
               id='outlined-basic'
               variant='outlined'
-              label='Email'
+              label='Email or Username'
               size='small'
-              type='email'
-              name='email'
-              value={email}
+              name='emailOrUsername'
+              value={emailOrUsername}
               onChange={onChange}
               InputProps={{ style: { fontSize: 22, fontWeight: 600, fontFamily: 'Poppins' } }}
             />

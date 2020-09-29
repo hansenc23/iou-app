@@ -4,12 +4,13 @@ import './SignupPage.css';
 import TextField from '@material-ui/core/TextField';
 import AlertMessage from '../../Components/AlertMessage';
 import { AuthContext } from '../../context/AuthContext';
+import CONFIG from '../../config';
 
 const SignupPage = () => {
   const [userRegData, setUserRegData] = useState({
     firstName: '',
     lastName: '',
-    username:'',
+    username: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -77,7 +78,7 @@ const SignupPage = () => {
     };
 
     try {
-      const res = await fetch('https://www.iou-app.com/auth/register', {
+      const res = await fetch('/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -98,7 +99,7 @@ const SignupPage = () => {
         setUserRegData({
           firstName: '',
           lastName: '',
-          username:'',
+          username: '',
           email: '',
           password: '',
           confirmPassword: '',
@@ -148,14 +149,14 @@ const SignupPage = () => {
               InputProps={{ style: { fontSize: 18, fontWeight: 600, fontFamily: 'Poppins' } }}
             />
             <TextField
-                id='outlined-basic'
-                variant='outlined'
-                label='Username'
-                size='small'
-                value={username}
-                name='username'
-                onChange={onChange}
-                InputProps={{ style: {fontSize: 18, fontWeight: 600, fontFamily: 'Poppins' } }}
+              id='outlined-basic'
+              variant='outlined'
+              label='Username'
+              size='small'
+              value={username}
+              name='username'
+              onChange={onChange}
+              InputProps={{ style: { fontSize: 18, fontWeight: 600, fontFamily: 'Poppins' } }}
             />
             <TextField
               id='outlined-basic'

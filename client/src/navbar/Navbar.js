@@ -1,9 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-
 import './Navbar.css';
-import Login from '../pages/loginPage/LoginPage';
 
 const Navbar = () => {
   const { isAuth, setIsAuth, user, setUser, logout } = useContext(AuthContext);
@@ -22,7 +20,7 @@ const Navbar = () => {
   const guestLinks = (
     <div className='authentication_links'>
       <div className='login_link'>
-        <Link to='/login'>Login</Link>
+        <Link className='login_btn' to='/login'>Login</Link>
       </div>
       <div className='signup_link'>
         <Link to='/signup'>
@@ -47,7 +45,6 @@ const Navbar = () => {
 
   return (
     <div id='navbar'>
-      <div className='page_links'>
         <nav role='navigation'>
           <div id='menuToggle'>
             <input type='checkbox' className='test' />
@@ -57,23 +54,22 @@ const Navbar = () => {
             <span></span>
 
             <ul id='menu'>
-              <div className='page_links'>
+              <div className='page_link'>
                 <Link to='/requests'>Requests</Link>
               </div>
-              <div className='page_links'>
+              <div className='page_link'>
                 <Link to='/favours'>Favours</Link>
               </div>
-              <div className='page_links'>
+              <div className='page_link'>
                 <Link to='/leaderboard'>Leaderboard</Link>
               </div>
             </ul>
           </div>
         </nav>
-      </div>
-
-      <div className='logo'>IOWEYOU</div>
-
-      {isAuth ? authLinks : guestLinks}
+        <button className='logo'>
+            <Link className='logo_link' to='/requests'> IOWEYOU </Link>
+        </button>
+        {isAuth ? authLinks : guestLinks}
     </div>
   );
 };

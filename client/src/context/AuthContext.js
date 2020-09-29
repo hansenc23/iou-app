@@ -1,5 +1,6 @@
 import React, { useState, createContext } from 'react';
 import { Redirect } from 'react-router-dom';
+import CONFIG from '../config';
 
 export const AuthContext = createContext();
 
@@ -14,7 +15,7 @@ export const AuthProvider = (props) => {
   const getUser = async () => {
     if (localStorage.getItem('isAuth') === 'true') {
       try {
-        const res = await fetch('https://www.iou-app.com/auth/getCurrentUser', {
+        const res = await fetch('/auth/getCurrentUser', {
           method: 'GET',
           credentials: 'include',
         });
@@ -42,7 +43,7 @@ export const AuthProvider = (props) => {
 
   const logout = async () => {
     try {
-      const res = await fetch('https://www.iou-app.com/auth/logout', {
+      const res = await fetch('/auth/logout', {
         method: 'GET',
         credentials: 'include',
       });

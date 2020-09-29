@@ -1,119 +1,75 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect, useContext, useRef } from "react";
 import "./Favour.css";
+import axios from "axios";
 
-const Favour = () => {
+import IOweComponent from "./IOweComponent";
+import IOwnComponent from "./IOwnComponent";
 
-    const [userName, setUserName] = useState(0);
-    const [favourValue, setFavourValue] = useState(0);
+const Favour = ({ type, setType }) => {
+  const [iouData, setIouData] = useState([]);
 
-    return (
-        <div id = "favour" className="">
-            <div className= "favour_card_left">
-                <div className="user_label_left">
-                    @JohnDoe
-                </div>
-                <div className = "card_content_left">
-                    <div className="value_label_left">
-                        Owes you <strong> coffee </strong>
-                    </div>
-                    <div className="date_left">
-                        30 Aug
-                    </div>
-                </div>
-            </div>
-            <div className= "favour_card_left">
-                <div className="user_label_left">
-                    @AliciaGreen
-                </div>
-                <div className = "card_content_left">
-                    <div className="value_label_left">
-                        Owes you <strong> lunch </strong>
-                    </div>
-                    <div className="date_left">
-                        29 Aug
-                    </div>
-                </div>
-            </div>
-            <div className= "favour_card_right">
-                <div className="user_label_right">
-                    @You
-                </div>
-                <div className="card_content_right">
-                    <div className="date_right">
-                        28 Aug
-                    </div>
-                    <div className="value_label_right">
-                        Owe <strong> @EdwardCrawford </strong> <strong> lunch </strong>
-                    </div>
-                </div>
-            </div>
-            <div className= "favour_card_left">
-                <div className="user_label_left">
-                    @BobbyLee
-                </div>
-                <div className = "card_content_left">
-                    <div className="value_label_left">
-                        Owes you <strong> drinks </strong>
-                    </div>
-                    <div className="date_left">
-                        27 Aug
-                    </div>
-                </div>
-            </div>
-            <div className= "favour_card_right">
-                <div className="user_label_right">
-                    @You
-                </div>
-                <div className="card_content_right">
-                    <div className="date_right">
-                        26 Aug
-                    </div>
-                    <div className="value_label_right">
-                        Owe <strong> @JulyLawson </strong> <strong> coffee </strong>
-                    </div>
-                </div>
-            </div>
-            <div className= "favour_card_right">
-                <div className="user_label_right">
-                    @You
-                </div>
-                <div className="card_content_right">
-                    <div className="date_right">
-                        25 Aug
-                    </div>
-                    <div className="value_label_right">
-                        Owe <strong> @MadisonHall </strong> <strong> drinks </strong>
-                    </div>
-                </div>
-            </div>
-            <div className= "favour_card_left">
-                <div className="user_label_left">
-                    @RichardDraper
-                </div>
-                <div className = "card_content_left">
-                    <div className="value_label_left">
-                        Owes you <strong> drinks </strong>
-                    </div>
-                    <div className="date_left">
-                        25 Aug
-                    </div>
-                </div>
-            </div>
-            <div className= "favour_card_right">
-                <div className="user_label_right">
-                    @You
-                </div>
-                <div className="card_content_right">
-                    <div className="date_right">
-                        20 Aug
-                    </div>
-                    <div className="value_label_right">
-                        Owe <strong> @JeanMichel </strong> <strong> coffee </strong>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
+  useEffect(() => {
+    if (type === "all" || type === "settled") {
+      axios
+        .get(
+          `/favors/all/ower/${localStorage.getItem("id")}/${
+            type === "all" ? "false" : "true"
+          }`
+        )
+        .then((owe) => {
+          if (owe.data.success) {
+            axios
+              .get(
+                `/favors/all/owner/${localStorage.getItem("id")}/${
+                  type === "all" ? "false" : "true"
+                }`
+              )
+              .then((owner) => {
+                if (owner.data.success) {
+                  setIouData(
+                    sortIouData([...owe.data.data, ...owner.data.data])
+                  );
+                }
+              });
+          }
+        });
+    } else if (type === "isLoading") {
+      setIouData([]);
+    } else {
+      const apiUrl =
+        type === "owe"
+          ? `/favors/all/ower/${localStorage.getItem("id")}/false`
+          : `/favors/all/owner/${localStorage.getItem("id")}/false`;
+
+      axios.get(apiUrl).then((response) => {
+        setIouData(sortIouData(response.data.data));
+      });
+    }
+  }, [type]);
+
+  function sortIouData(data) {
+    let copyArray = [...data];
+
+    copyArray.sort(function (a, b) {
+      return Date.parse(b.create_time) - Date.parse(a.create_time);
+    });
+
+    return copyArray;
+  }
+
+  return (
+    <div id="favour" className="">
+      {iouData.length !== 0 &&
+        iouData.map((each, i) => {
+          if (each.ower._id === localStorage.getItem("id")) {
+            // The favours that people owe to the current user
+            return <IOweComponent each={each} key={i} setType={setType} />;
+          } else {
+            return <IOwnComponent each={each} key={i} setType={setType} />;
+          }
+        })}
+    </div>
+  );
+};
 
 export default Favour;

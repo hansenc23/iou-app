@@ -3,9 +3,11 @@
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    max-width: 720px;
+    min-width: 495px;
+    max-width: 800px;
     height: calc(100vh - 85px);
     margin-left: 12vw;
+    margin-right: 2vw;
 }
 .favours_title {
     font-weight: 700;
@@ -26,8 +28,7 @@
     outline: none;
     padding-left: 15px;
 }
-
-.all_btn, .owe_btn, .owing_btn, .settled_btn {
+.all_favours_btn, .owe_btn, .owing_btn, .settled_btn {
     height: 30px;
     font-size: 18px;
     font-weight: 500;

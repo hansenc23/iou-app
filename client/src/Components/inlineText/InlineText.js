@@ -1,105 +1,76 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import useOnClickOutside from "../../hooks/useOnClickOutside";
-import useKeypress from "../../hooks/useKeypress";
-import DOMPurify from "dompurify";
+import React, { useState, useEffect, useRef } from "react";
 import "./InlineText.css";
 
-function InlineText(props) {
+function InlineText({ text, onTextChange, usernameSuggestions }) {
+
     const [isInputActive, setIsInputActive] = useState(false);
-    const [inputValue, setInputValue] = useState(props.text);
 
-    const wrapperRef = useRef(null);
-    const textRef = useRef(null);
     const inputRef = useRef(null);
-
-    const enter = useKeypress("Enter");
-    const esc = useKeypress("Escape");
-
-    const { onSetText } = props;
-
-    // check to see if the user clicked outside of this component
-    useOnClickOutside(wrapperRef, () => {
-        if (isInputActive) {
-            if ((inputValue === "") || (inputValue === "@") || (inputValue.indexOf("@") === -1)){
-                onSetText("@Whom?");
-                setInputValue("@");
-            }
-            else {
-                onSetText(inputValue);
-            }
-            setIsInputActive(false);
-        }
-    });
-
-    const onEnter = useCallback(() => {
-        if (enter) {
-            if ((inputValue === "") || (inputValue === "@") || (inputValue.indexOf("@") === -1)) {
-                onSetText("@Whom?");
-                setInputValue("@");
-            }
-            else {
-                onSetText(inputValue);
-            }
-            setIsInputActive(false);
-        }
-    }, [enter, inputValue, onSetText]);
-
-    const onEsc = useCallback(() => {
-        if (esc) {
-            setInputValue("@");
-            setIsInputActive(false);
-        }
-    }, [esc, props.text]);
 
     // focus the cursor in the input field on edit start
     useEffect(() => {
         if (isInputActive) {
-            setInputValue("@");
+            onTextChange("@");
             inputRef.current.focus();
         }
     }, [isInputActive]);
 
-    useEffect(() => {
-        if (isInputActive) {
-            // if Enter is pressed, save the text and close
-            onEnter();
-            // if Escape is pressed, revert the text and close
-            onEsc();
-        }
-    }, [onEnter, onEsc, isInputActive]); // watch the Enter and Escape key presses
+    // Handle Input changes
+    function handleInputChange(event) {
+        onTextChange(event.target.value)
+    }
 
-    const handleInputChange = useCallback(
-        event => {
-            // sanitize the input
-            setInputValue(DOMPurify.sanitize(event.target.value));
-        },
-        [setInputValue]
-    );
+    function handleSpanClick() {
+        setIsInputActive(true)
+    }
 
-    const handleSpanClick = useCallback(() => setIsInputActive(true), [
-        setIsInputActive
-    ]);
+    // Handle input focus
+    function handleInputOnBlur(event) {
+        event.preventDefault()
+        setIsInputActive(false)
+    }
+
+    // Handle select options
+    function handleSelect(event) {
+        event.preventDefault()
+        onTextChange(`@${event.target.value}`, true)
+    }
 
     return (
-        <span className="inline-text" ref={wrapperRef}>
-        <span
-              ref={textRef}
-              onClick={handleSpanClick}
-              className={`inline-text_copy inline-text_copy--${
-                  !isInputActive ? "active" : "hidden"
-              }`}>
-            {props.text}
+        <span className="inline-text">
+            <span
+                onClick={handleSpanClick}
+                className={`inline-text_copy inline-text_copy--${
+                    !isInputActive ? "active" : "hidden"
+                    }`}>
+                {text === "@" ? "@Whom?" : text}
+            </span>
+            <input
+                id="test"
+                ref={inputRef}
+                style={{ minWidth: Math.ceil(text.length) }}
+                value={text}
+                onChange={handleInputChange}
+                onBlur={handleInputOnBlur}
+                className={`inline-text_input inline-text_input--${
+                    isInputActive ? "active" : "hidden"
+                    }`} />
+            {
+                usernameSuggestions.length > 0 &&
+                <select className="username_suggestions" onChange={handleSelect} defaultValue="">
+                    <option className="suggestion_item" value="test" > </option>
+                    {
+                        usernameSuggestions.map((each, i) => {
+                            return (
+                                <option value={each.username} key={i}>
+                                    {each.username}
+                                </option>
+                            )
+                        })
+                    }
+                </select>
+            }
         </span>
-              <input
-                  id="test"
-                  ref={inputRef}
-                  style={{ minWidth: Math.ceil(inputValue.length) }}
-                  value={inputValue}
-                  onChange={handleInputChange}
-                  className={`inline-text_input inline-text_input--${
-                      isInputActive ? "active" : "hidden"
-                  }`}/>
-         </span>
     );
 }
 

@@ -1,0 +1,26 @@
+/* these make sure it can work in any text element */
+.request_title_text_copy--active,
+.request_title_text_input--active {
+    font: inherit;
+    text-align: inherit;
+    padding: 0;
+    background: none;
+    border: none;
+    width: 400px;
+}
+.request_title_text_copy--active {
+    cursor: pointer;
+    color: black;
+
+}
+.request_title_text_copy--hidden,
+.request_title_text_input--hidden {
+    display: none;
+    color: darkgrey;
+}
+.request_title_text_input--active {
+    text-align: left;
+    color: darkgrey;
+    outline: thin solid dodgerblue;
+    padding-left: 5px;
+}

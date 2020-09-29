@@ -1,7 +1,7 @@
-#Favours {
+#FavoursPage {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     height: calc(100vh - 82px);
     width: 100vw;
     padding-top: 80px;
