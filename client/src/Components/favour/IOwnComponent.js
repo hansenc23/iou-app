@@ -6,6 +6,7 @@ import LinkIcon from '@material-ui/icons/Link';
 import moment from 'moment';
 
 import axios from 'axios';
+import DoneIcon from "@material-ui/icons/Done";
 
 export default function IOwncomponent({ each, setType }) {
   const handleClickDeleteFavour = (event) => {
@@ -48,12 +49,12 @@ export default function IOwncomponent({ each, setType }) {
             <img id='image_proof' src={each.picture_proof_id} style={{ userSelect: 'none', height: '100%', objectFit: 'cover' }} />
           )}
         </Grid>
-        <Grid item sm={2}></Grid>
+        <Grid item sm={1}></Grid>
         <Grid item xs={12} sm={6}>
           <div className='value_label_right'>
             <div className='user_label_right'>@{each.ower.username}</div>
             <span>
-              Owe <strong>@You</strong> <strong>{each.favor_detail}</strong>
+              Owes <strong>@You</strong> {each.favor_detail}
             </span>
             <br />
             <br />
@@ -67,15 +68,17 @@ export default function IOwncomponent({ each, setType }) {
 
 const UnsettleFavors = ({ each, handleClickDeleteFavour }) => {
   return (
-    <Grid container>
-      <Grid item xs={6}>
-        <span onClick={handleClickDeleteFavour} className='iconAlignVertically spanNoSelectPointer' style={{ justifyContent: 'flex-end' }}>
-          <CloseIcon /> Delete
+    <Grid justify="flex-end" container>
+      <Grid item xs={4}>
+        <span onClick={handleClickDeleteFavour} className='iconAlignVertically_right spanNoSelectPointer' style={{ justifyContent: 'flex-end' }}>
+          <CloseIcon fontSize="small" style={{marginRight: "5px"}}/>
+          <span className='textAlignVertically_right'> Delete </span>
         </span>
       </Grid>
-      <Grid item xs={6}>
-        <span className='iconAlignVertically' style={{ justifyContent: 'flex-end' }}>
-          <AccessTimeIcon /> {moment(each.create_time).format('DD MMM')}
+      <Grid item xs={4}>
+        <span className='iconAlignVertically_right' style={{ justifyContent: 'flex-end' }}>
+          <AccessTimeIcon fontSize="small" style={{marginRight: "5px"}}/>
+            <span className='textAlignVertically_right'> {moment(each.create_time).format('DD MMM')} </span>
         </span>
       </Grid>
     </Grid>
@@ -84,25 +87,27 @@ const UnsettleFavors = ({ each, handleClickDeleteFavour }) => {
 
 const SettledFavors = ({ each }) => {
   return (
-    <Grid container>
+    <Grid justify="flex-end" container>
       {/* Start Time */}
-      <Grid item xs={6}>
-        <span>Created:</span>
+      <Grid item xs={5}>
+        <span className="settledTextFields">Created:</span>
       </Grid>
-      <Grid item xs={6}>
-        <span className='iconAlignVertically' style={{ justifyContent: 'flex-end' }}>
-          <AccessTimeIcon /> {moment(each.create_time).format('DD MMM')}
+      <Grid item xs={4}>
+        <span className='iconAlignVertically_right' style={{ justifyContent: 'flex-end' }}>
+          <AccessTimeIcon fontSize="small" style={{marginRight: "5px"}}/>
+            <span className='textAlignVertically_right'> {moment(each.create_time).format('DD MMM')} </span>
         </span>
       </Grid>
 
       {/* End Time */}
 
-      <Grid item xs={6}>
-        <span>Completed:</span>
+      <Grid item xs={5}>
+        <span className="settledTextFields">Completed:</span>
       </Grid>
-      <Grid item xs={6}>
-        <span className='iconAlignVertically' style={{ justifyContent: 'flex-end' }}>
-          <AccessTimeIcon /> {moment(each.end_time).format('DD MMM')}
+      <Grid item xs={4}>
+        <span className='iconAlignVertically_right' style={{ justifyContent: 'flex-end' }}>
+          <AccessTimeIcon fontSize="small" style={{marginRight: "5px"}}/>
+          <span className='textAlignVertically_right'>{moment(each.end_time).format('DD MMM')} </span>
         </span>
       </Grid>
 
@@ -112,12 +117,12 @@ const SettledFavors = ({ each }) => {
         ''
       ) : (
         <>
-          <Grid item xs={6}>
-            <span>Proof:</span>
+          <Grid item xs={5}>
+            <span className="settledTextFields">Proof:</span>
           </Grid>
-          <Grid item xs={6}>
-            <a className='iconAlignVertically' style={{ justifyContent: 'flex-end', color: 'gray' }} target='_blank' href={each.picture_proof_id}>
-              <LinkIcon /> Link
+          <Grid item xs={4}>
+            <a className='iconAlignVertically_right' style={{ justifyContent: 'flex-end', color: 'gray' }} target='_blank' href={each.picture_proof_id}>
+              <LinkIcon fontSize="small" style={{marginRight: "5px"}}/> Link
             </a>
           </Grid>
         </>

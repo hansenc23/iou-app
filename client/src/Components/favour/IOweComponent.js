@@ -87,7 +87,7 @@ export default function IOweComponent({ each, setType }) {
           <div className='value_label_left'>
             <div className='user_label_left'>@You</div>
             <span>
-              Owe <strong>@{each.owner.username}</strong> <strong>{each.favor_detail}</strong>
+              Owe <strong>@{each.owner.username}</strong> {each.favor_detail}
             </span>
             <br />
             <br />
@@ -109,7 +109,7 @@ export default function IOweComponent({ each, setType }) {
           </span>
           <input hidden type='file' accept='image/*' ref={hiddenFileInput} onChange={handleInputFileChange} />
           <span className='spanNoSelectPointer float-right' onClick={() => setShowUploadProofOption(false)}>
-            <b className='iconAlignVertically'>
+            <b className='iconAlignVertically_left'>
               <CloseIcon /> Close
             </b>
           </span>
@@ -122,14 +122,14 @@ export default function IOweComponent({ each, setType }) {
 const UnsettleFavors = ({ each, setShowUploadProofOption }) => {
   return (
     <Grid container>
-      <Grid item xs={6}>
-        <span className='iconAlignVertically'>
-          <AccessTimeIcon /> {moment(each.create_time).format('DD MMM')}
+      <Grid item xs={4}>
+        <span className='iconAlignVertically_left'>
+          <AccessTimeIcon fontSize="small" style={{marginRight: "5px"}}/> {moment(each.create_time).format('DD MMM')}
         </span>
       </Grid>
-      <Grid item xs={6}>
-        <span className='iconAlignVertically spanNoSelectPointer' onClick={() => setShowUploadProofOption(true)}>
-          <DoneIcon /> Complete
+      <Grid item xs={3}>
+        <span className='iconAlignVertically_left spanNoSelectPointer' onClick={() => setShowUploadProofOption(true)}>
+          <DoneIcon fontSize="small" style={{marginRight: "5px"}}/> Complete
         </span>
       </Grid>
     </Grid>
@@ -140,34 +140,34 @@ const SettledFavors = ({ each }) => {
   return (
     <Grid container>
       {/* Start Time */}
-      <Grid item xs={6}>
-        <span>Created:</span>
+      <Grid item xs={4}>
+        <span className="settledTextFields">Created:</span>
       </Grid>
-      <Grid item xs={6}>
-        <span className='iconAlignVertically'>
-          <AccessTimeIcon /> {moment(each.create_time).format('DD MMM')}
+      <Grid item xs={5}>
+        <span className='iconAlignVertically_left'>
+          <AccessTimeIcon fontSize="small" style={{marginRight: "5px"}}/> {moment(each.create_time).format('DD MMM')}
         </span>
       </Grid>
 
       {/* End Time */}
-      <Grid item xs={6}>
-        <span>Completed:</span>
+      <Grid item xs={4}>
+        <span className="settledTextFields">Completed:</span>
       </Grid>
-      <Grid item xs={6}>
-        <span className='iconAlignVertically'>
-          <AccessTimeIcon /> {moment(each.end_time).format('DD MMM')}
+      <Grid item xs={5}>
+        <span className='iconAlignVertically_left'>
+          <AccessTimeIcon fontSize="small" style={{marginRight: "5px"}}/> {moment(each.end_time).format('DD MMM')}
         </span>
       </Grid>
 
       {/* Link */}
       {each.picture_proof_id && (
         <>
-          <Grid item xs={6}>
-            <span>Proof:</span>
+          <Grid item xs={4}>
+            <span className="settledTextFields">Proof:</span>
           </Grid>
-          <Grid item xs={6}>
-            <a target='_blank' className='iconAlignVertically' href={each.picture_proof_id} style={{ color: 'gray' }}>
-              <LinkIcon /> Link
+          <Grid item xs={5}>
+            <a target='_blank' className='iconAlignVertically_left' href={each.picture_proof_id} style={{ color: 'gray' }}>
+              <LinkIcon fontSize="small" style={{marginRight: "5px"}}/> Link
             </a>
           </Grid>
         </>

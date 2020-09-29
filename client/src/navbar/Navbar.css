@@ -67,7 +67,7 @@ a:focus {
   font-size: 12px;
   margin-right: 40px;
   justify-content: space-between;
-  width: 185px;
+  width: fit-content;
 }
 .authentication_links a {
   text-decoration: none;
@@ -78,10 +78,14 @@ a:focus {
 .auth {
   color: white;
 }
+.login_btn{
+  margin-right: 25px;
+}
 .user_name {
   font-size: 1rem;
   font-weight: 500;
   margin-top: 18px;
+  margin-right: 25px;
 }
 .logout_link {
   font-size: 1rem;

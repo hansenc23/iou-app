@@ -20,7 +20,7 @@ const Navbar = () => {
   const guestLinks = (
     <div className='authentication_links'>
       <div className='login_link'>
-        <Link to='/login'>Login</Link>
+        <Link className='login_btn' to='/login'>Login</Link>
       </div>
       <div className='signup_link'>
         <Link to='/signup'>

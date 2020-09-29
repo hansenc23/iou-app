@@ -1,13 +1,9 @@
 import React, {useState} from "react";
 import "./RequestDetail.css";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import AddBoxRoundedIcon from "@material-ui/icons/AddBoxRounded";
+import CompleteRequest from "../completeRequest/CompleteRequest";
 
 const RequestDetail =() => {
-
-    const completeRequest = () => {
-        console.log("complete request and add proof")
-    }
 
     return(
         <div id="requestDetail">
@@ -20,12 +16,8 @@ const RequestDetail =() => {
                     <span className="sub_title_date"> on 25 Sep </span>
                 </div>
             </div>
-            <div className="request_detail_btn_container">
-                <button className='request_detail_complete_btn' onClick={completeRequest}>
-                    <span><CheckCircleIcon fontSize ="small" style={{marginTop: "4px", marginRight:"10px"}}/></span>
-                    <span>Complete Request</span>
-                </button>
-            </div>
+
+            <CompleteRequest/>
 
             <div className="description_details_container">
                 <div className="description_detail_header">
