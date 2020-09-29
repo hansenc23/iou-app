@@ -33,7 +33,7 @@ export default function IOweComponent({ each, setType }) {
             return;
           }
           axios
-            .post(`${process.env.API_URL}/favors/update`, {
+            .post(`https://www.iou-app.com/favors/update`, {
               id: each._id,
               end_time: Date.now(),
               picture_proof_id: response.location,

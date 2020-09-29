@@ -12,7 +12,7 @@ export default function IOwncomponent({ each, setType }) {
   const handleClickDeleteFavour = (event) => {
     if (window.confirm('Are you sure you want to delete this favor?')) {
       axios
-        .post(`${process.env.API_URL}/favors/update`, {
+        .post(`https://www.iou-app.com/favors/update`, {
           id: each._id,
           end_time: Date.now(),
           picture_proof_id: 'null',

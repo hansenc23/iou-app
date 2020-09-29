@@ -70,7 +70,7 @@ const CreateFavour = ({ setType }) => {
     // If username is not empty or null, and the function wasn't called from dropdown menu
     // Post request server to predict username
     if (username && !fromSelect) {
-      axios.post(`${process.env.API_URL}/auth/username_predict`, { username }).then((response) => {
+      axios.post(`https://www.iou-app.com/auth/username_predict`, { username }).then((response) => {
         setUsernameSuggestions(response.data);
       });
     }
@@ -102,7 +102,7 @@ const CreateFavour = ({ setType }) => {
       //Username split the @
       const username = usernameInput.split('@')[1];
       try {
-        const response = await axios.post(`${process.env.API_URL}/auth/username_predict`, { username });
+        const response = await axios.post(`https://www.iou-app.com/auth/username_predict`, { username });
         if (response.data.length > 0) {
           //Get the first object in data array
           const userDetails = response.data[0];
@@ -112,7 +112,7 @@ const CreateFavour = ({ setType }) => {
             setError('Cannot create favour to yourself!');
           } else {
             setLoading(true);
-            const res = await axios.post('/favors/create', {
+            const res = await axios.post('https://www.iou-app.com/favors/create', {
               // Check if it's Ower or Owner
               ower: storedAction === 'Owe' ? localStorage.getItem('id') : userDetails._id,
               owner: storedAction === 'Owe' ? userDetails._id : localStorage.getItem('id'),
@@ -145,7 +145,7 @@ const CreateFavour = ({ setType }) => {
         //Username split the @
         const username = usernameInput.split('@')[1];
         try {
-          const response = await axios.post(`${process.env.API_URL}/auth/username_predict`, { username });
+          const response = await axios.post(`https://www.iou-app.com/auth/username_predict`, { username });
           if (response.data.length > 0) {
             //Get the first object in data array
             const userDetails = response.data[0];
@@ -161,7 +161,7 @@ const CreateFavour = ({ setType }) => {
                 setOpen(true);
                 setError('Upload failed. Invalid file type or size is too large. (Max: 2MB)');
               } else {
-                const res = await axios.post(`${process.env.API_URL}/favors/create`, {
+                const res = await axios.post(`https://www.iou-app.com/favors/create`, {
                   // Check if it's Ower or Owner
                   ower: storedAction === 'Owe' ? localStorage.getItem('id') : userDetails._id,
                   owner: storedAction === 'Owe' ? userDetails._id : localStorage.getItem('id'),

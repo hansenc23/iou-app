@@ -78,7 +78,7 @@ const SignupPage = () => {
     };
 
     try {
-      const res = await fetch(`${process.env.API_URL}/auth/register`, {
+      const res = await fetch(`https://www.iou-app.com/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
