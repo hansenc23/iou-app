@@ -15,7 +15,7 @@ export const AuthProvider = (props) => {
   const getUser = async () => {
     if (localStorage.getItem('isAuth') === 'true') {
       try {
-        const res = await fetch('/auth/getCurrentUser', {
+        const res = await fetch(`${process.env.API_URL}/auth/getCurrentUser`, {
           method: 'GET',
           credentials: 'include',
         });

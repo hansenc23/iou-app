@@ -42,6 +42,5 @@
     "@material-ui/icons": "^4.9.1",
     "react-router-dom": "^5.2.0",
     "typeface-poppins": "0.0.72"
-  },
-  "proxy": "https://www.iou-app.com"
+  }
 }

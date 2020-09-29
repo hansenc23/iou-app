@@ -33,7 +33,7 @@ export default function IOweComponent({ each, setType }) {
             return;
           }
           axios
-            .post('/favors/update', {
+            .post(`${process.env.API_URL}/favors/update`, {
               id: each._id,
               end_time: Date.now(),
               picture_proof_id: response.location,
@@ -124,12 +124,12 @@ const UnsettleFavors = ({ each, setShowUploadProofOption }) => {
     <Grid container>
       <Grid item xs={4}>
         <span className='iconAlignVertically_left'>
-          <AccessTimeIcon fontSize="small" style={{marginRight: "5px"}}/> {moment(each.create_time).format('DD MMM')}
+          <AccessTimeIcon fontSize='small' style={{ marginRight: '5px' }} /> {moment(each.create_time).format('DD MMM')}
         </span>
       </Grid>
       <Grid item xs={3}>
         <span className='iconAlignVertically_left spanNoSelectPointer' onClick={() => setShowUploadProofOption(true)}>
-          <DoneIcon fontSize="small" style={{marginRight: "5px"}}/> Complete
+          <DoneIcon fontSize='small' style={{ marginRight: '5px' }} /> Complete
         </span>
       </Grid>
     </Grid>
@@ -141,21 +141,21 @@ const SettledFavors = ({ each }) => {
     <Grid container>
       {/* Start Time */}
       <Grid item xs={4}>
-        <span className="settledTextFields">Created:</span>
+        <span className='settledTextFields'>Created:</span>
       </Grid>
       <Grid item xs={5}>
         <span className='iconAlignVertically_left'>
-          <AccessTimeIcon fontSize="small" style={{marginRight: "5px"}}/> {moment(each.create_time).format('DD MMM')}
+          <AccessTimeIcon fontSize='small' style={{ marginRight: '5px' }} /> {moment(each.create_time).format('DD MMM')}
         </span>
       </Grid>
 
       {/* End Time */}
       <Grid item xs={4}>
-        <span className="settledTextFields">Completed:</span>
+        <span className='settledTextFields'>Completed:</span>
       </Grid>
       <Grid item xs={5}>
         <span className='iconAlignVertically_left'>
-          <AccessTimeIcon fontSize="small" style={{marginRight: "5px"}}/> {moment(each.end_time).format('DD MMM')}
+          <AccessTimeIcon fontSize='small' style={{ marginRight: '5px' }} /> {moment(each.end_time).format('DD MMM')}
         </span>
       </Grid>
 
@@ -163,11 +163,11 @@ const SettledFavors = ({ each }) => {
       {each.picture_proof_id && (
         <>
           <Grid item xs={4}>
-            <span className="settledTextFields">Proof:</span>
+            <span className='settledTextFields'>Proof:</span>
           </Grid>
           <Grid item xs={5}>
             <a target='_blank' className='iconAlignVertically_left' href={each.picture_proof_id} style={{ color: 'gray' }}>
-              <LinkIcon fontSize="small" style={{marginRight: "5px"}}/> Link
+              <LinkIcon fontSize='small' style={{ marginRight: '5px' }} /> Link
             </a>
           </Grid>
         </>

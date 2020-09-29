@@ -6,13 +6,13 @@ import LinkIcon from '@material-ui/icons/Link';
 import moment from 'moment';
 
 import axios from 'axios';
-import DoneIcon from "@material-ui/icons/Done";
+import DoneIcon from '@material-ui/icons/Done';
 
 export default function IOwncomponent({ each, setType }) {
   const handleClickDeleteFavour = (event) => {
     if (window.confirm('Are you sure you want to delete this favor?')) {
       axios
-        .post('/favors/update', {
+        .post(`${process.env.API_URL}/favors/update`, {
           id: each._id,
           end_time: Date.now(),
           picture_proof_id: 'null',
@@ -68,17 +68,17 @@ export default function IOwncomponent({ each, setType }) {
 
 const UnsettleFavors = ({ each, handleClickDeleteFavour }) => {
   return (
-    <Grid justify="flex-end" container>
+    <Grid justify='flex-end' container>
       <Grid item xs={4}>
         <span onClick={handleClickDeleteFavour} className='iconAlignVertically_right spanNoSelectPointer' style={{ justifyContent: 'flex-end' }}>
-          <CloseIcon fontSize="small" style={{marginRight: "5px"}}/>
+          <CloseIcon fontSize='small' style={{ marginRight: '5px' }} />
           <span className='textAlignVertically_right'> Delete </span>
         </span>
       </Grid>
       <Grid item xs={4}>
         <span className='iconAlignVertically_right' style={{ justifyContent: 'flex-end' }}>
-          <AccessTimeIcon fontSize="small" style={{marginRight: "5px"}}/>
-            <span className='textAlignVertically_right'> {moment(each.create_time).format('DD MMM')} </span>
+          <AccessTimeIcon fontSize='small' style={{ marginRight: '5px' }} />
+          <span className='textAlignVertically_right'> {moment(each.create_time).format('DD MMM')} </span>
         </span>
       </Grid>
     </Grid>
@@ -87,26 +87,26 @@ const UnsettleFavors = ({ each, handleClickDeleteFavour }) => {
 
 const SettledFavors = ({ each }) => {
   return (
-    <Grid justify="flex-end" container>
+    <Grid justify='flex-end' container>
       {/* Start Time */}
       <Grid item xs={5}>
-        <span className="settledTextFields">Created:</span>
+        <span className='settledTextFields'>Created:</span>
       </Grid>
       <Grid item xs={4}>
         <span className='iconAlignVertically_right' style={{ justifyContent: 'flex-end' }}>
-          <AccessTimeIcon fontSize="small" style={{marginRight: "5px"}}/>
-            <span className='textAlignVertically_right'> {moment(each.create_time).format('DD MMM')} </span>
+          <AccessTimeIcon fontSize='small' style={{ marginRight: '5px' }} />
+          <span className='textAlignVertically_right'> {moment(each.create_time).format('DD MMM')} </span>
         </span>
       </Grid>
 
       {/* End Time */}
 
       <Grid item xs={5}>
-        <span className="settledTextFields">Completed:</span>
+        <span className='settledTextFields'>Completed:</span>
       </Grid>
       <Grid item xs={4}>
         <span className='iconAlignVertically_right' style={{ justifyContent: 'flex-end' }}>
-          <AccessTimeIcon fontSize="small" style={{marginRight: "5px"}}/>
+          <AccessTimeIcon fontSize='small' style={{ marginRight: '5px' }} />
           <span className='textAlignVertically_right'>{moment(each.end_time).format('DD MMM')} </span>
         </span>
       </Grid>
@@ -118,11 +118,16 @@ const SettledFavors = ({ each }) => {
       ) : (
         <>
           <Grid item xs={5}>
-            <span className="settledTextFields">Proof:</span>
+            <span className='settledTextFields'>Proof:</span>
           </Grid>
           <Grid item xs={4}>
-            <a className='iconAlignVertically_right' style={{ justifyContent: 'flex-end', color: 'gray' }} target='_blank' href={each.picture_proof_id}>
-              <LinkIcon fontSize="small" style={{marginRight: "5px"}}/> Link
+            <a
+              className='iconAlignVertically_right'
+              style={{ justifyContent: 'flex-end', color: 'gray' }}
+              target='_blank'
+              href={each.picture_proof_id}
+            >
+              <LinkIcon fontSize='small' style={{ marginRight: '5px' }} /> Link
             </a>
           </Grid>
         </>
