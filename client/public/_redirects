@@ -1,1 +1,3 @@
 /* /index.html 200
+
+/auth/*  https://www.iou-app.com/auth/:splat  200
