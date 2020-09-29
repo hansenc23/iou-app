@@ -4,18 +4,22 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { registerValidation, loginValidation, validateEmail } = require('../middlewares/validator');
 
-const cookie_config =
-  process.env.NODE_ENV === 'development'
-    ? {
-        httpOnly: true,
-        sameSite: 'strict',
-        secure: false,
-      }
-    : {
-        httpOnly: true,
-        sameSite: 'strict',
-        secure: true,
-      };
+const cookie_config = {
+  httpOnly: true,
+  sameSite: 'none',
+};
+
+// process.env.NODE_ENV === 'development'
+//   ? {
+//       httpOnly: true,
+//       sameSite: 'strict',
+//       secure: false,
+//     }
+//   : {
+//       httpOnly: true,
+//       sameSite: 'strict',
+//       secure: true,
+//     };
 
 register = async (req, res, next) => {
   const { username, firstName, lastName, email, password } = req.body;
