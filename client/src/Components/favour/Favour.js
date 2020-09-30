@@ -10,13 +10,15 @@ const Favour = ({ type, setType }) => {
 
   useEffect(() => {
     if (type === 'all' || type === 'settled') {
-      axios.get(`https://www.iou-app.com/favors/all/ower/${localStorage.getItem('id')}/${type === 'all' ? 'false' : 'true'}`).then((owe) => {
+      axios.get(`${process.env.REACT_APP_API_URL}/favors/all/ower/${localStorage.getItem('id')}/${type === 'all' ? 'false' : 'true'}`).then((owe) => {
         if (owe.data.success) {
-          axios.get(`https://www.iou-app.com/favors/all/owner/${localStorage.getItem('id')}/${type === 'all' ? 'false' : 'true'}`).then((owner) => {
-            if (owner.data.success) {
-              setIouData(sortIouData([...owe.data.data, ...owner.data.data]));
-            }
-          });
+          axios
+            .get(`${process.env.REACT_APP_API_URL}/favors/all/owner/${localStorage.getItem('id')}/${type === 'all' ? 'false' : 'true'}`)
+            .then((owner) => {
+              if (owner.data.success) {
+                setIouData(sortIouData([...owe.data.data, ...owner.data.data]));
+              }
+            });
         }
       });
     } else if (type === 'isLoading') {
@@ -24,8 +26,8 @@ const Favour = ({ type, setType }) => {
     } else {
       const apiUrl =
         type === 'owe'
-          ? `https://www.iou-app.com/favors/all/ower/${localStorage.getItem('id')}/false`
-          : `https://www.iou-app.com/favors/all/owner/${localStorage.getItem('id')}/false`;
+          ? `${process.env.REACT_APP_API_URL}/favors/all/ower/${localStorage.getItem('id')}/false`
+          : `${process.env.REACT_APP_API_URL}/favors/all/owner/${localStorage.getItem('id')}/false`;
 
       axios.get(apiUrl).then((response) => {
         setIouData(sortIouData(response.data.data));

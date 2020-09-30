@@ -52,7 +52,7 @@ function LoginPage() {
 
   const postLoginData = async () => {
     try {
-      const res = await fetch(`https://www.iou-app.com/auth/login`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

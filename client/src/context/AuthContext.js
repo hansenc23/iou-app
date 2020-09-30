@@ -15,7 +15,7 @@ export const AuthProvider = (props) => {
   const getUser = async () => {
     if (localStorage.getItem('isAuth') === 'true') {
       try {
-        const res = await fetch(`https://www.iou-app.com/auth/getCurrentUser`, {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/auth/getCurrentUser`, {
           method: 'GET',
           credentials: 'include',
         });
@@ -43,7 +43,7 @@ export const AuthProvider = (props) => {
 
   const logout = async () => {
     try {
-      const res = await fetch(`https://www.iou-app.com/auth/logout`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/auth/logout`, {
         method: 'GET',
         credentials: 'include',
       });
