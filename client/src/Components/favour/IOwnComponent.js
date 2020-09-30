@@ -12,11 +12,17 @@ export default function IOwncomponent({ each, setType }) {
   const handleClickDeleteFavour = (event) => {
     if (window.confirm('Are you sure you want to delete this favor?')) {
       axios
-        .post(`${process.env.REACT_APP_API_URL}/favors/update`, {
-          id: each._id,
-          end_time: Date.now(),
-          picture_proof_id: 'null',
-        })
+        .post(
+          `${process.env.REACT_APP_API_URL}/favors/update`,
+          {
+            id: each._id,
+            end_time: Date.now(),
+            picture_proof_id: 'null',
+          },
+          {
+            withCredentials: true,
+          }
+        )
         .then((response) => {
           if (response.data.success === true) {
             // Update the favors

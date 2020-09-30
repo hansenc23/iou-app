@@ -33,11 +33,17 @@ export default function IOweComponent({ each, setType }) {
             return;
           }
           axios
-            .post(`${process.env.REACT_APP_API_URL}/favors/update`, {
-              id: each._id,
-              end_time: Date.now(),
-              picture_proof_id: response.location,
-            })
+            .post(
+              `${process.env.REACT_APP_API_URL}/favors/update`,
+              {
+                id: each._id,
+                end_time: Date.now(),
+                picture_proof_id: response.location,
+              },
+              {
+                withCredentials: true,
+              }
+            )
             .then((favourResponse) => {
               if (favourResponse.data.success === true) {
                 // Update the favors
