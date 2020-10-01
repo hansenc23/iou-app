@@ -21,7 +21,7 @@
 .request_title_icon{
     color: black;
 }
-.request_title_label{
+.request_name{
     font-family: Poppins;
     font-size: 45px;
     font-weight: 700;
@@ -29,7 +29,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.request_sub_title_label{
+.request_subtitle{
     font-family: Poppins;
     font-size: 18px;
     font-weight: 500;

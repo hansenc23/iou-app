@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import "./Request.css";
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import CompleteRequest from "../completeRequest/CompleteRequest";
 
 const Request = () => {
 
@@ -12,10 +10,6 @@ const Request = () => {
 
     const showRequestReward = () => {
         console.log("view and add request reward")
-    }
-
-    const completeRequest = () => {
-        console.log("complete request and add proof")
     }
 
     return (
@@ -43,14 +37,9 @@ const Request = () => {
                 </div>
                 <div className="bottom_row">
                     <div className="button_containers">
-                        <button className = "complete_request_btn" onClick={completeRequest}>
-                            <CheckCircleIcon fontSize ="small" style={{marginRight:"5px"}}/>
-                            Complete Request
-                        </button>
-                        <button className = "add_reward_btn" onClick={showRequestReward}>
-                            <AddBoxRoundedIcon fontSize ="small" style={{marginRight:"5px"}}/>
-                            Add Reward
-                        </button>
+                        <CompleteRequest
+                            buttonSource={"fromRequestCard"}
+                        />
                     </div>
                     <div className="request_date_container">
                         <span className="date_label"> 25 Sep </span>
@@ -81,14 +70,9 @@ const Request = () => {
                 </div>
                 <div className="bottom_row">
                     <div className="button_containers">
-                        <button className = "complete_request_btn" onClick={completeRequest}>
-                            <CheckCircleIcon fontSize ="small" style={{marginRight:"5px"}}/>
-                            Complete Request
-                        </button>
-                        <button className = "add_reward_btn" onClick={showRequestReward}>
-                            <AddBoxRoundedIcon fontSize ="small" style={{marginRight:"5px"}}/>
-                            Add Reward
-                        </button>
+                        <CompleteRequest
+                            buttonSource={"fromRequestCard"}
+                        />
                     </div>
                     <div className="request_date_container">
                         <span className="date_label"> 24 Sep</span>
@@ -119,14 +103,9 @@ const Request = () => {
                 </div>
                 <div className="bottom_row">
                     <div className="button_containers">
-                        <button className = "complete_request_btn" onClick={completeRequest}>
-                            <CheckCircleIcon fontSize ="small" style={{marginRight:"5px"}}/>
-                            Complete Request
-                        </button>
-                        <button className = "add_reward_btn" onClick={showRequestReward}>
-                            <AddBoxRoundedIcon fontSize ="small" style={{marginRight:"5px"}}/>
-                            Add Reward
-                        </button>
+                        <CompleteRequest
+                            buttonSource={"fromRequestCard"}
+                        />
                     </div>
                     <div className="request_date_container">
                         <span className="date_label"> 21 Sep</span>
@@ -157,14 +136,9 @@ const Request = () => {
                 </div>
                 <div className="bottom_row">
                     <div className="button_containers">
-                        <button className = "complete_request_btn" onClick={completeRequest}>
-                            <CheckCircleIcon fontSize ="small" style={{marginRight:"5px"}}/>
-                            Complete Request
-                        </button>
-                        <button className = "add_reward_btn" onClick={showRequestReward}>
-                            <AddBoxRoundedIcon fontSize ="small" style={{marginRight:"5px"}}/>
-                            Add Reward
-                        </button>
+                        <CompleteRequest
+                            buttonSource={"fromRequestCard"}
+                        />
                     </div>
                     <div className="request_date_container">
                         <span className="date_label"> 20 Sep</span>

@@ -24,11 +24,13 @@ export const AuthProvider = (props) => {
         if (res.status === 200) {
           //use local storage to persist state after logging in
           localStorage.setItem('id', data.id);
+          localStorage.setItem('username', data.username);
           localStorage.setItem('firstName', data.firstName);
           localStorage.setItem('lastName', data.lastName);
           setIsAuth(true);
           setUser({
             id: data.id,
+            username: data.username,
             firstName: data.firstName,
             lastName: data.lastName,
           });

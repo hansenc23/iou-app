@@ -1,23 +1,31 @@
 import React, {useState} from "react";
 import "./RequestDetail.css";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import CompleteRequest from "../completeRequest/CompleteRequest";
 
 const RequestDetail =() => {
 
+    const [requestName, setRequestName] = useState('Clean The Fridge')
+    const [requestOwner, setRequestOwner] = useState('gracekelly')
+    const [requestDate, setRequestDate] = useState('25 Sep')
+
     return(
         <div id="requestDetail">
             <div className="request_title_container">
-                <div className="request_title_label">
-                        Clean The Fridge
+                <div className="request_name">
+                    {requestName}
                 </div>
-                <div className="request_sub_title_label">
-                    <span> Requested by <strong> @gracekelly </strong></span>
-                    <span className="sub_title_date"> on 25 Sep </span>
+                <div className="request_subtitle">
+                    <span> Requested by <strong> @{requestOwner} </strong></span>
+                    <span className="sub_title_date"> on {requestDate} </span>
                 </div>
             </div>
 
-            <CompleteRequest/>
+            <CompleteRequest
+                buttonSource={'fromRequestDetail'}
+                requestName={requestName}
+                requestOwner={requestOwner}
+                requestDate={requestDate}
+            />
 
             <div className="description_details_container">
                 <div className="description_detail_header">

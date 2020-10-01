@@ -7,14 +7,15 @@
 .new_requests_btn{
     background-color: black;
     border-radius: 12px;
-    box-shadow: 2px 2px 4px rgb(145, 145, 145);
+    box-shadow: 0px 0px 12px 2px rgb(184, 184, 184);
     width: 55px;
     height: 65px;
     color: white;
     cursor: pointer;
 }
 .new_requests_btn:hover{
-    color: #f3f0ea;
+    background-color: black;
+    color: darkgrey;
 }
 .add_icon{
     margin: auto;
@@ -39,7 +40,7 @@
     display: flex;
     flex-direction: column;
     width: fit-content;
-    margin-bottom: 45px;
+    margin-bottom: 50px;
 }
 .create_request_title_header{
     display: flex;
@@ -126,6 +127,7 @@
     flex-direction: row;
     justify-content: flex-end;
     width: inherit;
+    margin-bottom: 40px;
 }
 .request_reward_form{
     width: 390px;
@@ -148,7 +150,6 @@
     justify-content: flex-end;
     width: fit-content;
     margin-left: 200px;
-    margin-top: 80px;
 }
 .cancel_request_btn{
     width: 45px;
@@ -197,4 +198,76 @@
 }
 .create_request_btn:hover:after{
     width: 100%;
+}
+.create_request_alert{
+    width: 350px;
+    margin-left: 60px;
+}
+.guest_modal_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: #f3f0ea;
+    box-shadow: 0 0 4px 4px rgba(133, 135, 141, 0.12);
+    outline: none;
+    border-radius: 20px;
+    width: 700px;
+    height: 440px;
+    max-height: 100%;
+}
+.guest_modal_container a{
+    text-decoration: none;
+}
+.guest_login_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    border-radius: 20px 0 0 20px;
+}
+.guest_login_link{
+    color: black;
+    background: transparent;
+    font-family: Poppins;
+    font-size: 35px;
+    font-weight: 750;
+    margin:auto;
+
+    cursor: pointer;
+}
+.guest_signup_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 52%;
+    background-color: black;
+    border-radius: 0 20px 20px 0;
+    box-shadow: -4px 0px 20px 1px #929292;
+}
+.guest_signup_link{
+    margin: auto;
+    justify-content: center;
+    padding-top: 7px;
+    border: solid white;
+    border-radius: 40px;
+    width: 175px;
+    height: 60px;
+    background-color: transparent;
+    color: white;
+    font-family: Poppins;
+    font-size: 25px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.guest_login_link:hover{
+    background: linear-gradient(to bottom left, #8856bf, #4b83e9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.guest_signup_link:hover {
+    background: linear-gradient(to bottom left, #8856bf, #4b83e9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border: solid whitesmoke;
 }
