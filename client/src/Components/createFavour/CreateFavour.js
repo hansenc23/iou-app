@@ -54,7 +54,7 @@ const CreateFavour = ({ setType }) => {
   }
 
   function handleOnChangeWhom(text, fromSelect = false) {
-    resetInputValues();
+
     // Set text input as UsernameInput
     setUsernameInput(text);
     // Clear Username suggestions that i fetch from database

@@ -10,10 +10,10 @@ const Favour = ({ type, setType }) => {
 
   useEffect(() => {
     if (type === 'all' || type === 'settled') {
-      axios.get(`${process.env.REACT_APP_API_URL}/favors/all/ower/${localStorage.getItem('id')}/${type === 'all' ? 'false' : 'true'}`).then((owe) => {
+      axios.get(`${process.env.REACT_APP_API_URL}/favors/all/ower/${localStorage.getItem('id')}/${type === 'all' ? 'false' : 'true'}`)
+          .then((owe) => {
         if (owe.data.success) {
-          axios
-            .get(`${process.env.REACT_APP_API_URL}/favors/all/owner/${localStorage.getItem('id')}/${type === 'all' ? 'false' : 'true'}`)
+          axios.get(`${process.env.REACT_APP_API_URL}/favors/all/owner/${localStorage.getItem('id')}/${type === 'all' ? 'false' : 'true'}`)
             .then((owner) => {
               if (owner.data.success) {
                 setIouData(sortIouData([...owe.data.data, ...owner.data.data]));
