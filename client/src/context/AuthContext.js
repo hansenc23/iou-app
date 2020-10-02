@@ -10,6 +10,7 @@ export const AuthProvider = (props) => {
     id: '',
     firstName: '',
     lastName: '',
+    username: '',
   });
 
   const getUser = async () => {
@@ -50,14 +51,7 @@ export const AuthProvider = (props) => {
         credentials: 'include',
       });
 
-      const data = await res.json();
-
-      if (res.status === 200) {
-        localStorage.setItem('isAuth', 'false');
-        localStorage.removeItem('id');
-        localStorage.removeItem('firstName');
-        localStorage.removeItem('lastName');
-      }
+      return res;
     } catch (err) {
       console.log(err);
     }
