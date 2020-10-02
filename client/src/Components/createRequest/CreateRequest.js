@@ -1,10 +1,9 @@
-import React, {memo, useState, useEffect, useContext} from "react";
+import React, {useRef, useState, useEffect, useContext} from "react";
 import Modal from "@material-ui/core/Modal";
 import AddIcon from "@material-ui/icons/Add";
 import NewRequestTitle from "../newRequestTitle/NewRequestTitle";
 import "./CreateRequest.css";
 import Backdrop from "@material-ui/core/Backdrop";
-import Fade from '@material-ui/core/Fade';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -14,13 +13,13 @@ import Chip from '@material-ui/core/Chip';
 import FiberNewIcon from '@material-ui/icons/FiberNew';
 import SubjectIcon from '@material-ui/icons/Subject';
 import CardGiftcardSharpIcon from '@material-ui/icons/CardGiftcardSharp';
-import Spinner from "../Spinner";
 import Collapse from "@material-ui/core/Collapse";
 import AlertMessage from "../AlertMessage";
 import axios from "axios";
 import { AuthContext} from "../../context/AuthContext";
 import {Link} from "react-router-dom";
 import Slide from "@material-ui/core/Slide";
+import CloseIcon from "@material-ui/icons/Close";
 
 const rewardItems = [
     'Coffee',
@@ -34,11 +33,10 @@ const CreateRequest = () => {
 
     const { isAuth, user } = useContext(AuthContext);
 
-    const [storedRequestName, setStoredRequestName] = useState('New Request Title Here');
+    const [storedRequestTitle, setStoredRequestTitle] = useState('New Request Title Here');
     const [storedDescription, setStoredDescription] = useState();
     const [storedReward, setStoredReward] = useState([]);
 
-    const [loading, setLoading] = useState(false);
     const [openModal, setOpenModal] = React.useState(false);
     const [openAlert, setOpenAlert] = useState(false);
     const [error, setError] = useState('');
@@ -56,17 +54,35 @@ const CreateRequest = () => {
         setOpenModal(true);
     };
 
+    const handleClose = () => {
+        //open Modal
+        setOpenModal(false);
+    };
+
+    function handleSuccess() {
+        //reset form values
+        resetValues();
+
+        setOpenModal(false);
+    }
+
     function handleClickCancel() {
         //reset form values
-        reset();
+        resetValues();
         //close Modal
         setOpenModal(false);
     }
 
-    async function handleCreateRequest () {
+    let btnRef = useRef();
+    const disableButton = e => {
+        if(btnRef.current){
+            btnRef.current.setAttribute("disabled", "disabled");
+        }
+    }
 
+    async function handleCreateRequest () {
         //form checks
-        if (storedRequestName === 'New Request Title Here') {
+        if (storedRequestTitle === 'New Request Title Here') {
             setOpenAlert(true);
             setError('Please enter a request title');
         }
@@ -81,12 +97,32 @@ const CreateRequest = () => {
             setError('Please select at least one reward');
         }
 
-        //save to database here:
+        try {
+            disableButton();
+
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/request/create`, {
+                owner: localStorage.getItem('id'),
+                title: storedRequestTitle,
+                description: storedDescription,
+                reward: storedReward[0].toString(),
+                completedBy: null
+            }, {withCredentials: true});
+
+            if (res.status === 200) {
+                //disable button to prevent multiple submissions
+                handleSuccess();
+            } else {
+                console.log('Create request failed');
+            }
+        } catch (err) {
+            console.log(err);
+        }
     }
 
-    function reset() {
-        setStoredRequestName('New Request Title Here');
+    function resetValues() {
+        setStoredRequestTitle('New Request Title Here');
         setStoredReward([]);
+        setStoredDescription();
     }
 
 
@@ -102,6 +138,7 @@ const CreateRequest = () => {
     const guestModal = (
         <div className="guest_modal_container">
             <div className="guest_login_container">
+                <CloseIcon className='close_guest_createrequest' fontSize="large" onClick={handleClose}/>
                 <Link to='/login'>
                     <button className="guest_login_link"> Login</button>
                 </Link>
@@ -122,8 +159,8 @@ const CreateRequest = () => {
                     <div className="create_request_title">
                         <NewRequestTitle
                             className=""
-                            text={storedRequestName}
-                            onSetText={(text) => setStoredRequestName(text)}
+                            text={storedRequestTitle}
+                            onSetText={(text) => setStoredRequestTitle(text)}
                         />
                     </div>
                 </div>
@@ -184,7 +221,6 @@ const CreateRequest = () => {
                     </FormControl>
                 </div>
                 <div className='create_request_alert'>
-                    <div>{loading ? <Spinner /> : ''}</div>
                     <Collapse in={openAlert}>
                         {error && (<AlertMessage severity='error'><strong>{error}</strong></AlertMessage>)}
                     </Collapse>
@@ -195,7 +231,7 @@ const CreateRequest = () => {
                     {' '}
                     <span>Cancel</span>
                 </button>
-                <button className='create_request_btn' onClick={handleCreateRequest}>
+                <button className='create_request_btn' ref={btnRef} onClick={handleCreateRequest}>
                     {' '}
                     <span>Create Request</span>
                 </button>

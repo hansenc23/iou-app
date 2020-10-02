@@ -200,3 +200,10 @@
 .confirm_complete_request_btn:hover:after{
     width: 100%;
 }
+.close_guest_completerequest{
+    position: absolute;
+    z-index: 2;
+    transform: translate(10px, -190px);
+    cursor: pointer;
+    color: black;
+}

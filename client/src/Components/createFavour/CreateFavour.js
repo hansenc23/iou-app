@@ -28,7 +28,7 @@ const CreateFavour = ({ setType }) => {
 
   function handleSuccess() {
     //clear alerts
-    reset();
+    resetAlerts();
 
     // Display success alert
     setLoading(false);
@@ -36,31 +36,25 @@ const CreateFavour = ({ setType }) => {
     setSuccess('Favour has been created');
 
     // Reset Inputs
-    setStoredFavor('What?');
-    setStoredAction('Action?');
-    setUsernameInput('@Whom?');
-    setTypeFieldClicked('type_field_unclicked');
+    resetInputValues();
   }
 
   function handleClickCancel() {
     //clear alerts
-    reset();
+    resetAlerts();
 
     // Display clear alert
     setOpen(true);
     setInfo('Form cleared');
 
     // Reset Inputs
-    setStoredFavor('What?');
-    setStoredAction('Action?');
-    setUsernameInput('@Whom?');
-    setTypeFieldClicked('type_field_unclicked');
+    resetInputValues();
     setCancelBtnClicked(true);
     setSelectedImage(null);
   }
 
   function handleOnChangeWhom(text, fromSelect = false) {
-    reset();
+    resetInputValues();
     // Set text input as UsernameInput
     setUsernameInput(text);
     // Clear Username suggestions that i fetch from database
@@ -81,7 +75,7 @@ const CreateFavour = ({ setType }) => {
   }
 
   async function handleCreateFavor() {
-    reset();
+    resetAlerts();
 
     if (storedAction === 'Action?') {
       setOpen(true);
@@ -191,7 +185,14 @@ const CreateFavour = ({ setType }) => {
     }
   }
 
-  function reset() {
+  function resetInputValues() {
+    setStoredFavor('What?');
+    setStoredAction('Action?');
+    setUsernameInput('@Whom?');
+    setTypeFieldClicked('type_field_unclicked');
+  }
+
+  function resetAlerts() {
     setError('');
     setInfo('');
     setOpen(false);

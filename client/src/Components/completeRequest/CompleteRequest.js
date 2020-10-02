@@ -3,6 +3,7 @@ import Modal from '@material-ui/core/Modal';
 import Slide from '@material-ui/core/Slide';
 import Backdrop from '@material-ui/core/Backdrop';
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import CloseIcon from '@material-ui/icons/Close';
 import './CompleteRequest.css';
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import Moment from "moment";
@@ -77,6 +78,7 @@ const CompleteRequest = (props) => {
     const guestModal = (
         <div className="guest_modal_container">
             <div className="guest_login_container">
+                <CloseIcon className='close_guest_completerequest' fontSize="large" onClick={handleClose}/>
                 <Link to='/login'>
                     <button className="guest_login_link"> Login</button>
                 </Link>

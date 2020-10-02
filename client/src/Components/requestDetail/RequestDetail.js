@@ -2,11 +2,13 @@ import React, {useState} from "react";
 import "./RequestDetail.css";
 import CompleteRequest from "../completeRequest/CompleteRequest";
 
-const RequestDetail =() => {
+const RequestDetail =(props) => {
 
     const [requestName, setRequestName] = useState('Clean The Fridge')
     const [requestOwner, setRequestOwner] = useState('gracekelly')
     const [requestDate, setRequestDate] = useState('25 Sep')
+
+    //to get selected ID, use {props.selectedRequestID}
 
     return(
         <div id="requestDetail">
