@@ -4,10 +4,10 @@ const Completed = require("../models/Completed");
 
 // POST /request/create
 // {
-//   title: required
-//   owner: required
-//   description: required
-//   reward: required
+//   title: required | string
+//   owner: required | string
+//   description: required | string
+//   reward: required | [] | string
 // }
 
 const create = async (req, res) => {
@@ -26,16 +26,38 @@ const create = async (req, res) => {
     });
     await newRequest.save();
 
-    // Insert into Rewards
-    const newReward = new RequestRewards({
-      request_id: newRequest._id,
-      reward,
-      owner,
-    });
-    await newReward.save();
 
-    // Push reward id into the request object
-    newRequest.rewards.push(newReward._id);
+    let listOfIds = []
+
+    if (Array.isArray(reward)) {
+      const rewardInsertMany = []
+      
+      reward.forEach((each) => {
+        rewardInsertMany.push({
+          request_id: newRequest._id,
+          reward: each,
+          owner,
+        })
+      })
+
+      const response = await RequestRewards.insertMany(rewardInsertMany)
+
+      listOfIds = response.map(each => each._id)
+
+    } else {
+      // Insert into Rewards
+      const newReward = new RequestRewards({
+        request_id: newRequest._id,
+        reward,
+        owner,
+      });
+      await newReward.save();
+
+      listOfIds = [newReward._id]
+    }
+
+    // Push reward id(s) into the request object
+    newRequest.rewards.push(...listOfIds);
     await newRequest.save();
 
     return res.status(200).json({
