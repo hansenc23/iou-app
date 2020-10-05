@@ -28,6 +28,9 @@
     background: linear-gradient(to bottom left, #8856bf, #4b83e9);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-align: left;
+    line-height: 1.1;
+    margin-bottom: 12px;
 }
 .request_subtitle{
     font-family: Poppins;
@@ -134,6 +137,6 @@
 .description_detail_content{
     line-height: 2;
     font-family: "Poppins";
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
 }

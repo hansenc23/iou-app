@@ -1,4 +1,4 @@
-import React, { Fragment, memo, useState, useEffect, useContext } from 'react';
+import React, {useState, useEffect, useContext } from 'react';
 import Modal from '@material-ui/core/Modal';
 import Slide from '@material-ui/core/Slide';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -6,16 +6,16 @@ import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import CloseIcon from '@material-ui/icons/Close';
 import './CompleteRequest.css';
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
-import Moment from "moment";
 import AlertMessage from "../AlertMessage";
 import {ImageContext} from "../../context/ImageContext";
 import Collapse from "@material-ui/core/Collapse";
 import {AuthContext} from "../../context/AuthContext";
 import {Link} from "react-router-dom";
+import moment from "moment";
 
 const CompleteRequest = (props) => {
 
-    const { isAuth, user } = useContext(AuthContext);
+    const { isAuth, user} = useContext(AuthContext);
 
     const { selectedImage, setSelectedImage, uploadImage, setUploadedImageUrl } = useContext(ImageContext);
 
@@ -98,7 +98,7 @@ const CompleteRequest = (props) => {
                 <div className='complete_request_name'> {props.requestName} </div>
                 <div className='complete_request_details_container'>
                     <span className='complete_request_owner'> requested by <strong>{props.requestOwner}</strong>
-                        <span className="complete_request_date"> on <strong>{props.requestDate}</strong></span>
+                        <span className="complete_request_date"> on <strong>{moment(props.requestDate).format('DD MMM')}</strong></span>
                     </span>
                 </div>
             </div>

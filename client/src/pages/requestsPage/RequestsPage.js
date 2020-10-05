@@ -1,33 +1,48 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import React, { useState, useEffect, useCallback } from 'react';
 import './RequestsPage.css';
 import RequestsList from '../../Components/requestList/RequestList';
 import RequestDetail from '../../Components/requestDetail/RequestDetail';
+import axios from "axios";
 
 const RequestsPage = () => {
-  const { isAuth, setIsAuth, user, setUser, getUser } = useContext(AuthContext);
 
-  const [selectedRequestID, setSelectedRequestID] = useState(-1)
+  const [selectedRequestID, setSelectedRequestID] = useState();
 
-  //request page should be publicly accessible, so shouldnt require authenticated user
-  //todo: use below method on favors page to get logged in user
-  useEffect(() => {
-    getUser();
+  const [requestData, setRequestData] = useState([]);
+
+  const selectRequestId = useCallback((selectedID) => {
+      setSelectedRequestID(selectedID);
   }, []);
 
-  function getSelectedRequestID(selectedID) {
-      setSelectedRequestID(selectedID);
-  }
+    useEffect(() => {
+        axios
+            .get(`${process.env.REACT_APP_API_URL}/request/get_all`)
+            .then((response) => {
+                if (response.data.success) {
+                    setRequestData(response.data.requests);
+                    setSelectedRequestID(response.data.requests[0]._id);
+                } else {
+                    console.log("Failed to get request data");
+                }
+            }).catch(error => {
+            console.log(error);
+        })
+    },  []);
+
+    const selectedRequest = requestData.find( item => item._id === selectedRequestID);
 
   return (
-    <div id='RequestsPage' className=''>
-      <RequestsList
-          getSelectedRequestID={getSelectedRequestID}
-      />
-      <RequestDetail
-        selectedRequestID={selectedRequestID}
-      />
-    </div>
+      (requestData && selectedRequest) ?
+          <div id='RequestsPage' className=''>
+          <RequestsList
+              requestData={requestData}
+              selectRequestId={selectRequestId}
+          />
+          <RequestDetail
+              selectedRequest={selectedRequest}
+          />
+        </div> :
+          <div> loading </div>
   );
 };
 
