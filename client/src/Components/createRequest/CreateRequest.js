@@ -100,7 +100,7 @@ const CreateRequest = () => {
           owner: localStorage.getItem('id'),
           title: storedRequestTitle,
           description: storedDescription,
-          reward: storedReward[0].toString(),
+          reward: storedReward,
           completedBy: null,
         },
         { withCredentials: true }
