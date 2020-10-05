@@ -27,7 +27,7 @@ const CreateRequest = () => {
   const { isAuth, user } = useContext(AuthContext);
 
   const [storedRequestTitle, setStoredRequestTitle] = useState('New Request Title Here');
-  const [storedDescription, setStoredDescription] = useState();
+  const [storedDescription, setStoredDescription] = useState('');
   const [storedReward, setStoredReward] = useState([]);
 
   const [openModal, setOpenModal] = React.useState(false);
@@ -79,41 +79,37 @@ const CreateRequest = () => {
     if (storedRequestTitle === 'New Request Title Here') {
       setOpenAlert(true);
       setError('Please enter a request title');
-    }
-
-    if (storedDescription === '') {
+    } else if (storedDescription === '') {
       setOpenAlert(true);
       setError('Please enter a description');
-    }
-
-    if (storedReward.length === 0) {
+    } else if (storedReward.length === 0) {
       setOpenAlert(true);
       setError('Please select at least one reward');
-    }
+    } else {
+      try {
+        disableButton();
 
-    try {
-      disableButton();
+        const res = await axios.post(
+          `${process.env.REACT_APP_API_URL}/request/create`,
+          {
+            owner: localStorage.getItem('id'),
+            title: storedRequestTitle,
+            description: storedDescription,
+            reward: storedReward,
+            completedBy: null,
+          },
+          { withCredentials: true }
+        );
 
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/request/create`,
-        {
-          owner: localStorage.getItem('id'),
-          title: storedRequestTitle,
-          description: storedDescription,
-          reward: storedReward,
-          completedBy: null,
-        },
-        { withCredentials: true }
-      );
-
-      if (res.status === 200) {
-        //disable button to prevent multiple submissions
-        handleSuccess();
-      } else {
-        console.log('Create request failed');
+        if (res.status === 200) {
+          //disable button to prevent multiple submissions
+          handleSuccess();
+        } else {
+          console.log('Create request failed');
+        }
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
     }
   }
 
