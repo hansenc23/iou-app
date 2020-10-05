@@ -32,7 +32,7 @@
     padding: 70px 80px 60px 70px;
     outline: none;
     border-radius: 10px;
-    width: 430px;
+    width: 470px;
     height: fit-content;
     max-height: 100%;
 }
@@ -95,7 +95,7 @@
     width: inherit;
 }
 .request_description_textfield {
-    width: 390px;
+    width: 430px;
     background-color: #f3f0ea;
     outline: none;
 }
@@ -130,7 +130,7 @@
     margin-bottom: 40px;
 }
 .request_reward_form{
-    width: 390px;
+    width: 430px;
     height: 60px;
     background-color: #f3f0ea;
     outline: none;
@@ -149,7 +149,7 @@
     flex-direction: row;
     justify-content: flex-end;
     width: fit-content;
-    margin-left: 200px;
+    margin-left: 240px;
 }
 .cancel_request_btn{
     width: 45px;
