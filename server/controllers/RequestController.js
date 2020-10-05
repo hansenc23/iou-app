@@ -201,7 +201,7 @@ const getById = async (req, res) => {
         },
       });
 
-    return res.status(200).json({ succesS: true, requests: response });
+    return res.status(200).json({ success: true, requests: response });
   } catch (error) {
     return res.status(400).json({ success: false, error: error.message });
   }

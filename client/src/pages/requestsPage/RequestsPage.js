@@ -32,17 +32,15 @@ const RequestsPage = () => {
     const selectedRequest = requestData.find( item => item._id === selectedRequestID);
 
   return (
-      (requestData && selectedRequest) ?
-          <div id='RequestsPage' className=''>
+      <div id='RequestsPage' className=''>
           <RequestsList
               requestData={requestData}
               selectRequestId={selectRequestId}
           />
-          <RequestDetail
-              selectedRequest={selectedRequest}
-          />
-        </div> :
-          <div> loading </div>
+          {(requestData && selectedRequest) ?
+              <RequestDetail selectedRequest={selectedRequest}/> :
+              <div className = "empty_RequestList"> Request Database is Empty </div> }
+      </div>
   );
 };
 
