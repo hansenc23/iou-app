@@ -171,7 +171,7 @@ const CreateRequest = () => {
             onChange={handleChangeDescription}
             rows={5}
             variant='outlined'
-            InputProps={{ style: { color: 'black', fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
+            InputProps={{ style: { color: 'black', fontSize: 15, fontWeight: 550, fontFamily: 'Poppins', lineHeight: 1.5} }}
           />
         </div>
       </div>

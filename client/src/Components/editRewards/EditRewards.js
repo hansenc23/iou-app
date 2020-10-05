@@ -109,9 +109,9 @@ const EditRewards = (  ) => {
                 </div>
             </div>
             <div className="rewards_from_you_container">
-                           <span className="rewards_from_you_header">
-                               Rewards from You
-                           </span>
+               <span className="rewards_from_you_header">
+                   Rewards from You
+               </span>
                 <div className="rewards_from_you_content">
                     <div className="reward_item">
                         <div className="reward_item_content">

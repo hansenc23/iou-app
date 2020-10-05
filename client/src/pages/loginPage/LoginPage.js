@@ -93,10 +93,9 @@ function LoginPage() {
     <Redirect to='/requests' />
   ) : (
     <div id='Login'>
-      <div className='login_container'>
-        <div className='login_form_area'>
-          <div className='login_form_title'>Log in</div>
-          <form className='login_form' autoComplete='off' id='loginForm' onSubmit={formSubmit}>
+        <div className='login_form'>
+          <div className='login_form_title'>Welcome Back,</div>
+          <form className='login_textfields' autoComplete='off' id='loginForm' onSubmit={formSubmit}>
             <TextField
               id='outlined-basic'
               variant='outlined'
@@ -105,7 +104,7 @@ function LoginPage() {
               name='emailOrUsername'
               value={emailOrUsername}
               onChange={onChange}
-              InputProps={{ style: { fontSize: 22, fontWeight: 600, fontFamily: 'Poppins' } }}
+              InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
             />
             <TextField
               id='outlined-basic'
@@ -116,18 +115,16 @@ function LoginPage() {
               name='password'
               value={password}
               onChange={onChange}
-              InputProps={{ style: { fontSize: 22, fontWeight: 600, fontFamily: 'Poppins' } }}
+              InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
             />
           </form>
-          {alertBox && alertBox}
+          <div className="login_alert">
+            {alertBox && alertBox}
+          </div>
           <button type='submit' form='loginForm' className='login_btn'>
             Log In
           </button>
         </div>
-        <div className='login_logo_area'>
-          <div className='login_logo_msg'>Welcome back!</div>
-        </div>
-      </div>
     </div>
   );
 

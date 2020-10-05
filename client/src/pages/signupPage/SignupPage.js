@@ -29,12 +29,6 @@ const SignupPage = () => {
     }
   });
 
-  // useEffect(() => {
-  //   getUser();
-  // });
-
-  // let alertBox = <AlertMessage severity='error'>Please fill in your first name</AlertMessage>;
-
   const onChange = (e) => {
     setUserRegData({ ...userRegData, [e.target.name]: e.target.value });
   };
@@ -121,12 +115,10 @@ const SignupPage = () => {
     <Redirect to='/requests' />
   ) : (
     <div id='Signup'>
-      <div className='signup_container'>
-        <div className='signup_logo_area'>
-          <div className='signup_logo_msg'>Hello there!</div>
-        </div>
         <div className='signup_form_area'>
-          <div className='signup_form_title'>Create Account</div>
+          <div className='signup_form_title'>
+            Hello there,
+          </div>
           <form className='signup_form' autoComplete='off' id='signupForm' onSubmit={formSubmit}>
             <TextField
               id='outlined-basic'
@@ -136,7 +128,7 @@ const SignupPage = () => {
               value={firstName}
               name='firstName'
               onChange={onChange}
-              InputProps={{ style: { fontSize: 18, fontWeight: 600, fontFamily: 'Poppins' } }}
+              InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
             />
             <TextField
               id='outlined-basic'
@@ -146,7 +138,7 @@ const SignupPage = () => {
               value={lastName}
               name='lastName'
               onChange={onChange}
-              InputProps={{ style: { fontSize: 18, fontWeight: 600, fontFamily: 'Poppins' } }}
+              InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
             />
             <TextField
               id='outlined-basic'
@@ -156,7 +148,7 @@ const SignupPage = () => {
               value={username}
               name='username'
               onChange={onChange}
-              InputProps={{ style: { fontSize: 18, fontWeight: 600, fontFamily: 'Poppins' } }}
+              InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
             />
             <TextField
               id='outlined-basic'
@@ -167,7 +159,7 @@ const SignupPage = () => {
               name='email'
               onChange={onChange}
               type='email'
-              InputProps={{ style: { fontSize: 18, fontWeight: 600, fontFamily: 'Poppins' } }}
+              InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
             />
             <TextField
               id='outlined-basic'
@@ -178,7 +170,7 @@ const SignupPage = () => {
               value={password}
               name='password'
               onChange={onChange}
-              InputProps={{ style: { fontSize: 18, fontWeight: 600, fontFamily: 'Poppins' } }}
+              InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
             />
             <TextField
               id='outlined-basic'
@@ -189,15 +181,16 @@ const SignupPage = () => {
               value={confirmPassword}
               name='confirmPassword'
               onChange={onChange}
-              InputProps={{ style: { fontSize: 18, fontWeight: 600, fontFamily: 'Poppins' } }}
+              InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
             />
           </form>
-          {alertBox && alertBox}
+          <div className="signup_alert">
+            {alertBox && alertBox}
+          </div>
           <button type='submit' form='signupForm' className='signup_btn'>
             Sign Up
           </button>
         </div>
-      </div>
     </div>
   );
 

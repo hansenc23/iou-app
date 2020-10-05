@@ -32,15 +32,15 @@
 .signup_form_area {
   display: flex;
   flex-direction: column;
-  height: inherit;
+  justify-content: flex-start;
+  height: 550px;
   width: 350px;
-  margin-right: 122px;
+  margin-top: 60px;
 }
 .signup_form_title {
   font-family: Poppins;
   font-size: 32px;
   font-weight: 700;
-  margin-top: 100px;
   margin-bottom: 40px;
 }
 .signup_form {
@@ -48,21 +48,26 @@
   flex-direction: column;
   justify-content: space-around;
   height: inherit;
-  margin-bottom: 2rem;
+}
+.signup_alert{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 100px;
 }
 .signup_btn {
   width: inherit;
-  height: 90px;
+  height: 70px;
   background-color: black;
   color: white;
   font-weight: bold;
-  font-size: 17px;
+  font-size: 16px;
   border-radius: 25px;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
-  margin-bottom: 100px;
   cursor: pointer;
+}
+.signup_btn:hover{
+  color: darkgrey;
 }
 .signup_logo_area {
   color: white;

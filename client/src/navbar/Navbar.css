@@ -64,7 +64,7 @@ a:focus {
 .authentication_links {
   display: flex;
   font-size: 12px;
-  margin-right: 40px;
+  margin-right: 20px;
   justify-content: space-between;
   width: fit-content;
 }
@@ -108,7 +108,7 @@ a:focus {
   color: white;
 }
 .signup_link_label {
-  width: 120px;
+  width: 100px;
   height: 35px;
   background-color: transparent;
   color: #f3f0ea;
@@ -131,7 +131,7 @@ ul li {
 nav {
   background-color: transparent;
   height: 65px;
-  width: 150px;
+  width: 165px;
 }
 #menuToggle {
   display: flex;
