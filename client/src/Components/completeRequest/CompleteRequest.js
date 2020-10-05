@@ -160,10 +160,8 @@ const CompleteRequest = (props) => {
     );
 
     return (
-        <div id="complete_request">
-
+        <div id="CompleteRequest">
             {(props.buttonSource === 'fromRequestDetail') ? fromRequestDetail : fromRequestCard}
-
             <Modal
                 aria-labelledby='transition-modal-title'
                 aria-describedby='transition-modal-description'

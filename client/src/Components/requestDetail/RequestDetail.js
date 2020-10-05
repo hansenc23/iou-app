@@ -1,10 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import "./RequestDetail.css";
 import CompleteRequest from "../completeRequest/CompleteRequest";
-import axios from "axios";
 import moment from "moment";
+import EditRewards from "../editRewards/EditRewards";
+import {AuthContext} from "../../context/AuthContext";
 
 const RequestDetail = ( {selectedRequest} ) => {
+
+    const { isAuth, user } = useContext(AuthContext);
+    //get current logged in user using user.username
+
     return (
         <div id="requestDetail">
             <div className="request_title_container">
@@ -16,14 +21,12 @@ const RequestDetail = ( {selectedRequest} ) => {
                     <span className="sub_title_date"> on {moment(selectedRequest.createdAt).format('DD MMM')} </span>
                 </div>
             </div>
-
             <CompleteRequest
                 buttonSource={'fromRequestDetail'}
                 requestName={selectedRequest.title}
                 requestOwner={selectedRequest.request_owner.username}
                 requestDate={selectedRequest.createdAt}
             />
-
             <div className="description_details_container">
                 <div className="description_detail_header">
                     Details
@@ -38,7 +41,6 @@ const RequestDetail = ( {selectedRequest} ) => {
                     Rewards
                 </div>
                 <div className="reward_detail_list">
-
                     {selectedRequest.rewards.length !== 0 &&
                         selectedRequest.rewards.map((reward) => {
                             return (
@@ -58,14 +60,13 @@ const RequestDetail = ( {selectedRequest} ) => {
                         })
                     }
                 </div>
-                <div className="add_reward_btn_container">
-                    <button className = "add_reward_item_btn">
-                        Add Reward
-                    </button>
+                <div className="edit_reward_btn_container">
+                    <EditRewards
+
+                    />
                 </div>
             </div>
         </div>
     );
-
 }
 export default RequestDetail;

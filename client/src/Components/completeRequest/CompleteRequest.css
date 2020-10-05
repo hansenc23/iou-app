@@ -1,6 +1,3 @@
-#complete_request {
-
-}
 .complete_request_btn_container{
     height: fit-content;
     margin-bottom: 40px;
@@ -19,6 +16,7 @@
     font-size: 12px;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: 10px;
 }
 .complete_request_detail_btn span{
     z-index: 2;
@@ -53,7 +51,7 @@
     justify-content: flex-start;
     background-color: #f3f0ea;
     box-shadow: 0 0 4px 4px rgba(133, 135, 141, 0.12);
-    padding: 60px 80px 30px 80px;
+    padding: 60px 70px 30px 70px;
     outline: none;
     border-radius: 10px;
     width: 350px;
@@ -72,7 +70,7 @@
 .complete_request_title{
     font-family: Poppins;
     font-size: 22px;
-    font-weight: 600;
+    font-weight: 660;
     color: black;
 }
 .complete_request_name{
@@ -84,7 +82,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 5px;
-    line-height: 1.1;
+    line-height: 1.2;
     margin-top: 8px;
     margin-bottom: 8px;
 }

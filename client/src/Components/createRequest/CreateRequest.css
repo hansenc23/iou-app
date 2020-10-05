@@ -29,7 +29,7 @@
 .createRequest_modal_container{
     background-color: #f3f0ea;
     box-shadow: 0 0 4px 4px rgba(133, 135, 141, 0.12);
-    padding: 60px 80px 60px 70px;
+    padding: 70px 80px 60px 70px;
     outline: none;
     border-radius: 10px;
     width: 430px;
@@ -102,7 +102,7 @@
 .request_reward_container{
     display: flex;
     flex-direction: column;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 .request_reward_header{
     display: flex;
@@ -206,6 +206,7 @@
 .create_request_alert{
     width: 350px;
     margin-left: 60px;
+    margin-top: 15px;
 }
 .guest_modal_container{
     display: flex;
