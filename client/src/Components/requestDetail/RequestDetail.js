@@ -2,8 +2,9 @@ import React, { useRef, useState, useEffect, useContext } from "react";
 import "./RequestDetail.css";
 import CompleteRequest from "../completeRequest/CompleteRequest";
 import moment from "moment";
-import EditRewards from "../editRewards/EditRewards";
+import AddRewards from "../addRewards/AddRewards";
 import {AuthContext} from "../../context/AuthContext";
+import DeleteRewards from "../deleteRewards/DeleteRewards";
 
 const RequestDetail = ( {selectedRequest} ) => {
 
@@ -61,8 +62,9 @@ const RequestDetail = ( {selectedRequest} ) => {
                     }
                 </div>
                 <div className="edit_reward_btn_container">
-                    <EditRewards
-
+                    <AddRewards
+                    />
+                    <DeleteRewards
                     />
                 </div>
             </div>

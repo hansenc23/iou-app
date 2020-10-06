@@ -1,0 +1,127 @@
+.add_reward_item_btn{
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: transparent;
+    color: black;
+    font-size: 14px;
+    font-weight: 450;
+    font-family: "Poppins";
+}
+.add_reward_item_btn:hover{
+    color: #626262;
+}
+.add_reward_item_btn:focus{
+    font-weight: 450;
+}
+.add_rewards_modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.add_rewards_modal_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #f3f0ea;
+    box-shadow: 0 0 4px 4px rgba(133, 135, 141, 0.12);
+    padding: 50px 60px 50px 60px;
+    outline: none;
+    border-radius: 10px;
+    width: 460px;
+    height: fit-content;
+    max-height: 100%;
+    text-align: center;
+}
+.add_rewards_title{
+    text-align: left;
+    font-family: Poppins;
+    font-size: 35px;
+    font-weight: 650;
+    color: black;
+    margin-bottom: 35px;
+}
+.add_rewards_container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    height: fit-content;
+    margin-bottom: 30px;
+}
+.add_rewards_header{
+    font-family: Poppins;
+    font-size: 22px;
+    font-weight: 650;
+    color: darkgrey;
+    margin-bottom: 15px;
+}
+.add_request_reward_form{
+    overflow: no-content;
+    width: 440px;
+    height: 60px;
+    background-color: #f3f0ea;
+    outline: none;
+}
+.add_rewards_confirm_btn_container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    width: fit-content;
+    margin-left: 250px;
+}
+.cancel_add_rewards_btn{
+    width: 50px;
+    height: 40px;
+    background-color: transparent;
+    border: thin solid transparent;
+    color: #484848;
+    font-weight: 600;
+    font-size: 13px;
+    border-radius: 20px;
+    display: table-cell;
+    cursor: pointer;
+    margin-right: 25px;
+}
+.confirm_add_rewards_btn{
+    position: relative;
+    transition: all .35s;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 38px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.confirm_add_rewards_btn span{
+    z-index: 2;
+}
+.confirm_add_rewards_btn:after{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(to bottom left, #7e51d0, #4b83e9);
+    border-radius: 20px;
+    transition: all .35s;
+}
+.confirm_add_rewards_btn:hover{
+    color: #fff;
+    opacity: 1;
+}
+.confirm_add_rewards_btn:hover:after{
+    width: 100%;
+}
+.add_request_alert{
+    width: 400px;
+    margin-left: 21px;
+    margin-top: 30px;
+}

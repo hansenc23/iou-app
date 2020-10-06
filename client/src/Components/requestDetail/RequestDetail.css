@@ -9,7 +9,7 @@
     height: calc(100vh - 115px);
     min-height: fit-content;
     max-height: 70vh;
-    padding: 3vh 2vw 5vh 3vw;
+    padding: 4vh 2vw 5vh 3vw;
 }
 .empty_RequestList {
     display: flex;
@@ -77,9 +77,9 @@
     border-radius: 10px 10px 0 0;
     background-color: #eae8e5;
     width: 100%;
-    height: 180px;
-    min-height: 80px;
+    height: 200px;
     overflow: auto;
+    padding-top: 5px;
 }
 .reward_item{
     display: flex;
@@ -113,12 +113,13 @@
 .edit_reward_btn_container{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     border-radius: 0 0 10px 10px;
     background-color: #eae8e5;
     width: 100%;
-    height: 60px;
+    height: 55px;
+    border-top: thin solid #d4d4d4;
 }
 .description_details_container{
     display: inline-block;

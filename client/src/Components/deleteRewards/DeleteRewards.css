@@ -1,78 +1,49 @@
-
-.edit_reward_item_btn{
-    width: 90%;
-    max-width: 560px;
-    min-width: 440px;
-    height: 40px;
+.delete_reward_btn{
     cursor: pointer;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    vertical-align: middle;
-    padding-top: 12px;
-    color: black;
     background-color: transparent;
-    border-top: thin solid #d4d4d4;
+    color: black;
     font-size: 14px;
     font-weight: 450;
     font-family: "Poppins";
 }
-.edit_reward_item_btn:hover{
+.delete_reward_btn:hover{
     color: #626262;
 }
-.edit_reward_item_btn:focus{
+.delete_reward_btn:focus{
     font-weight: 450;
 }
-.edit_rewards_modal{
+.delete_rewards_modal{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.edit_rewards_modal_container {
+.delete_rewards_modal_container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     background-color: #f3f0ea;
     box-shadow: 0 0 4px 4px rgba(133, 135, 141, 0.12);
-    padding: 50px 70px 50px 70px;
+    padding: 60px 60px 50px 60px;
     outline: none;
     border-radius: 10px;
-    width: 440px;
+    width: 500px;
     height: fit-content;
     max-height: 100%;
     text-align: center;
 }
-.edit_rewards_title{
+.delete_rewards_title{
     text-align: left;
     font-family: Poppins;
-    font-size: 30px;
+    font-size: 35px;
     font-weight: 650;
     color: black;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
 }
-.add_rewards_container{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    height: fit-content;
-    margin-bottom: 12px;
-}
-.add_rewards_header{
-    font-family: Poppins;
-    font-size: 22px;
-    font-weight: 650;
-    color: darkgrey;
-    margin-bottom: 15px;
-}
-.add_request_reward_form{
-    width: 440px;
-    height: 60px;
-    background-color: #f3f0ea;
-    outline: none;
-}
-.rewards_from_you_container{
+.delete_rewards_list_container{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -80,35 +51,69 @@
     height: fit-content;
     margin-bottom: 40px;
 }
-.rewards_from_you_header{
-    font-family: Poppins;
-    font-size: 22px;
-    font-weight: 650;
-    color: darkgrey;
-    margin-bottom: 10px;
-}
-.rewards_from_you_content{
-    height: 180px;
+.delete_rewards_list{
+    height: 200px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 7px;
-    background-color: #eae8e5;
+    background-color: #eae9e6;
     min-height: 80px;
     overflow: auto;
     padding-top: 5px;
     padding-bottom: 5px;
 }
-.edit_rewards_confirm_btn_container{
+.delete_reward_item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    border-bottom: thin solid #d6d6d6;
+    height: 50px;
+    color: black;
+}
+.delete_reward_item_btn{
+    width: fit-content;
+    background: transparent;
+    margin-right: 10px;
+    color: darkred;
+    cursor: pointer;
+}
+.delete_reward_item_btn:hover{
+    color: orangered;
+}
+.delete_reward_item_content{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    align-self: center;
+    justify-content: center;
+}
+.delete_reward_detail{
+    margin: auto;
+    font-family: "Poppins";
+    font-size: 13px;
+    font-weight: 250;
+}
+.delete_reward_item_date{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    font-family: "Poppins";
+    font-size: 12px;
+    font-weight: 300;
+}
+.delete_rewards_confirm_btn_container{
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     width: fit-content;
-    margin-left: 250px;
+    margin-left: 305px;
 }
-.cancel_edit_rewards_btn{
-    width: 45px;
+.cancel_delete_rewards_btn{
+    width: 50px;
     height: 40px;
     background-color: transparent;
     border: thin solid transparent;
@@ -119,8 +124,9 @@
     display: table-cell;
     cursor: pointer;
     margin-right: 25px;
+    margin-top: 5px;
 }
-.confirm_edit_rewards_btn{
+.confirm_delete_rewards_btn{
     position: relative;
     transition: all .35s;
     justify-content: center;
@@ -134,10 +140,10 @@
     border-radius: 20px;
     cursor: pointer;
 }
-.confirm_edit_rewards_btn span{
+.confirm_delete_rewards_btn span{
     z-index: 2;
 }
-.confirm_edit_rewards_btn:after{
+.confirm_delete_rewards_btn:after{
     position: absolute;
     content: '';
     top: 0;
@@ -148,10 +154,10 @@
     border-radius: 20px;
     transition: all .35s;
 }
-.confirm_edit_rewards_btn:hover{
+.confirm_delete_rewards_btn:hover{
     color: #fff;
     opacity: 1;
 }
-.confirm_edit_rewards_btn:hover:after{
+.confirm_delete_rewards_btn:hover:after{
     width: 100%;
 }
