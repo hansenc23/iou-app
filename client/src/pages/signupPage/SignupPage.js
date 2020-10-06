@@ -16,7 +16,7 @@ const SignupPage = () => {
     confirmPassword: '',
   });
 
-  const [alertBox, setAlertBox] = useState('');
+  const [alertBox, setAlertBox] = useState(null);
   const { isAuth, setIsAuth, user, setUser, getUser } = useContext(AuthContext);
 
   const { firstName, lastName, username, email, password, confirmPassword } = userRegData;
@@ -24,7 +24,7 @@ const SignupPage = () => {
   useEffect(() => {
     if (alertBox) {
       setTimeout(() => {
-        setAlertBox('');
+        setAlertBox(null);
       }, 2000);
     }
   });
@@ -88,7 +88,6 @@ const SignupPage = () => {
       }
 
       if (res.status === 200) {
-        //todo: receive cookie from server and logs in user
         localStorage.setItem('isAuth', 'true');
         setUserRegData({
           firstName: '',
@@ -115,82 +114,78 @@ const SignupPage = () => {
     <Redirect to='/requests' />
   ) : (
     <div id='Signup'>
-        <div className='signup_form_area'>
-          <div className='signup_form_title'>
-            Hello there,
-          </div>
-          <form className='signup_form' autoComplete='off' id='signupForm' onSubmit={formSubmit}>
-            <TextField
-              id='outlined-basic'
-              variant='outlined'
-              label='First Name'
-              size='small'
-              value={firstName}
-              name='firstName'
-              onChange={onChange}
-              InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
-            />
-            <TextField
-              id='outlined-basic'
-              variant='outlined'
-              label='Last Name'
-              size='small'
-              value={lastName}
-              name='lastName'
-              onChange={onChange}
-              InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
-            />
-            <TextField
-              id='outlined-basic'
-              variant='outlined'
-              label='Username'
-              size='small'
-              value={username}
-              name='username'
-              onChange={onChange}
-              InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
-            />
-            <TextField
-              id='outlined-basic'
-              variant='outlined'
-              label='Email'
-              size='small'
-              value={email}
-              name='email'
-              onChange={onChange}
-              type='email'
-              InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
-            />
-            <TextField
-              id='outlined-basic'
-              variant='outlined'
-              label='Password'
-              size='small'
-              type='password'
-              value={password}
-              name='password'
-              onChange={onChange}
-              InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
-            />
-            <TextField
-              id='outlined-basic'
-              variant='outlined'
-              label='Confirm Password'
-              size='small'
-              type='password'
-              value={confirmPassword}
-              name='confirmPassword'
-              onChange={onChange}
-              InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
-            />
-          </form>
-          <div className="signup_alert">
-            {alertBox && alertBox}
-          </div>
-          <button type='submit' form='signupForm' className='signup_btn'>
-            Sign Up
-          </button>
-        </div>
+      <div className='signup_form_area'>
+        <div className='signup_form_title'>Hello there,</div>
+        <form className='signup_form' autoComplete='off' id='signupForm' onSubmit={formSubmit}>
+          <TextField
+            id='outlined-basic'
+            variant='outlined'
+            label='First Name'
+            size='small'
+            value={firstName}
+            name='firstName'
+            onChange={onChange}
+            InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
+          />
+          <TextField
+            id='outlined-basic'
+            variant='outlined'
+            label='Last Name'
+            size='small'
+            value={lastName}
+            name='lastName'
+            onChange={onChange}
+            InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
+          />
+          <TextField
+            id='outlined-basic'
+            variant='outlined'
+            label='Username'
+            size='small'
+            value={username}
+            name='username'
+            onChange={onChange}
+            InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
+          />
+          <TextField
+            id='outlined-basic'
+            variant='outlined'
+            label='Email'
+            size='small'
+            value={email}
+            name='email'
+            onChange={onChange}
+            type='email'
+            InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
+          />
+          <TextField
+            id='outlined-basic'
+            variant='outlined'
+            label='Password'
+            size='small'
+            type='password'
+            value={password}
+            name='password'
+            onChange={onChange}
+            InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
+          />
+          <TextField
+            id='outlined-basic'
+            variant='outlined'
+            label='Confirm Password'
+            size='small'
+            type='password'
+            value={confirmPassword}
+            name='confirmPassword'
+            onChange={onChange}
+            InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
+          />
+        </form>
+        <div className='signup_alert'>{alertBox && alertBox}</div>
+        <button type='submit' form='signupForm' className='signup_btn'>
+          Sign Up
+        </button>
+      </div>
     </div>
   );
 

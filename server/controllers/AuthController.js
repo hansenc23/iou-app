@@ -25,9 +25,14 @@ register = async (req, res, next) => {
   }
 
   //Check if user already exist in database
-  const emailExist = await User.findOne({ email });
+  const emailExist = await User.findOne({ email: { $eq: email } });
   if (emailExist) {
     return res.status(400).json('Email already exist!');
+  }
+
+  const usernameExist = await User.findOne({ username: { $eq: username } });
+  if (usernameExist) {
+    return res.status(400).json('Username already exist!');
   }
 
   //Hash user password
