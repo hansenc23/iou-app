@@ -4,11 +4,12 @@ const authRoute = require("./authRoute");
 const imageRoute = require("./imageRoute");
 const requestRoute = require("./requestRoute");
 const mockRoute = require("./mockRoute");
+const partyRoute = require("./partyRoute");
 
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.send("This is IOU backend!");
+	res.send("This is IOU backend!");
 });
 
 router.use("/favors", favorsRoute);
@@ -20,5 +21,8 @@ router.use("/image", imageRoute);
 router.use("/request", requestRoute);
 
 router.use("/mock", mockRoute);
+
+router.use("/party", partyRoute);
+
 
 module.exports = router;
