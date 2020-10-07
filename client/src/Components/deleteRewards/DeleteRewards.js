@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 
 const rewardItems = ['Coffee', 'Chocolate', 'Pizza', 'Cupcake', 'Mint'];
 
-const DeleteRewards = ({ rewardList }) => {
+const DeleteRewards = ({ rewardList, selectedRequest, requestData }) => {
   const { isAuth, user } = useContext(AuthContext);
 
   const [storedReward, setStoredReward] = useState([]);
@@ -41,6 +41,49 @@ const DeleteRewards = ({ rewardList }) => {
   const handleClose = () => {
     //close Modal
     setOpen(false);
+  };
+
+  const handleDeleteReward = async (event) => {
+    if (selectedRequest.rewards.length === 1) {
+      const result = window.confirm('Deleting the last reward will delete the request, are you sure?');
+
+      if (result === true) {
+        const rewardId = event.target.getAttribute('data-reward-id');
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/request/reward/delete`, {
+          request_id: selectedRequest._id,
+          reward_id: rewardId,
+        });
+
+        if (response.status === 200) {
+          const response = await axios.post(`${process.env.REACT_APP_API_URL}/request/delete`, {
+            request_id: selectedRequest._id,
+          });
+
+          if (response.status === 200) {
+            window.location.reload(false);
+          }
+        }
+
+        if (response.status === 400) {
+          alert('Failed to delete reward!');
+        }
+      }
+    } else {
+      const rewardId = event.target.getAttribute('data-reward-id');
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/request/reward/delete`, {
+        request_id: selectedRequest._id,
+        reward_id: rewardId,
+      });
+
+      if (response.status === 200) {
+        alert('Reward deleted successfully!');
+        window.location.reload(false);
+      }
+
+      if (response.status === 400) {
+        alert('Failed to delete reward!');
+      }
+    }
   };
 
   useEffect(() => {
@@ -80,8 +123,8 @@ const DeleteRewards = ({ rewardList }) => {
             rewardList.map((reward, i) => (
               <div key={i} className='delete_reward_item'>
                 <div className='delete_reward_item_content'>
-                  <button className='delete_reward_item_btn'>
-                    <CloseOutlinedIcon />
+                  <button className='delete_reward_item_btn' data-reward-id={reward._id} onClick={handleDeleteReward}>
+                    X
                   </button>
                   <div className='delete_reward_detail'>
                     <strong> {reward.reward} </strong> from {user.username}
@@ -96,12 +139,12 @@ const DeleteRewards = ({ rewardList }) => {
       <div className='delete_rewards_confirm_btn_container'>
         <button className='cancel_delete_rewards_btn' onClick={handleClose}>
           {' '}
-          <span>Cancel</span>
+          <span>Close</span>
         </button>
-        <button className='confirm_delete_rewards_btn' onClick={handleConfirm}>
+        {/* <button className='confirm_delete_rewards_btn' onClick={handleConfirm}>
           {' '}
-          <span>Confirm</span>
-        </button>
+          <span>Cancel</span>
+        </button> */}
       </div>
     </div>
   );

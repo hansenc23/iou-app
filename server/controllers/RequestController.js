@@ -213,7 +213,36 @@ const getRequestReward = async (req, res) => {
       return res.status(200).json({ success: true, rewards: response });
     }
   } catch (error) {
-    res.json(error);
+    return res.status(400).json(error);
+  }
+};
+
+//POST /request/delete/reward/delete
+const deleteReward = async (req, res) => {
+  const { request_id, reward_id } = req.body;
+
+  try {
+    const responseRequest = await Requests.updateOne({ _id: { $eq: request_id } }, { $pull: { rewards: reward_id } });
+
+    const responseRequestReward = await RequestRewards.deleteOne({ _id: { $eq: reward_id } });
+
+    if (responseRequest && responseRequestReward) {
+      return res.status(200).json({ success: true, response: 'Reward deleted' });
+    }
+  } catch (err) {
+    return res.status(400).json({ success: false, response: err });
+  }
+};
+
+const deleteRequest = async (req, res) => {
+  const { request_id } = req.body;
+
+  try {
+    const response = await Requests.deleteOne({ _id: { $eq: request_id } });
+
+    res.status(200).json(response);
+  } catch (err) {
+    res.status(400).json(err);
   }
 };
 
@@ -224,4 +253,6 @@ module.exports = {
   getById,
   addReward,
   getRequestReward,
+  deleteReward,
+  deleteRequest,
 };

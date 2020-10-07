@@ -1,13 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, Fragment } from 'react';
 import './LoginPage.css';
 import TextField from '@material-ui/core/TextField';
 import AlertMessage from '../../Components/AlertMessage';
+import Spinner from '../../Components/Spinner';
 import { AuthContext } from '../../context/AuthContext';
 import { Redirect } from 'react-router-dom';
 
 import CONFIG from '../../config';
 
 function LoginPage() {
+  const [isLoading, setIsLoading] = useState(false);
   //login form data
   const [loginInfo, setLoginInfo] = useState({
     emailOrUsername: '',
@@ -51,6 +53,7 @@ function LoginPage() {
   };
 
   const postLoginData = async () => {
+    setIsLoading(true);
     try {
       const res = await fetch(`${process.env.REACT_APP_API_URL}/auth/login`, {
         method: 'POST',
@@ -65,6 +68,7 @@ function LoginPage() {
 
       //if request is successfull
       if (res.status === 200) {
+        setIsLoading(false);
         localStorage.setItem('isAuth', 'true');
         setLoginInfo({
           emailOrUsername: '',
@@ -74,6 +78,7 @@ function LoginPage() {
       }
 
       if (res.status === 400) {
+        setIsLoading(false);
         setAlertBox(<AlertMessage severity='error'>{data}</AlertMessage>);
       }
 
@@ -92,7 +97,8 @@ function LoginPage() {
   const renderPage = isAuth ? (
     <Redirect to='/requests' />
   ) : (
-    <div id='Login'>
+    <Fragment>
+      <div id='Login'>
         <div className='login_form'>
           <div className='login_form_title'>Welcome Back,</div>
           <form className='login_textfields' autoComplete='off' id='loginForm' onSubmit={formSubmit}>
@@ -118,14 +124,17 @@ function LoginPage() {
               InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
             />
           </form>
-          <div className="login_alert">
+
+          <div className='login_alert'>
             {alertBox && alertBox}
+            {isLoading ? <Spinner width='50px' /> : ''}
           </div>
           <button type='submit' form='loginForm' className='login_btn'>
             Log In
           </button>
         </div>
-    </div>
+      </div>
+    </Fragment>
   );
 
   return renderPage;

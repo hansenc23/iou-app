@@ -77,6 +77,8 @@
   width: fit-content;
   background: transparent;
   margin-right: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
   color: darkred;
   cursor: pointer;
 }
@@ -106,11 +108,12 @@
   font-weight: 300;
 }
 .delete_rewards_confirm_btn_container {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
   width: fit-content;
-  margin-left: 305px;
+  margin-left: 305px; */
 }
 .cancel_delete_rewards_btn {
   width: 50px;

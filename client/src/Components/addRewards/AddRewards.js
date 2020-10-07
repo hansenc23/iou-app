@@ -15,6 +15,7 @@ import Collapse from '@material-ui/core/Collapse';
 import AlertMessage from '../AlertMessage';
 import CloseIcon from '@material-ui/icons/Close';
 import { Link } from 'react-router-dom';
+import Spinner from '../../Components/Spinner';
 
 const rewardItems = ['Coffee', 'Chocolate', 'Pizza', 'Cupcake', 'Mint'];
 
@@ -22,7 +23,7 @@ const AddRewards = ({ selectedRequestId }) => {
   const { isAuth, user } = useContext(AuthContext);
 
   const [storedReward, setStoredReward] = useState('');
-
+  const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [openAlert, setOpenAlert] = useState(false);
   const [error, setError] = useState('');
@@ -37,7 +38,7 @@ const AddRewards = ({ selectedRequestId }) => {
       setOpenAlert(true);
       setError('Please select a reward');
     } else {
-      console.log(storedReward, selectedRequestId);
+      setIsLoading(true);
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/request/add_reward`, {
         request_id: selectedRequestId,
         reward: storedReward,
@@ -45,11 +46,13 @@ const AddRewards = ({ selectedRequestId }) => {
       });
 
       if (response.status === 200) {
+        setIsLoading(false);
         alert('Reward added successfully');
         window.location.reload(false);
       }
 
       if (response.status === 400) {
+        setIsLoading(false);
         setOpenAlert(true);
         setError('Failed to add reward');
       }
@@ -128,6 +131,7 @@ const AddRewards = ({ selectedRequestId }) => {
               </AlertMessage>
             )}
           </Collapse>
+          {isLoading ? <Spinner width='50px' /> : ''}
         </div>
       </div>
       <div className='add_rewards_confirm_btn_container'>

@@ -20,6 +20,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import Slide from '@material-ui/core/Slide';
 import CloseIcon from '@material-ui/icons/Close';
+import Spinner from '../../Components/Spinner';
 
 const rewardItems = ['Coffee', 'Chocolate', 'Pizza', 'Cupcake', 'Mint'];
 
@@ -29,7 +30,7 @@ const CreateRequest = () => {
   const [storedRequestTitle, setStoredRequestTitle] = useState('New Request Title Here');
   const [storedDescription, setStoredDescription] = useState('');
   const [storedReward, setStoredReward] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(false);
   const [openModal, setOpenModal] = React.useState(false);
   const [openAlert, setOpenAlert] = useState(false);
   const [error, setError] = useState('');
@@ -87,6 +88,7 @@ const CreateRequest = () => {
       setError('Please select at least one reward');
     } else {
       try {
+        setIsLoading(true);
         disableButton();
 
         const res = await axios.post(
@@ -102,12 +104,15 @@ const CreateRequest = () => {
         );
 
         if (res.status === 200) {
+          setIsLoading(false);
           //disable button to prevent multiple submissions
           handleSuccess();
         } else {
+          setIsLoading(false);
           console.log('Create request failed');
         }
       } catch (err) {
+        setIsLoading(false);
         console.log(err);
       }
     }
@@ -171,7 +176,7 @@ const CreateRequest = () => {
             onChange={handleChangeDescription}
             rows={5}
             variant='outlined'
-            InputProps={{ style: { color: 'black', fontSize: 15, fontWeight: 550, fontFamily: 'Poppins', lineHeight: 1.5} }}
+            InputProps={{ style: { color: 'black', fontSize: 15, fontWeight: 550, fontFamily: 'Poppins', lineHeight: 1.5 } }}
           />
         </div>
       </div>
@@ -206,6 +211,7 @@ const CreateRequest = () => {
           </FormControl>
         </div>
         <div className='create_request_alert'>
+          {isLoading ? <Spinner width='50px' /> : ''}
           <Collapse in={openAlert}>
             {error && (
               <AlertMessage severity='error'>

@@ -7,7 +7,7 @@ import AddRewards from '../addRewards/AddRewards';
 import { AuthContext } from '../../context/AuthContext';
 import DeleteRewards from '../deleteRewards/DeleteRewards';
 
-const RequestDetail = ({ selectedRequest }) => {
+const RequestDetail = ({ selectedRequest, requestData }) => {
   const { isAuth, user } = useContext(AuthContext);
 
   //an array containing the rewards added by the logged in user
@@ -75,7 +75,7 @@ const RequestDetail = ({ selectedRequest }) => {
         </div>
         <div className='edit_reward_btn_container'>
           <AddRewards selectedRequestId={selectedRequest._id} />
-          <DeleteRewards rewardList={rewardList} />
+          <DeleteRewards rewardList={rewardList} selectedRequest={selectedRequest} />
         </div>
       </div>
     </div>

@@ -1,14 +1,18 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import Spinner from '../Components/Spinner';
 import './Navbar.css';
 
 const Navbar = () => {
   const { isAuth, setIsAuth, user, setUser, logout } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onLogout = () => {
+    setIsLoading(true);
     logout().then((data) => {
       if (data.status === 200) {
+        setIsLoading(false);
         localStorage.setItem('isAuth', 'false');
         localStorage.removeItem('id');
         localStorage.removeItem('firstName');
@@ -44,6 +48,8 @@ const Navbar = () => {
 
   const authLinks = (
     <div className='authentication_links auth'>
+      {isLoading ? <Spinner width='20px' padding='10px' /> : ''}
+
       <div className='login_link'>
         <p className='user_name'>{`Hi, ${user.firstName}`}</p>
       </div>

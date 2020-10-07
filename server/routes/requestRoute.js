@@ -13,6 +13,8 @@ router.all('/', (req, res) => {
 router.post('/create', requestController.create);
 router.post('/add_reward', requestController.addReward);
 router.post('/complete', requestController.complete);
+router.post('/reward/delete', requestController.deleteReward);
+router.post('/delete', requestController.deleteRequest);
 
 router.get('/get_all', requestController.getAll);
 router.get('/get', requestController.getById);

@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import './SignupPage.css';
 import TextField from '@material-ui/core/TextField';
 import AlertMessage from '../../Components/AlertMessage';
+import Spinner from '../../Components/Spinner';
 import { AuthContext } from '../../context/AuthContext';
 import CONFIG from '../../config';
 
@@ -15,6 +16,8 @@ const SignupPage = () => {
     password: '',
     confirmPassword: '',
   });
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [alertBox, setAlertBox] = useState(null);
   const { isAuth, setIsAuth, user, setUser, getUser } = useContext(AuthContext);
@@ -63,6 +66,7 @@ const SignupPage = () => {
   };
 
   const postUserData = async () => {
+    setIsLoading(true);
     const userData = {
       firstName,
       lastName,
@@ -84,10 +88,12 @@ const SignupPage = () => {
       const data = await res.json();
 
       if (res.status === 400) {
+        setIsLoading(false);
         setAlertBox(<AlertMessage severity='error'>{data}</AlertMessage>);
       }
 
       if (res.status === 200) {
+        setIsLoading(false);
         localStorage.setItem('isAuth', 'true');
         setUserRegData({
           firstName: '',
@@ -181,7 +187,11 @@ const SignupPage = () => {
             InputProps={{ style: { fontSize: 15, fontWeight: 600, fontFamily: 'Poppins' } }}
           />
         </form>
-        <div className='signup_alert'>{alertBox && alertBox}</div>
+        <div className='signup_alert'>
+          {alertBox && alertBox}
+
+          {isLoading ? <Spinner width='40px' /> : ''}
+        </div>
         <button type='submit' form='signupForm' className='signup_btn'>
           Sign Up
         </button>
