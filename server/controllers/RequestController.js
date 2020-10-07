@@ -1,6 +1,6 @@
-const Requests = require("../models/Requests");
-const RequestRewards = require("../models/RequestRewards");
-const Completed = require("../models/Completed");
+const Requests = require('../models/Requests');
+const RequestRewards = require('../models/RequestRewards');
+const Completed = require('../models/Completed');
 
 // POST /request/create
 // {
@@ -15,7 +15,7 @@ const create = async (req, res) => {
   const { title, owner, description, reward } = req.body;
 
   try {
-    if (!title || !owner || !description || !reward) throw Error("Incomplete");
+    if (!title || !owner || !description || !reward) throw Error('Incomplete');
 
     // Insert into Request
     const newRequest = new Requests({
@@ -26,24 +26,22 @@ const create = async (req, res) => {
     });
     await newRequest.save();
 
-
-    let listOfIds = []
+    let listOfIds = [];
 
     if (Array.isArray(reward)) {
-      const rewardInsertMany = []
-      
+      const rewardInsertMany = [];
+
       reward.forEach((each) => {
         rewardInsertMany.push({
           request_id: newRequest._id,
           reward: each,
           owner,
-        })
-      })
+        });
+      });
 
-      const response = await RequestRewards.insertMany(rewardInsertMany)
+      const response = await RequestRewards.insertMany(rewardInsertMany);
 
-      listOfIds = response.map(each => each._id)
-
+      listOfIds = response.map((each) => each._id);
     } else {
       // Insert into Rewards
       const newReward = new RequestRewards({
@@ -53,7 +51,7 @@ const create = async (req, res) => {
       });
       await newReward.save();
 
-      listOfIds = [newReward._id]
+      listOfIds = [newReward._id];
     }
 
     // Push reward id(s) into the request object
@@ -84,7 +82,7 @@ const addReward = async (req, res) => {
   const reward_owner = req.body.reward_owner || request_id;
 
   try {
-    if (!request_id || !reward) throw Error("Incomplete");
+    if (!request_id || !reward) throw Error('Incomplete');
 
     const requestResponse = await Requests.findOne({ _id: request_id });
 
@@ -113,8 +111,7 @@ const complete = async (req, res) => {
   const { request_id, completer_id, picture_proof_url } = req.body;
 
   try {
-    if (!request_id || !completer_id || !picture_proof_url)
-      throw Error("Incompleted");
+    if (!request_id || !completer_id || !picture_proof_url) throw Error('Incompleted');
 
     const newCompleted = new Completed({
       user: completer_id,
@@ -125,7 +122,7 @@ const complete = async (req, res) => {
 
     const request = await Requests.findOne({ _id: request_id });
 
-    if (request.completedBy) throw Error("This request has been completed");
+    if (request.completedBy) throw Error('This request has been completed');
 
     request.completedBy = newCompleted._id;
     await request.save();
@@ -140,9 +137,8 @@ const complete = async (req, res) => {
 const getAll = async (req, res) => {
   const limit = parseInt(req.query.limit) || 10;
   const skip = parseInt(req.query.skip) || 0;
-  const completed = req.query.completed === "true" ? true : false;
-  const sortBy =
-    req.query.order === "asc" ? { createdAt: 1 } : { createdAt: -1 };
+  const completed = req.query.completed === 'true' ? true : false;
+  const sortBy = req.query.order === 'asc' ? { createdAt: 1 } : { createdAt: -1 };
 
   try {
     const response = await Requests.find({
@@ -151,25 +147,25 @@ const getAll = async (req, res) => {
       .skip(skip)
       .limit(limit)
       .sort(sortBy)
-      .populate("request_owner")
-      .populate("rewards")
+      .populate('request_owner')
+      .populate('rewards')
       .populate({
-        path: "rewards",
+        path: 'rewards',
         select: { request_id: 0 },
         populate: {
-          path: "owner",
+          path: 'owner',
           select: { password: 0 },
         },
       })
       .populate({
-        path: "completedBy",
+        path: 'completedBy',
         populate: {
-          path: "user",
+          path: 'user',
           select: { password: 0 },
         },
       });
 
-    if (!response) throw Error("Unable to get records.");
+    if (!response) throw Error('Unable to get records.');
 
     return res.status(200).json({ success: true, requests: response });
   } catch (error) {
@@ -183,20 +179,20 @@ const getById = async (req, res) => {
 
   try {
     const response = await Requests.findOne({ _id: request_id })
-      .populate("request_owner")
-      .populate("rewards")
+      .populate('request_owner')
+      .populate('rewards')
       .populate({
-        path: "rewards",
+        path: 'rewards',
         select: { request_id: 0 },
         populate: {
-          path: "owner",
+          path: 'owner',
           select: { password: 0 },
         },
       })
       .populate({
-        path: "completedBy",
+        path: 'completedBy',
         populate: {
-          path: "user",
+          path: 'user',
           select: { password: 0 },
         },
       });
@@ -207,10 +203,25 @@ const getById = async (req, res) => {
   }
 };
 
+//GET /request/reward/get?request_id=5f7588b4251f06031cf42174&reward_owner_id=5f7588b4251f06031cf42174
+const getRequestReward = async (req, res) => {
+  const { request_id, reward_owner_id } = req.query;
+
+  try {
+    const response = await RequestRewards.find({ request_id: { $eq: request_id }, owner: { $eq: reward_owner_id } });
+    if (response) {
+      return res.status(200).json({ success: true, rewards: response });
+    }
+  } catch (error) {
+    res.json(error);
+  }
+};
+
 module.exports = {
   create,
   complete,
   getAll,
   getById,
   addReward,
+  getRequestReward,
 };

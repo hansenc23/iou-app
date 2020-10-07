@@ -1,163 +1,171 @@
-.delete_reward_btn{
-    cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    background-color: transparent;
-    color: black;
-    font-size: 14px;
-    font-weight: 450;
-    font-family: "Poppins";
+.delete_reward_btn {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: transparent;
+  color: black;
+  font-size: 14px;
+  font-weight: 450;
+  font-family: 'Poppins';
 }
-.delete_reward_btn:hover{
-    color: #626262;
+.delete_reward_btn:hover {
+  color: #626262;
 }
-.delete_reward_btn:focus{
-    font-weight: 450;
+.delete_reward_btn:focus {
+  font-weight: 450;
 }
-.delete_rewards_modal{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.delete_rewards_modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .delete_rewards_modal_container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    background-color: #f3f0ea;
-    box-shadow: 0 0 4px 4px rgba(133, 135, 141, 0.12);
-    padding: 60px 60px 50px 60px;
-    outline: none;
-    border-radius: 10px;
-    width: 500px;
-    height: fit-content;
-    max-height: 100%;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #f3f0ea;
+  box-shadow: 0 0 4px 4px rgba(133, 135, 141, 0.12);
+  padding: 60px 60px 50px 60px;
+  outline: none;
+  border-radius: 10px;
+  width: 500px;
+  height: fit-content;
+  max-height: 100%;
+  text-align: center;
 }
-.delete_rewards_title{
-    text-align: left;
-    font-family: Poppins;
-    font-size: 35px;
-    font-weight: 650;
-    color: black;
-    margin-bottom: 35px;
+.delete_rewards_title {
+  text-align: left;
+  font-family: Poppins;
+  font-size: 35px;
+  font-weight: 650;
+  color: black;
+  margin-bottom: 35px;
 }
-.delete_rewards_list_container{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    height: fit-content;
-    margin-bottom: 40px;
+.delete_rewards_list_container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  height: fit-content;
+  margin-bottom: 40px;
 }
-.delete_rewards_list{
-    height: 200px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 7px;
-    background-color: #eae9e6;
-    min-height: 80px;
-    overflow: auto;
-    padding-top: 5px;
-    padding-bottom: 5px;
+.delete_rewards_list {
+  height: 200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 7px;
+  background-color: #eae9e6;
+  min-height: 80px;
+  overflow: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
-.delete_reward_item{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 90%;
-    border-bottom: thin solid #d6d6d6;
-    height: 50px;
-    color: black;
+.delete_reward_item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  border-bottom: thin solid #d6d6d6;
+  height: 50px;
+  color: black;
 }
-.delete_reward_item_btn{
-    width: fit-content;
-    background: transparent;
-    margin-right: 10px;
-    color: darkred;
-    cursor: pointer;
+.delete_reward_item_btn {
+  width: fit-content;
+  background: transparent;
+  margin-right: 10px;
+  color: darkred;
+  cursor: pointer;
 }
-.delete_reward_item_btn:hover{
-    color: orangered;
+.delete_reward_item_btn:hover {
+  color: orangered;
 }
-.delete_reward_item_content{
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    align-self: center;
-    justify-content: center;
+.delete_reward_item_content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  align-self: center;
+  justify-content: center;
 }
-.delete_reward_detail{
-    margin: auto;
-    font-family: "Poppins";
-    font-size: 13px;
-    font-weight: 250;
+.delete_reward_detail {
+  margin: auto;
+  font-family: 'Poppins';
+  font-size: 13px;
+  font-weight: 250;
 }
-.delete_reward_item_date{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    font-family: "Poppins";
-    font-size: 12px;
-    font-weight: 300;
+.delete_reward_item_date {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-family: 'Poppins';
+  font-size: 12px;
+  font-weight: 300;
 }
-.delete_rewards_confirm_btn_container{
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    width: fit-content;
-    margin-left: 305px;
+.delete_rewards_confirm_btn_container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  width: fit-content;
+  margin-left: 305px;
 }
-.cancel_delete_rewards_btn{
-    width: 50px;
-    height: 40px;
-    background-color: transparent;
-    border: thin solid transparent;
-    color: #484848;
-    font-weight: 600;
-    font-size: 13px;
-    border-radius: 20px;
-    display: table-cell;
-    cursor: pointer;
-    margin-right: 25px;
-    margin-top: 5px;
+.cancel_delete_rewards_btn {
+  width: 50px;
+  height: 40px;
+  background-color: transparent;
+  border: thin solid transparent;
+  color: #484848;
+  font-weight: 600;
+  font-size: 13px;
+  border-radius: 20px;
+  display: table-cell;
+  cursor: pointer;
+  margin-right: 25px;
+  margin-top: 5px;
 }
-.confirm_delete_rewards_btn{
-    position: relative;
-    transition: all .35s;
-    justify-content: center;
-    align-items: center;
-    width: 120px;
-    height: 38px;
-    background-color: black;
-    color: white;
-    font-weight: bold;
-    font-size: 13px;
-    border-radius: 20px;
-    cursor: pointer;
+.confirm_delete_rewards_btn {
+  position: relative;
+  transition: all 0.35s;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 38px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  border-radius: 20px;
+  cursor: pointer;
 }
-.confirm_delete_rewards_btn span{
-    z-index: 2;
+.confirm_delete_rewards_btn span {
+  z-index: 2;
 }
-.confirm_delete_rewards_btn:after{
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: linear-gradient(to bottom left, #7e51d0, #4b83e9);
-    border-radius: 20px;
-    transition: all .35s;
+.confirm_delete_rewards_btn:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(to bottom left, #7e51d0, #4b83e9);
+  border-radius: 20px;
+  transition: all 0.35s;
 }
-.confirm_delete_rewards_btn:hover{
-    color: #fff;
-    opacity: 1;
+.confirm_delete_rewards_btn:hover {
+  color: #fff;
+  opacity: 1;
 }
-.confirm_delete_rewards_btn:hover:after{
-    width: 100%;
+.confirm_delete_rewards_btn:hover:after {
+  width: 100%;
+}
+
+.delete_rewards_empty {
+  height: inherit;
+  color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
