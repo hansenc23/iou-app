@@ -44,7 +44,7 @@
     background: linear-gradient(to bottom left, #8856bf, #2d44d7);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 button {
     display: flex;
@@ -62,4 +62,19 @@ button:hover {
 button:focus {
     font-weight: bold;
     outline:0;
+}
+.search_bar{
+    padding: 2px 4px;
+    display: flex;
+    align-items: center;
+    width: 250px;
+    height: 40px;
+    background-color: #e0deda;
+    font-family: Poppins;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+.search_input{
+    margin-left: 5px;
+    flex: 1;
 }

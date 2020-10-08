@@ -4,9 +4,12 @@ import './Request.css';
 import CreateRequest from '../createRequest/CreateRequest';
 import CompleteRequest from '../completeRequest/CompleteRequest';
 import Spinner from '../../Components/Spinner';
-import axios from 'axios';
 import Moment from 'moment';
 import moment from 'moment';
+import InputBase from '@material-ui/core/InputBase';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
+
 
 const RequestsList = ({ requestData, selectRequestId, setSelectedRequestID, isLoading }) => {
   const [date] = useState(Moment().format('Do MMMM YYYY'));
@@ -19,7 +22,6 @@ const RequestsList = ({ requestData, selectRequestId, setSelectedRequestID, isLo
   //     const response = await axios.post(`${process.env.REACT_APP_API_URL}/request/delete`, {
   //       request_id: request_id,
   //     });
-
   //     if (response.status === 200) {
   //       //   requestData.forEach((request, i) => {
   //       //     if (request._id === request_id) {
@@ -35,6 +37,15 @@ const RequestsList = ({ requestData, selectRequestId, setSelectedRequestID, isLo
         <div className='title_container'>
           <span className='requests_label'> Requests </span>
           <span className='date'> {date} </span>
+            <div className="search_bar">
+                <InputBase
+                    className="search_input"
+                    placeholder="Search Requests"
+                />
+                <IconButton type="submit" className="" aria-label="search">
+                    <SearchIcon/>
+                </IconButton>
+            </div>
         </div>
         <CreateRequest />
       </div>
