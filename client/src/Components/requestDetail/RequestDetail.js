@@ -48,6 +48,8 @@ const RequestDetail = ({ selectedRequest, requestData }) => {
         requestName={selectedRequest.title}
         requestOwner={selectedRequest.request_owner.username}
         requestDate={selectedRequest.createdAt}
+        requestRewards={selectedRequest.rewards}
+        requestId={selectedRequest._id}
       />
       <div className='description_details_container'>
         <div className='description_detail_header'>Details</div>

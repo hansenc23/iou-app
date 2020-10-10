@@ -80,6 +80,8 @@ const RequestsList = ({ requestData, selectRequestId, setSelectedRequestID, isLo
                       requestName={request.title}
                       requestOwner={request.request_owner.username}
                       requestDate={moment(request.createdAt).format('DD MMM')}
+                      requestRewards={request.rewards}
+                      requestId={request._id}
                     />
                   </div>
                   <div className='request_date_container'>

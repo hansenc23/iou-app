@@ -51,10 +51,13 @@ const AttachProof = (props) => {
   };
 
   const fileChangedHandler = (e) => {
-    const previewUrl = URL.createObjectURL(e.target.files[0]);
-    setSelectedImage(e.target.files[0]);
-    setImageName(e.target.files[0].name);
-    setImagePreview(previewUrl);
+    const previewUrl = e.target.files[0] ? URL.createObjectURL(e.target.files[0]) : '';
+    if(previewUrl){
+
+      setSelectedImage(e.target.files[0]);
+      setImageName(e.target.files[0].name);
+      setImagePreview(previewUrl);
+    }
   };
 
   const imageUploadHandler = () => {
@@ -62,13 +65,7 @@ const AttachProof = (props) => {
     console.log(msg);
   };
 
-  // const changeContainerHeight = () => {
-  //   if (imagePreview) {
-  //     document.querySelector('.img_preview').style.height = '220px';
-  //     document.querySelector('.attachProof_modal_container').style.height = '520px';
-  //   }
-  //   return <img src={imagePreview} alt='' />;
-  // };
+
 
   const handleOpen = () => {
     //open Modal
@@ -145,8 +142,7 @@ const AttachProof = (props) => {
 
             <div className='img_preview'>
               <span className='preview_label'>
-                {/* <img src={imagePreview} alt='' /> */}
-                {imagePreview ? <img src={imagePreview} alt='' /> : 'Image preview'}
+                {imagePreview ? <img className="attach_proof_img_preview" src={imagePreview} alt='' /> : 'Image preview'}
               </span>
               {alertMessage && alertMessage}
             </div>

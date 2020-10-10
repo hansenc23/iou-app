@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext } from 'react';
+import React, {useState, useEffect, useContext, Fragment } from 'react';
 import Modal from '@material-ui/core/Modal';
 import Slide from '@material-ui/core/Slide';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -12,12 +12,15 @@ import Collapse from "@material-ui/core/Collapse";
 import {AuthContext} from "../../context/AuthContext";
 import {Link} from "react-router-dom";
 import moment from "moment";
+import axios from 'axios';
+import Spinner from '../../Components/Spinner';
 
 const CompleteRequest = (props) => {
 
     const { isAuth, user} = useContext(AuthContext);
 
     const { selectedImage, setSelectedImage, uploadImage, setUploadedImageUrl } = useContext(ImageContext);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [open, setOpen] = React.useState(false);
     const [openAlert, setOpenAlert] = useState(false);
@@ -27,14 +30,20 @@ const CompleteRequest = (props) => {
     const [uploadSuccess, setUploadSuccess] = useState(false);
 
     const [imageName, setImageName] = useState('');
-    const [imagePreview, setImagePreview] = useState();
+    const [imagePreview, setImagePreview] = useState('');
 
     const uploadImageClick = () => {
         document.getElementById('upload-image-input').click();
     };
 
-    const fileChangedHandler = () => {
-        console.log("file change handler")
+    const fileChangedHandler = (e) => {
+        const previewUrl = e.target.files[0] ?  URL.createObjectURL(e.target.files[0]) : '';
+        if(previewUrl){
+
+            setSelectedImage(e.target.files[0]);
+            setImageName(e.target.files[0].name);
+            setImagePreview(previewUrl);
+        }
     }
 
     const handleOpen = () => {
@@ -50,13 +59,78 @@ const CompleteRequest = (props) => {
         setImagePreview('');
     }
 
-    const handleConfirm = () => {
+
+    //check reward list if it contains a reward that a the logged in user has added
+    const checkRewardList = () =>{
+        for(let i = 0; i< props.requestRewards.length; i++){
+            if(props.requestRewards[i].owner._id === user.id){
+               return true;
+            }
+            
+        }  
+        return false;
+    }
+
+    const handleConfirm = async () => {
+        
         if (selectedImage === null) {
             setOpenAlert(true);
             setAlertMessage('Please select an image');
-        } else {
-            //close Modal
-            setOpen(false);
+        } else if(props.requestOwner === user.username){
+            setOpenAlert(true);
+            setAlertMessage('Cannot complete your own request!');
+        }else if(checkRewardList() === true){
+            setOpenAlert(true);
+            setAlertMessage('Please remove your added reward before completing this request.');
+        }else{
+            setIsLoading(true);
+            const resImage = await uploadImage();
+            if(resImage.error){
+                setIsLoading(false);
+                setOpenAlert(true);
+                setAlertMessage('Upload failed. Invalid file type or size is too large. (Max: 2MB)');
+            }
+            else{
+                try{
+                    //create array to store promises
+                    const promises = [];
+                    //create favour for each rewards in the request
+                    props.requestRewards.forEach(async (rewards) => {
+                        const res = axios.post(`${process.env.REACT_APP_API_URL}/favors/create`, {
+                            ower: rewards.owner._id,
+                            owner: user.id,
+                            favor_detail: rewards.reward,
+                            picture_proof_id: resImage.location,
+                          });
+    
+                         promises.push(res);
+                    })    
+                    const data = await Promise.all(promises); 
+                    if(data){
+                        //update request status to be completed
+                        const res = await axios.post(`${process.env.REACT_APP_API_URL}/request/complete`, {
+                            request_id: props.requestId,
+                            completer_id: user.id,
+                            picture_proof_url: resImage.location,
+                          });
+
+                          if(res.status === 200){
+                              setIsLoading(false);
+                              alert('Request completed! Please view your newly added favours');
+                              handleClose();
+                              window.location.reload(false);
+                          }else{
+                            setIsLoading(false);
+                              console.log('Failed');
+                          }
+                    }                  
+                }catch(error){
+                    setIsLoading(false);
+                    setOpenAlert(true);
+                    setAlertMessage('Failed');
+                }
+                
+            }
         }
     };
 
@@ -64,14 +138,7 @@ const CompleteRequest = (props) => {
         if (alertMessage) {
             setTimeout(() => {
                 setOpenAlert(false);
-            }, 2000);
-        }
-    });
-
-    useEffect(() => {
-        if (selectedImage === null) {
-            setImageName('');
-            setImagePreview('');
+            }, 4000);
         }
     });
 
@@ -107,27 +174,26 @@ const CompleteRequest = (props) => {
                     {uploadSuccess ? (
                         successMsg
                     ) : (
-                        <fragment className="complete_request_upload_btn" >
+                        <Fragment>
                             <PhotoCameraIcon/>
                             <input hidden type='file' accept='image/*' id='upload-image-input' onChange={fileChangedHandler}/>
-                            {imageName ? (
-                                <div className='upload_proof_text'> {imageName} </div>
-                            ) : (
-                                <div className='upload_proof_text'> Upload Proof </div>
-                            )}
-                        </fragment>
+                            <div className='upload_proof_text'> {imageName ? imageName : 'Upload Proof'} </div>
+                        </Fragment>
                     )}
                 </button>
                 <div className='request_proof_img_preview'>
                               <span className='preview_label'>
                                 {/* <img src={imagePreview} alt='' /> */}
-                                  {imagePreview ? <img src={imagePreview} alt='' /> : 'Image preview'}
+                                  {imagePreview ? <img className='complete_request_img_preview'src={imagePreview} alt='' /> : 'Image preview'}
                               </span>
                 </div>
                 <div className='complete_request_alert'>
                     <Collapse in={openAlert}>
                         {alertMessage && <AlertMessage severity='error'> {alertMessage} </AlertMessage>}
                     </Collapse>
+
+                    {isLoading ? <Spinner width='50px'/> : ''}
+                    
                 </div>
             </div>
             <div className='complete_request_confirm_btn_container'>
