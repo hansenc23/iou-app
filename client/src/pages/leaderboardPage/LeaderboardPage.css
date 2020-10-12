@@ -1,3 +1,27 @@
-.placeholder {
-    padding-top: 20%;
+#Leaderboard{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: calc(100vh - 82px);
+    width: 100vw;
+    padding-top: 80px;
+    background-color: #f3f0ea;
+    transition: 2s;
+    overflow-x: hidden;
+}
+.leaderboard_table_container{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border-radius: 7px;
+    min-height: 300px;
+    max-height: 55vh;
+    margin-right: 10vw;
+    margin-left: 10vw;
+}
+.leaderboard_title{
+    font-family: Poppins;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 15px;
 }
