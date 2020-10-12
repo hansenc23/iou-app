@@ -12,16 +12,10 @@ function LeaderboardTableList() {
                 <div className='row_rank_container'>
                     <span className="row_rank_label"> 1 </span>
                 </div>
-                <span className='row_user_name'>
-                            Grace Kelly
-                        </span>
-                <span className='row_username'>
-                            @gracekelly
-                        </span>
+                <span className='row_user_name'> Grace Kelly</span>
+                <span className='row_username'> @gracekelly </span>
                 <div className='row_completed_request'>
-                            <span className='row_completed_request_label'>
-                                45 Completed Requests
-                            </span>
+                    <span className='row_completed_request_label'>45 Completed Requests</span>
                 </div>
             </div>
             <div className='current_user_row_container'>
