@@ -16,12 +16,27 @@
     border-radius: 7px;
     min-height: 300px;
     max-height: 55vh;
-    margin-right: 10vw;
-    margin-left: 10vw;
+    margin-right: 7vw;
+    margin-left: 7vw;
+}
+.leaderboard_table_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px 0 30px;
 }
 .leaderboard_title{
+    font-family: Poppins;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    word-spacing: 3px;
+}
+.leaderboard_date{
     font-family: Poppins;
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 15px;
+    color: lightgrey;
+    word-spacing: 3px;
 }

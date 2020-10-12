@@ -24,7 +24,7 @@ function LeaderboardTableList() {
                             </span>
                 </div>
             </div>
-            <div className='leaderboard_row_container'>
+            <div className='current_user_row_container'>
                 <div className='row_rank_container'>
                     <span className="row_rank_label"> 2 </span>
                 </div>
