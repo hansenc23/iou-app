@@ -205,39 +205,41 @@ const getById = async (req, res) => {
 };
 
 const getCompleted = async (req, res) => {
-
   try {
-    const userId = [];
-    const users = [];
-    const response = await Completed.find({})
+    const response = await Completed.aggregate([
+      //group user id and count the number of occurences
+      {
+        $group:{
+          _id: '$user',
+          count: {$sum: 1}
+        }
+      },
+      //use the grouped user id to join 'Users' collection to get user info
+      {
+        $lookup: {
+          from: 'users',
+          localField: '_id',
+          foreignField: '_id',
+          as: 'user_data'
+        }
+      },
+      //specify the needed fields to be returned
+      {
+        $project: {
+          count: 1,
+          user_data:{
+            _id: 1,
+            firstName: 1,
+            lastName: 1,
+            username: 1
+          }
+        }
+      },
+      //sort by descending order based on the number of count
+      {$sort: {count: -1}}
+    ])
 
-    if (response) {
-      //return res.status(200).json({ rewards: response.user });
-      response.forEach(data => {
-        userId.push(data.user);
-      })
-
-    }
-
-    const promises = [];
-
-    userId.forEach(async (id) => {
-      const userRes = Users.findOne({_id: id});
-      promises.push(userRes);
-    })
-
-    const data = await Promise.all(promises);
-    if(data){
-      data.forEach(user => {
-        users.push({
-          firstName: user.firstName,
-          lastName: user.lastName,
-          username: user.username
-        })
-      })
-    }
-
-    return res.status(200).json(users);
+    return res.status(200).json(response);
 
   } catch (error) {
     return res.status(400).json(error);
