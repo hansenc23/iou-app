@@ -1,6 +1,7 @@
 const Requests = require('../models/Requests');
 const RequestRewards = require('../models/RequestRewards');
 const Completed = require('../models/Completed');
+const Users = require('../models/User');
 
 // POST /request/create
 // {
@@ -178,7 +179,7 @@ const getById = async (req, res) => {
   const { request_id } = req.query;
 
   try {
-    const response = await Requests.findOne({ _id: request_id })
+    const response = await Requests.find({ _id: request_id })
       .populate('request_owner')
       .populate('rewards')
       .populate({
@@ -200,6 +201,46 @@ const getById = async (req, res) => {
     return res.status(200).json({ success: true, requests: response });
   } catch (error) {
     return res.status(400).json({ success: false, error: error.message });
+  }
+};
+
+const getCompleted = async (req, res) => {
+
+  try {
+    const userId = [];
+    const users = [];
+    const response = await Completed.find({})
+
+    if (response) {
+      //return res.status(200).json({ rewards: response.user });
+      response.forEach(data => {
+        userId.push(data.user);
+      })
+
+    }
+
+    const promises = [];
+
+    userId.forEach(async (id) => {
+      const userRes = Users.findOne({_id: id});
+      promises.push(userRes);
+    })
+
+    const data = await Promise.all(promises);
+    if(data){
+      data.forEach(user => {
+        users.push({
+          firstName: user.firstName,
+          lastName: user.lastName,
+          username: user.username
+        })
+      })
+    }
+
+    return res.status(200).json(users);
+
+  } catch (error) {
+    return res.status(400).json(error);
   }
 };
 
@@ -255,4 +296,5 @@ module.exports = {
   getRequestReward,
   deleteReward,
   deleteRequest,
+  getCompleted,
 };

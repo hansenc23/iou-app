@@ -33,10 +33,12 @@
     word-spacing: 3px;
 }
 .leaderboard_date{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     font-family: Poppins;
     font-size: 30px;
     font-weight: 700;
-    margin-bottom: 15px;
     color: lightgrey;
     word-spacing: 3px;
 }

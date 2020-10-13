@@ -3,11 +3,31 @@ import "./LeaderboardPage.css";
 import LeaderboardTableList from "../../Components/leaderboardTableList/LeaderboardTableList";
 import LeaderboardTopThreeCards from "../../Components/leaderboardTopThreeCards/LeaderboardTopThreeCards";
 import Moment from "moment";
+import axios from "axios";
 
 function LeaderboardPage() {
 
     const [date] = useState(Moment().format('Do MMMM'));
-    //useEffect(() => {});
+
+    const [completedRequestData, setCompletedRequestData] = useState([]);
+    const [userCompleted, setUserComplete] = useState([{fullName: '', username: '', completed: 0}]);
+
+    useEffect(() => {
+        axios
+            .get(`${process.env.REACT_APP_API_URL}/request/get_completed`)
+            .then((response) => {
+                //console.log(response.data);
+                if (response.status === 200) {
+                     setCompletedRequestData(response.data);
+                     console.log(completedRequestData);
+                } else {
+                     console.log('Failed to get completed request data');
+                 }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
 
     return (
         <div id='Leaderboard'>

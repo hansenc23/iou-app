@@ -19,5 +19,6 @@ router.post('/delete', requestController.deleteRequest);
 router.get('/get_all', requestController.getAll);
 router.get('/get', requestController.getById);
 router.get('/reward/get', requestController.getRequestReward);
+router.get('/get_completed', requestController.getCompleted);
 
 module.exports = router;
