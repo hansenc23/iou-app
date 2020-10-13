@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./LeaderboardTopThreeCards.css";
 import Spinner from "../Spinner";
 
-function LeaderboardCard({completedRequestData}) {
-
+function LeaderboardCard({completedRequestData, isLoading}) {
     const topThreeUsers = completedRequestData.slice(0, 3).map(users => {
         return (
             <div key={users._id} className="top_3_card">
@@ -29,7 +28,9 @@ function LeaderboardCard({completedRequestData}) {
 
     return (
         <div className="top_3_container">
-            {topThreeUsers}
+            {isLoading ? (
+                <Spinner />
+            ) : (topThreeUsers)}
         </div>
     )
 }
