@@ -1,67 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import "./LeaderboardTopThreeCards.css";
+import Spinner from "../Spinner";
 
-function LeaderboardCard() {
+function LeaderboardCard({completedRequestData}) {
 
-    //const [] = useState(0);
-    //useEffect(() => {});
-
-    return (
-        <div className="top_3_container">
-            <div className="top_3_card">
+    const topThreeUsers = completedRequestData.slice(0, 3).map(users => {
+        return (
+            <div key={users._id} className="top_3_card">
                 <div className="top_3_header">
                     <div className="ranking_container">
                         <span className='ranking_label'> 1st </span>
                     </div>
                     <div className="top_3_user_name">
-                        Grace Kelly
+                        {users.user_data[0].firstName} {users.user_data[0].lastName}
                     </div>
                     <div className="top_3_user_username">
-                        @gracekelly
+                        @{users.user_data[0].username}
                     </div>
                 </div>
                 <div className='completed_requests_container'>
-                        <span className='completed_requests_label'>
-                            45 Completed Requests
-                        </span>
+                    <span className='completed_requests_label'>
+                        {users.count} Completed Requests
+                    </span>
                 </div>
             </div>
-            <div className="top_3_card">
-                <div className="top_3_header">
-                    <div className="ranking_container">
-                        <span className='ranking_label'> 2nd </span>
-                    </div>
-                    <div className="top_3_user_name">
-                        Jimmy Stewart
-                    </div>
-                    <div className="top_3_user_username">
-                        @jimmystewart
-                    </div>
-                </div>
-                <div className='completed_requests_container'>
-                        <span className='completed_requests_label'>
-                            17 Completed Requests
-                        </span>
-                </div>
-            </div>
-            <div className="top_3_card">
-                <div className="top_3_header">
-                    <div className="ranking_container">
-                        <span className='ranking_label'> 3rd </span>
-                    </div>
-                    <div className="top_3_user_name">
-                        Anne Bancroft
-                    </div>
-                    <div className="top_3_user_username">
-                        @annebancroft
-                    </div>
-                </div>
-                <div className='completed_requests_container'>
-                        <span className='completed_requests_label'>
-                            15 Completed Requests
-                        </span>
-                </div>
-            </div>
+        )
+    });
+
+    return (
+        <div className="top_3_container">
+            {topThreeUsers}
         </div>
     )
 }

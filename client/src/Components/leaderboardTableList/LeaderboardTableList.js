@@ -1,87 +1,39 @@
-import React from "react";
+import React, { useContext } from 'react';
 import "./LeaderboardTableList.css";
+import Spinner from "../Spinner";
+import {AuthContext} from "../../context/AuthContext";
 
-function LeaderboardTableList() {
+function LeaderboardTableList({completedRequestData, isLoading}) {
 
-    //const [] = useState(0);
-    //useEffect(() => {});
+    const { user } = useContext(AuthContext);
 
     return (
         <div className='leaderboard_table_list'>
-            <div className='leaderboard_row_container'>
-                <div className='row_rank_container'>
-                    <span className="row_rank_label"> 1 </span>
-                </div>
-                <span className='row_user_name'> Grace Kelly</span>
-                <span className='row_username'> @gracekelly </span>
-                <div className='row_completed_request'>
-                    <span className='row_completed_request_label'>45 Completed Requests</span>
-                </div>
-            </div>
-            <div className='current_user_row_container'>
-                <div className='row_rank_container'>
-                    <span className="row_rank_label"> 2 </span>
-                </div>
-                <span className='row_user_name'>
-                            Jimmy Stewart
-                        </span>
-                <span className='row_username'>
-                            @jimmystewart
-                        </span>
-                <div className='row_completed_request'>
-                            <span className='row_completed_request_label'>
-                                22 Completed Requests
+            {isLoading ? (
+                <Spinner />
+            ) : (
+                completedRequestData.length !== 0 &&
+                completedRequestData.map((users, index) => {
+                    return (
+                        <div key={users._id} className={user.id === users._id ? 'current_user_row_container' : 'leaderboard_row_container'}>
+                            <div className='row_rank_container'>
+                                <span className="row_rank_label"> {index+1} </span>
+                            </div>
+                            <span className='row_user_name'>
+                                {users.user_data[0].firstName} {users.user_data[0].lastName}
                             </span>
-                </div>
-            </div>
-            <div className='leaderboard_row_container'>
-                <div className='row_rank_container'>
-                    <span className="row_rank_label"> 3 </span>
-                </div>
-                <span className='row_user_name'>
-                            Anne Bancroft
-                        </span>
-                <span className='row_username'>
-                            @annebancroft
-                        </span>
-                <div className='row_completed_request'>
-                            <span className='row_completed_request_label'>
-                                10 Completed Requests
+                            <span className='row_username'>
+                                @{users.user_data[0].username}
                             </span>
-                </div>
-            </div>
-            <div className='leaderboard_row_container'>
-                <div className='row_rank_container'>
-                    <span className="row_rank_label"> 4 </span>
-                </div>
-                <span className='row_user_name'>
-                            Humphrey Bogart
-                        </span>
-                <span className='row_username'>
-                            @humphreybogart
-                        </span>
-                <div className='row_completed_request'>
-                            <span className='row_completed_request_label'>
-                                5 Completed Requests
-                            </span>
-                </div>
-            </div>
-            <div className='leaderboard_row_container'>
-                <div className='row_rank_container'>
-                    <span className="row_rank_label"> 5 </span>
-                </div>
-                <span className='row_user_name'>
-                            Vivien Leigh
-                        </span>
-                <span className='row_username'>
-                            @vivienleigh
-                        </span>
-                <div className='row_completed_request'>
-                            <span className='row_completed_request_label'>
-                                2 Completed Requests
-                            </span>
-                </div>
-            </div>
+                            <div className='row_completed_request'>
+                                <span className='row_completed_request_label'>
+                                    {users.count} Completed Requests
+                                </span>
+                            </div>
+                        </div>
+                    );
+                })
+            )}
         </div>
     )
 }

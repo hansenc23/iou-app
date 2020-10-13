@@ -31,7 +31,7 @@ const RequestsPage = () => {
         if (response.data.success) {
           setIsLoading(false);
           setRequestData(response.data.requests);
-          // setSelectedRequestID(response.data.requests[0]._id);
+          //setSelectedRequestID(response.data.requests[0]._id);
         } else {
           console.log('Failed to get request data');
         }

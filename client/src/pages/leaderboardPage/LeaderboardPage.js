@@ -8,21 +8,24 @@ import axios from "axios";
 function LeaderboardPage() {
 
     const [date] = useState(Moment().format('Do MMMM'));
+    const [isLoading, setIsLoading] = useState(false);
 
     const [completedRequestData, setCompletedRequestData] = useState([]);
     const [userCompleted, setUserComplete] = useState([{fullName: '', username: '', completed: 0}]);
 
     useEffect(() => {
+        setIsLoading(true);
         axios
             .get(`${process.env.REACT_APP_API_URL}/request/get_completed`)
             .then((response) => {
                 //console.log(response.data);
-                if (response.status === 200) {
-                     setCompletedRequestData(response.data);
+                if (response.data.success) {
+                     setIsLoading(false);
+                     setCompletedRequestData(response.data.requests);
                      console.log(completedRequestData);
                 } else {
                      console.log('Failed to get completed request data');
-                 }
+                }
             })
             .catch((error) => {
                 console.log(error);
@@ -31,7 +34,10 @@ function LeaderboardPage() {
 
     return (
         <div id='Leaderboard'>
-            <LeaderboardTopThreeCards/>
+            <LeaderboardTopThreeCards
+                completedRequestData={completedRequestData}
+                isLoading={isLoading}
+            />
             <div className="leaderboard_table_container">
                 <div className="leaderboard_table_header">
                     <div className="leaderboard_title">
@@ -39,7 +45,10 @@ function LeaderboardPage() {
                     </div>
                     <span className='leaderboard_date'> {date} </span>
                 </div>
-                <LeaderboardTableList/>
+                <LeaderboardTableList
+                    completedRequestData={completedRequestData}
+                    isLoading={isLoading}
+                />
             </div>
         </div>
     );

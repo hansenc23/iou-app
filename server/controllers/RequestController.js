@@ -239,8 +239,7 @@ const getCompleted = async (req, res) => {
       {$sort: {count: -1}}
     ])
 
-    return res.status(200).json(response);
-
+    return res.status(200).json({ success: true, requests: response });
   } catch (error) {
     return res.status(400).json(error);
   }
