@@ -14,22 +14,25 @@ import SearchIcon from '@material-ui/icons/Search';
 const RequestsList = ({ requestData, selectRequestId, setSelectedRequestID, isLoading }) => {
   const [date] = useState(Moment().format('Do MMMM YYYY'));
 
+  const [searchTerm, setSearchTerm] = useState('');
+
   const showRequestReward = () => {
     console.log('view and add request reward');
   };
 
-  //   const deleteRequest = async (request_id) => {
-  //     const response = await axios.post(`${process.env.REACT_APP_API_URL}/request/delete`, {
-  //       request_id: request_id,
-  //     });
-  //     if (response.status === 200) {
-  //       //   requestData.forEach((request, i) => {
-  //       //     if (request._id === request_id) {
-  //       //       requestData.splice(i - 1, i);
-  //       //     }
-  //       //   });
-  //     }
-  //   };
+  const updateSearch = (e) =>{
+    setSearchTerm(e.target.value);
+  }
+
+
+//search functionality
+//filter array of requests based on search term
+  let filteredRequests = requestData.filter((request) => {
+    return (request.title.toLowerCase().indexOf(searchTerm) !== -1) || (request.request_owner.username.indexOf(searchTerm) !== -1) 
+  }) 
+
+ 
+  
 
   return (
     <div id='requests_list' className=''>
@@ -40,9 +43,11 @@ const RequestsList = ({ requestData, selectRequestId, setSelectedRequestID, isLo
             <div className="search_bar">
                 <InputBase
                     className="search_input"
-                    placeholder="Search Requests"
+                    placeholder="Search by title or username"
+                    value={searchTerm}
+                    onChange={updateSearch}
                 />
-                <IconButton type="submit" className="" aria-label="search">
+                <IconButton disabled>
                     <SearchIcon/>
                 </IconButton>
             </div>
@@ -50,11 +55,12 @@ const RequestsList = ({ requestData, selectRequestId, setSelectedRequestID, isLo
         <CreateRequest />
       </div>
       <div id='request' className=''>
+        {/*conditional rendering for the list of requests*/}
         {isLoading ? (
           <Spinner />
         ) : (
-          requestData.length !== 0 &&
-          requestData.map((request) => {
+          filteredRequests.length !== 0 ?
+          filteredRequests.map((request) => {
             return (
               <div key={request._id} className='request_card' onClick={() => setSelectedRequestID(request._id)}>
                 <div className='request_content'>
@@ -90,7 +96,7 @@ const RequestsList = ({ requestData, selectRequestId, setSelectedRequestID, isLo
                 </div>
               </div>
             );
-          })
+          }) : (<h3 class="empty_request">No request available</h3>)
         )}
       </div>
     </div>
