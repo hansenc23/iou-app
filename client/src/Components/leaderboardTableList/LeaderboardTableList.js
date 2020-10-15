@@ -7,13 +7,16 @@ function LeaderboardTableList({completedRequestData, isLoading}) {
 
     const { user } = useContext(AuthContext);
 
+
+    let topFiveUser = completedRequestData.slice(0, 10);
+
     return (
         <div className='leaderboard_table_list'>
             {isLoading ? (
                 <Spinner />
             ) : (
-                completedRequestData.length !== 0 &&
-                completedRequestData.map((users, index) => {
+                topFiveUser.length !== 0 &&
+                topFiveUser.map((users, index) => {
                     return (
                         <div key={users._id} className={user.id === users._id ? 'current_user_row_container' : 'leaderboard_row_container'}>
                             <div className='row_rank_container'>

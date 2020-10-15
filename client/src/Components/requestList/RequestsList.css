@@ -83,4 +83,5 @@ button:focus {
 
 .empty_request {
   color: gray;
+  margin-top: 25%;
 }
