@@ -45,6 +45,16 @@ router.post("/detection", async (req, res) => {
 		},
 	]);
 
+	// Exclude any party thats only got 2 party member
+	for (let i = 0; i < response.length; i++) {
+		const current = response[i];
+
+		// Less than 3 party member, clean the array
+		if (current.party_members.length < 3) {
+			current.party_members = [];
+		}
+	}
+
 	return res.status(200).json({ ok: true, parties: response });
 });
 
