@@ -81,6 +81,9 @@ const Navbar = () => {
             <div className='page_link'>
               <Link to='/leaderboard'>Leaderboard</Link>
             </div>
+            <div className='page_link'>
+              <Link to='/party'>Party</Link>
+            </div>
           </ul>
         </div>
       </nav>
