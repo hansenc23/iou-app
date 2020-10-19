@@ -5,10 +5,10 @@
 }
 .new_requests_btn {
   background-color: black;
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0px 0px 12px 2px rgb(184, 184, 184);
-  width: 53px;
-  height: 60px;
+  width: 56px;
+  height: 70px;
   color: white;
   cursor: pointer;
 }
