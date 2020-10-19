@@ -18,7 +18,7 @@
     min-height: 130px;
     transition: 0.2s;
     border-radius: 22px;
-    background: linear-gradient(to bottom left, #9251d9, #356dde);
+    background: linear-gradient(to bottom left, #9251d9, #2d65d0);
     box-shadow: 0 0 7px 6px rgba(98, 98, 98, 0.12);
     padding: 10px 10px 13px 10px;
     cursor: pointer;
@@ -116,12 +116,12 @@
 .complete_request_btn{
     background-color: transparent;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 530;
     font-family: "Poppins";
-    color: #a1dbb0;
+    color: #6bcd83;
 }
 .complete_request_btn:hover{
-    color: #212121;
+    color: #5eca84;
 }
 .request_date_container{
     display: flex;
@@ -137,4 +137,20 @@
     font-weight: 450;
     font-family: "Poppins";
     color: white;
+}
+.no_request_card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px 1vw 20px 1vw;
+    min-width: 86%;
+    max-width: 86%;
+    height: 100%;
+    min-height: 130px;
+    transition: 0.2s;
+    border-radius: 22px;
+    background: #dedede;
+    padding: 10px 10px 13px 10px;
+    color: darkgrey;
+    font-size: 15px;
 }

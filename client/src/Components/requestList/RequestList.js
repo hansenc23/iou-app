@@ -93,7 +93,7 @@ const RequestsList = ({ requestData, selectRequestId, setSelectedRequestID, isLo
                 </div>
               </div>
             );
-          }) : (<h3 className="empty_request">No requests found</h3>)
+          }) : (<div className="no_request_card">No Requests Found</div>)
         )}
       </div>
     </div>

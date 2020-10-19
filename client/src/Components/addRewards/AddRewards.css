@@ -10,7 +10,9 @@
   font-family: 'Poppins';
 }
 .add_reward_item_btn:hover {
-  color: #626262;
+  background: linear-gradient(to bottom left, #954de7, #5f86cf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .add_reward_item_btn:focus {
   font-weight: 450;

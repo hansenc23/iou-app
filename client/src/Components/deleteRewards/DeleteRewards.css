@@ -10,7 +10,9 @@
   font-family: 'Poppins';
 }
 .delete_reward_btn:hover {
-  color: #626262;
+  background: linear-gradient(to bottom left, #954de7, #5f86cf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .delete_reward_btn:focus {
   font-weight: 450;
@@ -32,7 +34,6 @@
   border-radius: 10px;
   width: 500px;
   height: fit-content;
-  max-height: 100%;
   text-align: center;
 }
 .delete_rewards_title {
@@ -52,14 +53,14 @@
   margin-bottom: 40px;
 }
 .delete_rewards_list {
-  height: 200px;
+  height: 170px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 7px;
   background-color: #eae9e6;
-  min-height: 80px;
+  min-height: 60px;
   overflow: auto;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -70,7 +71,7 @@
   justify-content: space-between;
   width: 90%;
   border-bottom: thin solid #d6d6d6;
-  height: 50px;
+  height: 47px;
   color: black;
 }
 .delete_reward_item_btn {
@@ -107,64 +108,23 @@
   font-size: 12px;
   font-weight: 300;
 }
-.delete_rewards_confirm_btn_container {
-  /* display: flex;
+.delete_rewards_btn_container{
+  display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: fit-content;
-  margin-left: 305px; */
+  padding-left: 370px;
 }
-.cancel_delete_rewards_btn {
-  width: 50px;
-  height: 40px;
+.close_delete_rewards_btn {
+  width: 130px;
+  height: 37px;
   background-color: transparent;
-  border: thin solid transparent;
-  color: #484848;
+  border: thin solid black;
+  color: #000000;
   font-weight: 600;
   font-size: 13px;
   border-radius: 20px;
   display: table-cell;
   cursor: pointer;
-  margin-right: 25px;
-  margin-top: 5px;
 }
-.confirm_delete_rewards_btn {
-  position: relative;
-  transition: all 0.35s;
-  justify-content: center;
-  align-items: center;
-  width: 120px;
-  height: 38px;
-  background-color: black;
-  color: white;
-  font-weight: bold;
-  font-size: 13px;
-  border-radius: 20px;
-  cursor: pointer;
-}
-.confirm_delete_rewards_btn span {
-  z-index: 2;
-}
-.confirm_delete_rewards_btn:after {
-  position: absolute;
-  content: '';
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background: linear-gradient(to bottom left, #7e51d0, #4b83e9);
-  border-radius: 20px;
-  transition: all 0.35s;
-}
-.confirm_delete_rewards_btn:hover {
-  color: #fff;
-  opacity: 1;
-}
-.confirm_delete_rewards_btn:hover:after {
-  width: 100%;
-}
-
 .delete_rewards_empty {
   height: inherit;
   color: gray;

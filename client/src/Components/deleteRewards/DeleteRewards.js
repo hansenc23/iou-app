@@ -1,14 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './DeleteRewards.css';
 import axios from 'axios';
-import moment from 'moment';
 import Modal from '@material-ui/core/Modal';
 import { AuthContext } from '../../context/AuthContext';
 import Backdrop from '@material-ui/core/Backdrop';
 import Slide from '@material-ui/core/Slide';
-import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
-import Collapse from '@material-ui/core/Collapse';
-import AlertMessage from '../AlertMessage';
 import CloseIcon from '@material-ui/icons/Close';
 import { Link } from 'react-router-dom';
 
@@ -26,11 +22,6 @@ const DeleteRewards = ({ rewardList, selectedRequest, requestData }) => {
 
   const handleChangeRewards = (event) => {
     setStoredReward(event.target.value);
-  };
-
-  const handleConfirm = () => {
-    //close Modal
-    setOpen(false);
   };
 
   const handleOpen = () => {
@@ -136,15 +127,11 @@ const DeleteRewards = ({ rewardList, selectedRequest, requestData }) => {
           )}
         </div>
       </div>
-      <div className='delete_rewards_confirm_btn_container'>
-        <button className='cancel_delete_rewards_btn' onClick={handleClose}>
+      <div className='delete_rewards_btn_container'>
+        <button className='close_delete_rewards_btn' onClick={handleClose}>
           {' '}
           <span>Close</span>
         </button>
-        {/* <button className='confirm_delete_rewards_btn' onClick={handleConfirm}>
-          {' '}
-          <span>Cancel</span>
-        </button> */}
       </div>
     </div>
   );
