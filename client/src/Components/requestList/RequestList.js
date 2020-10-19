@@ -31,9 +31,6 @@ const RequestsList = ({ requestData, selectRequestId, setSelectedRequestID, isLo
     return (request.title.toLowerCase().indexOf(searchTerm) !== -1) || (request.request_owner.username.indexOf(searchTerm) !== -1) 
   }) 
 
- 
-  
-
   return (
     <div id='requests_list' className=''>
       <div className='header_container'>
@@ -67,7 +64,7 @@ const RequestsList = ({ requestData, selectRequestId, setSelectedRequestID, isLo
                   <div className='content_container_left'>
                     <div className='request_title'>{request.title}</div>
                     <div className='request_owner'>
-                      Requested by <strong>{request.request_owner.username}</strong>
+                      Requested by <strong>@{request.request_owner.username}</strong>
                     </div>
                   </div>
                   <div className='content_container_right'>

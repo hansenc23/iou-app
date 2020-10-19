@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 
 import "./PartyPage.css";
+import Spinner from "../../Components/Spinner";
 
 export default function PartyPage() {
 	const { isAuth, setIsAuth, user, setUser, getUser } = useContext(
@@ -12,6 +13,7 @@ export default function PartyPage() {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const [parties, setParties] = useState(null);
+	const [filtered, setFiltered] = useState(null);
 
 	useEffect(() => {
 		getUser();
@@ -45,39 +47,46 @@ export default function PartyPage() {
 		});
 	}
 
-	const renderPage = isAuth ? (
-		<>
-			<h1>Party Detections</h1>
-			{/* To check if parties is empty or null */}
-			{parties &&
-				parties.map((party, i) => {
-					// Check if party.party_members is not empty
-					// party.party_members contains all the party member
-					if (party.party_members) {
-						return (
-							<div key={i}>
-								You
-								{party.party_members.map((user, i) => {
-									// This is the current user, we skip it
-									if (user._id !== party.owner) {
-										return `, ${user.username}`;
-									}
-								})}{" "}
-								should go for {party.favor_detail} together.
+	const renderPartyList = isAuth ? (
+		<div className="party_list">
+			{parties && parties.map((party) => {
+				if (party.party_members.length >= 3) {
+					return (
+						<div key={party._id} className="party_item">
+							<div className="party_content_left">
+								<span className="party_type">
+									<strong> {party.favor_detail} </strong> Party
+								</span>
+								<span className="party_members">
+									with <span className="user_member">@You</span>
+									<span className="user_member">
+										{party.party_members.map((user, i) => {
+											if (user._id !== party.owner) {
+												return `, @${user.username}`;
+											}})}
+									</span>
+								</span>
 							</div>
-						);
-					}
-				})}
-			{/* Uncomment below if u want to debug */}
-			{/* {parties && console.log(parties)} */}
-		</>
+							<div className="party_content_right">
+								<div className="member_number_container">
+									<span className="member_number_label"> {party.party_members.length} </span>
+								</div>
+								<span className="member_label"> Members</span>
+							</div>
+						</div>
+					);
+				}
+			})}
+		</div>
 	) : (
 		<Redirect to="/login"></Redirect>
 	);
 
 	return (
 		<div id="PartyPage" className="">
-			{renderPage}
+			<div className="parties_label"> Parties </div>
+			<div className="parties_description"> Parties are detected when cycles of favours owed to each other are formed. Here are party recommendations that can clear each other's debts at once. </div>
+			{renderPartyList}
 		</div>
 	);
 }

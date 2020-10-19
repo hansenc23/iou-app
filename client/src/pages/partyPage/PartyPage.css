@@ -1,11 +1,114 @@
 #PartyPage {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    height: calc(100vh - 82px);
-    width: 100vw;
+    flex-direction: column;
+    justify-content: flex-start;
     padding-top: 80px;
+    height: calc(100vh - 82px);
+    width: 100%;
     background-color: #f3f0ea;
     transition: 2s;
-    overflow-x: hidden;
+    border: thin solid blue;
+}
+.parties_label{
+    margin: 3vh 20vw 0 20vw;
+    font-family: Poppins;
+    font-size: 40px;
+    font-weight: 650;
+    text-align: left;
+    padding-left: 7px;
+}
+.parties_description{
+    margin: 0 20vw 0 20vw;
+    color: #949494;
+    font-family: "Poppins";
+    font-size: 17px;
+    font-weight: 320;
+    text-align: left;
+    padding-left: 7px;
+    height: fit-content;
+    line-height: 1.6;
+}
+.party_list {
+    margin: 1vh 16vw 1vh 16vw;
+    padding: 0 40px 20px 40px;
+    height: 75vh;
+    overflow: auto;
+}
+.party_item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 92px;
+    margin: 20px 0 20px 0;
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    background: linear-gradient(to bottom left, #854fdb, #4d79cf);
+    box-shadow: 0 0 8px 7px rgba(43, 43, 43, 0.12);
+}
+.party_content_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    width: 90%;
+}
+.party_type{
+    color: #f3f0ea;
+    font-family: Poppins;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+.party_members{
+    color: #cbcbca;
+    line-height: 1.7;
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 500;
+    word-spacing: 3px;
+}
+.user_member{
+    color: #ececec;
+    line-height: 1.7;
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 500;
+    word-spacing: 3px;
+}
+.party_content_right{
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+}
+.member_number_container{
+    margin: 10px auto 5px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border:thin solid whitesmoke;
+}
+.member_number_label{
+    font-family: Helvetica;
+    font-size: 25px;
+    font-weight: 500;
+    color: #f3f0ea;
+}
+.member_label{
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 500;
+    color: #f3f0ea;
+}
+.no_party_item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 92px;
+    margin: 20px 0 20px 0;
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    background: #e5e4e4;
 }

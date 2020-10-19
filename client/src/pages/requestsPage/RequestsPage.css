@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: center;
     height: calc(100vh - 80px);
-    width: 100%;
+    width: 100vw;
     padding-top: 80px;
     background-color: #f3f0ea;
     transition: 2s;

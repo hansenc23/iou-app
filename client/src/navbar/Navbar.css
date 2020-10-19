@@ -20,7 +20,7 @@
 }
 .logo {
   min-width: fit-content;
-  font-size: 28px;
+  font-size: 25px;
   font-weight: bold;
   color: #f3f0ea;
   font-family: Poppins;
@@ -40,7 +40,7 @@
 .page_link {
   padding-right: 10px;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 15px;
   text-decoration: none;
   width: 200px;
   height: fit-content;
@@ -81,13 +81,13 @@ a:focus {
   margin-right: 25px;
 }
 .user_name {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
   margin-top: 18px;
   margin-right: 25px;
 }
 .logout_link {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   align-content: center;
 }
@@ -102,7 +102,7 @@ a:focus {
   display: table-cell;
   vertical-align: middle;
   cursor: pointer;
-  width: 100px;
+  width: 95px;
 }
 .logout_btn:hover {
   color: white;
