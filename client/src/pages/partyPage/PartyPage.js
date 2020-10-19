@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
@@ -6,14 +6,13 @@ import axios from "axios";
 import "./PartyPage.css";
 import Spinner from "../../Components/Spinner";
 
-export default function PartyPage() {
-	const { isAuth, setIsAuth, user, setUser, getUser } = useContext(
+const PartyPage = () => {
+	const { isAuth, user, getUser } = useContext(
 		AuthContext
 	);
 	const [isLoading, setIsLoading] = useState(false);
 
-	const [parties, setParties] = useState(null);
-	const [filtered, setFiltered] = useState(null);
+	let [parties, setParties] = useState([]);
 
 	useEffect(() => {
 		getUser();
@@ -47,10 +46,17 @@ export default function PartyPage() {
 		});
 	}
 
+	let filteredParties = parties.filter((party) => {
+		return (party.party_members.length > 2)
+	})
+
 	const renderPartyList = isAuth ? (
 		<div className="party_list">
-			{parties && parties.map((party) => {
-				if (party.party_members.length >= 3) {
+			{isLoading ? (
+				<Spinner />
+			) : (
+				filteredParties.length !== 0 ?
+				filteredParties.map((party) => {
 					return (
 						<div key={party._id} className="party_item">
 							<div className="party_content_left">
@@ -75,8 +81,8 @@ export default function PartyPage() {
 							</div>
 						</div>
 					);
-				}
-			})}
+				}) : (<div className="no_party_item"> No Party Detected </div>)
+			)}
 		</div>
 	) : (
 		<Redirect to="/login"></Redirect>
@@ -85,8 +91,9 @@ export default function PartyPage() {
 	return (
 		<div id="PartyPage" className="">
 			<div className="parties_label"> Parties </div>
-			<div className="parties_description"> Parties are detected when cycles of favours owed to each other are formed. Here are party recommendations that can clear each other's debts at once. </div>
+			<div className="parties_description"> Parties are detected when cycles of favours owed to each other are formed. Here are party recommendations to clear each other's debts at once. </div>
 			{renderPartyList}
 		</div>
 	);
 }
+export default PartyPage;

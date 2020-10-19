@@ -7,7 +7,6 @@
     width: 100%;
     background-color: #f3f0ea;
     transition: 2s;
-    border: thin solid blue;
 }
 .parties_label{
     margin: 3vh 20vw 0 20vw;
@@ -32,7 +31,7 @@
     margin: 1vh 16vw 1vh 16vw;
     padding: 0 40px 20px 40px;
     height: 75vh;
-    overflow: auto;
+    overflow-y: auto;
 }
 .party_item{
     display: flex;
@@ -43,7 +42,7 @@
     border-radius: 15px;
     padding: 10px 20px 10px 20px;
     background: linear-gradient(to bottom left, #854fdb, #4d79cf);
-    box-shadow: 0 0 8px 7px rgba(43, 43, 43, 0.12);
+    box-shadow: 0 0 8px 4px rgba(67, 67, 67, 0.12);
 }
 .party_content_left {
     display: flex;
@@ -111,4 +110,5 @@
     border-radius: 15px;
     padding: 10px 20px 10px 20px;
     background: #e5e4e4;
+    color: darkgrey;
 }
