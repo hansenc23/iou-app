@@ -96,7 +96,7 @@ const RequestsList = ({ requestData, selectRequestId, setSelectedRequestID, isLo
                 </div>
               </div>
             );
-          }) : (<h3 className="empty_request">No request available</h3>)
+          }) : (<h3 className="empty_request">No requests found</h3>)
         )}
       </div>
     </div>

@@ -2,10 +2,9 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin: auto 12vw auto 2vw;
-    width: 100%;
-    max-width: 570px;
-    min-width: 480px;
+    margin: auto 20vw auto 2vw;
+    max-width: 30%;
+    min-width: 30%;
     height: calc(100vh - 115px);
     min-height: fit-content;
     max-height: 70vh;
@@ -38,8 +37,8 @@
 }
 .request_name{
     font-family: Poppins;
-    font-size: 42px;
-    font-weight: 700;
+    font-size: 32px;
+    font-weight: 650;
     background: linear-gradient(to bottom left, #8856bf, #4b83e9);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -49,13 +48,14 @@
 }
 .request_subtitle{
     font-family: Poppins;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     color: black;
+    text-align: left;
 }
 .sub_title_date{
-    font-weight: 350;
-    color: darkgrey;
+    font-weight: 400;
+    color: grey;
 }
 .reward_details_container{
     display: flex;
@@ -142,5 +142,5 @@
     font-family: "Poppins";
     font-size: 14px;
     font-weight: 500;
-    min-height: 80px;
+    height: fit-content;
 }
