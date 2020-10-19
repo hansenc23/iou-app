@@ -1,8 +1,7 @@
 #requestDetail{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    /*margin: auto 2vw auto 2vw;*/
+    justify-content: flex-start;
     margin: auto 0 auto 2vw;
     max-width: 30%;
     min-width: 30%;
