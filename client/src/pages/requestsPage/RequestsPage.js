@@ -3,7 +3,7 @@ import './RequestsPage.css';
 import RequestsList from '../../Components/requestList/RequestList';
 import RequestDetail from '../../Components/requestDetail/RequestDetail';
 import { AuthContext } from '../../context/AuthContext';
-import spinner from '../../Components/Spinner';
+import Spinner from '../../Components/Spinner';
 import axios from 'axios';
 
 const RequestsPage = () => {
@@ -15,23 +15,26 @@ const RequestsPage = () => {
 
   const [requestData, setRequestData] = useState([]);
 
-  const selectRequestId = useCallback((selectedID) => {
-    setSelectedRequestID(selectedID);
-  });
+  const [limit, setLimit] = useState(6);
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  const [skip, setSkip] = useState(0);
 
-  useEffect(() => {
-    setIsLoading(true);
+  //bool to check if response data is empty
+  const [isEmpty, setIsEmpty] = useState(false);
+
+  const fetchRequest = (limit, skip) =>{
     axios
-      .get(`${process.env.REACT_APP_API_URL}/request/get_all`)
+      .get(`${process.env.REACT_APP_API_URL}/request/get_all?limit=${limit}&skip=${skip}`)
       .then((response) => {
         if (response.data.success) {
           setIsLoading(false);
-          setRequestData(response.data.requests);
-          //setSelectedRequestID(response.data.requests[0]._id);
+          setRequestData((prev) => [...prev, ...response.data.requests])
+          
+          if(response.data.requests.length === 0){
+            setIsEmpty(true);
+            console.log('no more requests to fetch');
+            
+          }
         } else {
           console.log('Failed to get request data');
         }
@@ -39,18 +42,44 @@ const RequestsPage = () => {
       .catch((error) => {
         console.log(error);
       });
+
+  }
+
+  const selectRequestId = useCallback((selectedID) => {
+    setSelectedRequestID(selectedID);
+  });
+
+  const handleScroll = (e) =>{
+    const {scrollTop, clientHeight, scrollHeight} = e.currentTarget;
+    if(Math.round(scrollHeight - scrollTop) === clientHeight + 1 && isEmpty === false){
+      setSkip(limit + skip);
+    }
+  }
+
+
+
+  useEffect(() => {
+    getUser();
   }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchRequest(limit, skip);
+    
+  }, [limit, skip]);
 
   const selectedRequest = requestData.find((item) => item._id === selectedRequestID);
 
   return (
     <div id='RequestsPage' className=''>
-      <RequestsList requestData={requestData} selectRequestId={selectRequestId} setSelectedRequestID={setSelectedRequestID} isLoading={isLoading} />
+      <RequestsList onscroll={(e) => {handleScroll(e)}} requestData={requestData} selectRequestId={selectRequestId} setSelectedRequestID={setSelectedRequestID} isLoading={isLoading} />
+      
       {requestData && selectedRequest ? (
         <RequestDetail selectedRequest={selectedRequest} requestData={requestData} />
       ) : (
         <div className='empty_RequestList'> Select a request to view more details </div>
       )}
+      
     </div>
   );
 };

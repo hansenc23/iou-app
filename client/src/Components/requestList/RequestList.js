@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
 
-const RequestsList = ({ requestData, selectRequestId, setSelectedRequestID, isLoading }) => {
+const RequestsList = ({ onscroll, requestData, selectRequestId, setSelectedRequestID, isLoading }) => {
   const [date] = useState(Moment().format('Do MMMM YYYY'));
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -22,6 +22,10 @@ const RequestsList = ({ requestData, selectRequestId, setSelectedRequestID, isLo
 
   const updateSearch = (e) =>{
     setSearchTerm(e.target.value);
+  }
+
+  const handleScroll = (e) =>{
+    onscroll(e);
   }
 
 
@@ -51,7 +55,7 @@ const RequestsList = ({ requestData, selectRequestId, setSelectedRequestID, isLo
         </div>
         <CreateRequest />
       </div>
-      <div id='request' className=''>
+      <div id='request' className='' onScroll={handleScroll}>
         {/*conditional rendering for the list of requests*/}
         {isLoading ? (
           <Spinner />
