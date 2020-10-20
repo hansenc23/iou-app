@@ -1,6 +1,5 @@
 ## I OWE YOU - Documentation
-App link: https://zen-noyce-da1f1d.netlify.app/
-
+App link: https://ioweyou.netlify.app/
 
 
 ## How to run this project?
