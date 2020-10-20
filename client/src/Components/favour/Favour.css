@@ -4,6 +4,3 @@
     padding: 10px;
     overflow: auto;
 }
-#favour::-webkit-scrollbar {
-    display: none;
-}

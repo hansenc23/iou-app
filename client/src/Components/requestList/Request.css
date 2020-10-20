@@ -6,9 +6,6 @@
     justify-content: flex-start;
     align-items: center;
 }
-#request::-webkit-scrollbar {
-    display: none;
-}
 .request_card{
     display: flex;
     flex-direction: column;
