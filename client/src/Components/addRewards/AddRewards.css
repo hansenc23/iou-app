@@ -7,7 +7,7 @@
   color: black;
   font-size: 12px;
   font-weight: 450;
-  font-family: 'Poppins';
+  font-family: "Poppins";
 }
 .add_reward_item_btn:hover {
   background: linear-gradient(to bottom left, #954de7, #5f86cf);
@@ -39,7 +39,7 @@
 }
 .add_rewards_title {
   text-align: left;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 35px;
   font-weight: 650;
   color: black;
@@ -54,7 +54,7 @@
   margin-bottom: 30px;
 }
 .add_rewards_header {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 22px;
   font-weight: 650;
   color: darkgrey;

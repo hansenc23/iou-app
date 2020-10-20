@@ -38,19 +38,19 @@
 .ranking_label{
     margin: auto;
     color: white;
-    font-family: Poppins;
+    font-family: "Poppins";
     font-size: 18px;
     font-weight: 570;
 }
 .top_3_user_name{
-    font-family: Poppins;
+    font-family: "Poppins";
     font-size: 19px;
     font-weight: 650;
     color: black;
 }
 .top_3_user_username{
     color: #c3c3c3;
-    font-family: Poppins;
+    font-family: "Poppins";
     font-size: 14px;
     font-weight: 500;
 }
@@ -65,7 +65,7 @@
 }
 .completed_requests_label{
     margin: auto;
-    font-family: Poppins;
+    font-family: "Poppins";
     font-size: 13px;
     font-weight: 600;
     background: linear-gradient(to bottom left, #8856bf, #4b83e9);

@@ -10,12 +10,12 @@
   display: flex;
   align-content: flex-start;
   width: inherit;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-weight: bold;
   font-size: 32px;
 }
 .here_text {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-weight: bold;
   font-size: 32px;
   padding-right: 8px;
@@ -34,7 +34,7 @@
   text-align: center;
 }
 .proof_modal_btn_unattached {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-weight: bold;
   font-size: 32px;
   color: #a9a9a9;
@@ -44,7 +44,7 @@
   color: hotpink;
 }
 .proof_modal_btn_attached {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-weight: bold;
   font-size: 32px;
   color: hotpink;
@@ -54,7 +54,7 @@
   color: darkgrey;
 }
 .attach_proof_label {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-weight: bold;
   font-size: 30px;
   color: black;
@@ -78,7 +78,7 @@
   text-align: left;
   margin-bottom: 7px;
   cursor: pointer;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-weight: 550;
   font-size: 16px;
   color: black;
@@ -115,7 +115,7 @@
 
 .preview_label {
   margin: auto;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-weight: 550;
   font-size: 15px;
 }
