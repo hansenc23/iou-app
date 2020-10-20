@@ -23,7 +23,7 @@
     justify-content: flex-start;
     background-color: #f3f0ea;
     box-shadow: 0 0 4px 4px rgba(133, 135, 141, 0.12);
-    padding: 40px 50px 50px 50px;
+    padding: 30px 40px 40px 40px;
     outline: none;
     border-radius: 10px;
     width: fit-content;
@@ -52,7 +52,7 @@
     color: #c3c2c2;
 }
 #image_proof {
-    height: fit-content;
-    width: fit-content;
+    width: auto;
+    height: 290px;
     border-radius: 8px;
 }

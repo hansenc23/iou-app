@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, {useEffect, useState, useContext, useRef} from 'react';
 import './CreateFavour.css';
 import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
 import InlineText from '../inlineText/InlineText';
@@ -12,7 +12,7 @@ import { ImageContext } from '../../context/ImageContext';
 import axios from 'axios';
 
 const CreateFavour = ({ setType }) => {
-  const { selectedImage, setSelectedImage, uploadImage, uploadedImageUrl, setUploadedImageUrl } = useContext(ImageContext);
+  const { selectedImage, setSelectedImage, uploadImage } = useContext(ImageContext);
   const [usernameInput, setUsernameInput] = useState('@Whom?');
   const [storedFavor, setStoredFavor] = useState('What?');
   const [storedAction, setStoredAction] = useState('Action?');

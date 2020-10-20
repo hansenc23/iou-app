@@ -18,7 +18,7 @@
     min-height: 130px;
     transition: 0.2s;
     border-radius: 22px;
-    background: linear-gradient(to bottom left, #9543e5, #3c66b8);
+    background-image: linear-gradient(to bottom left, #984fec, #4980e5);
     box-shadow: 0 0 7px 6px rgba(98, 98, 98, 0.12);
     padding: 10px 10px 13px 10px;
     cursor: pointer;
