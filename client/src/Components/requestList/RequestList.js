@@ -28,7 +28,7 @@ const RequestsList = ({ requestData, selectRequestId, setSelectedRequestID, isLo
 //search functionality
 //filter array of requests based on search term
   let filteredRequests = requestData.filter((request) => {
-    return (request.title.toLowerCase().indexOf(searchTerm) !== -1) || (request.request_owner.username.indexOf(searchTerm) !== -1) 
+    return (request.title.toLowerCase().indexOf(searchTerm) !== -1) || (request.request_owner.username.indexOf(searchTerm) !== -1) || (request.title.indexOf(searchTerm) !== -1)
   }) 
 
   return (
