@@ -61,7 +61,7 @@
   font-weight: 500;
   color: #797979;
   font-size: 15px;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   margin-left: 42px;
 }
 .request_description_container {
@@ -81,7 +81,7 @@
   color: #7e51d0;
 }
 .request_description_label {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 16px;
   font-weight: 500;
   color: black;
@@ -115,7 +115,7 @@
 }
 .request_reward_label {
   margin-top: 1px;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 16px;
   font-weight: 500;
   color: black;
@@ -136,7 +136,7 @@
 }
 .request_reward_chip {
   margin: 10px;
-  font-family: Poppins;
+  font-family: "Poppins";
 }
 .request_reward_chips {
   display: flex;
@@ -236,11 +236,10 @@
 .guest_login_link {
   color: black;
   background: transparent;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 35px;
-  font-weight: 750;
+  font-weight: 700;
   margin: auto;
-
   cursor: pointer;
 }
 .guest_signup_container {
@@ -262,7 +261,7 @@
   height: 60px;
   background-color: transparent;
   color: white;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 25px;
   font-weight: 700;
   cursor: pointer;

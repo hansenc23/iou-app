@@ -68,14 +68,14 @@
   margin-bottom: 20px;
 }
 .complete_request_title {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 22px;
   font-weight: 660;
   color: black;
 }
 .complete_request_name {
   text-align: left;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 35px;
   font-weight: 700;
   background: linear-gradient(to bottom left, #8856bf, #4b83e9);
@@ -97,13 +97,13 @@
   text-align: left;
 }
 .complete_request_owner {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 15px;
   font-weight: 400;
   color: darkgrey;
 }
 .complete_request_date {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 15px;
   font-weight: 400;
   color: darkgrey;
@@ -123,7 +123,7 @@
   cursor: pointer;
 }
 .upload_proof_text {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 16px;
   font-weight: 550;
   color: black;

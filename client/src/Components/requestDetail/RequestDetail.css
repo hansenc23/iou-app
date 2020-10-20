@@ -36,7 +36,7 @@
     color: black;
 }
 .request_name{
-    font-family: Poppins;
+    font-family: "Poppins";
     font-size: 39px;
     width: 95%;
     font-weight: 650;
@@ -48,7 +48,7 @@
     margin-bottom: 9px;
 }
 .request_subtitle{
-    font-family: Poppins;
+    font-family: "Poppins";
     font-size: 18px;
     font-weight: 500;
     color: black;
@@ -65,7 +65,7 @@
     height: fit-content;
 }
 .reward_detail_header{
-    font-family: Poppins;
+    font-family: "Poppins";
     font-size: 32px;
     font-weight: 700;
     color: darkgrey;
@@ -131,7 +131,7 @@
     margin-bottom: 20px;
 }
 .description_detail_header{
-    font-family: Poppins;
+    font-family: "Poppins";
     font-size: 32px;
     font-weight: 700;
     color: darkgrey;

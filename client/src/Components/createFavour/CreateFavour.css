@@ -95,14 +95,14 @@
   display: flex;
   align-content: flex-start;
   width: inherit;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-weight: bold;
   font-size: 32px;
 }
 .createFavour_second_line {
   display: flex;
   align-content: flex-start;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-weight: bold;
   font-size: 32px;
   margin-top: 3px;
@@ -110,19 +110,19 @@
 .createFavour_third_line {
   display: flex;
   flex-direction: row;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-weight: bold;
   font-size: 32px;
   margin-top: 4px;
 }
 .i_text {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-weight: bold;
   font-size: 33px;
   padding-right: 6px;
 }
 .a_text {
-  font-family: Poppins;
+  font-family: "Poppins";
   font-weight: bold;
   font-size: 32px;
   padding-right: 10px;
@@ -140,7 +140,7 @@
   outline: none;
   color: darkgrey;
   background: transparent;
-  font-family: Poppins;
+  font-family: "Poppins";
 }
 .type_field_unclicked:hover {
   color: hotpink;
@@ -158,20 +158,20 @@
   outline: none;
   color: hotPink;
   background: transparent;
-  font-family: Poppins;
+  font-family: "Poppins";
 }
 .type_field_clicked:hover {
   color: darkgrey;
 }
 .what_menu_label {
   font-size: 32px;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-weight: bold;
   color: darkgrey;
 }
 .what_value_label {
   font-size: 32px;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-weight: bold;
   color: hotpink;
 }

@@ -90,13 +90,13 @@
     border:thin solid whitesmoke;
 }
 .member_number_label{
-    font-family: Helvetica;
+    font-family: "Helvetica";
     font-size: 25px;
     font-weight: 500;
     color: #f3f0ea;
 }
 .member_label{
-    font-family: Poppins;
+    font-family: "Poppins";
     font-size: 12px;
     font-weight: 500;
     color: #f3f0ea;

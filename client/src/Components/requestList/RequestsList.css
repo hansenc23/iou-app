@@ -33,14 +33,14 @@
   font-weight: 660;
   color: #000000;
   font-size: 40px;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   margin-top: 20px;
   margin-bottom: 0px;
 }
 .date {
   font-weight: 590;
   font-size: 19px;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   background: linear-gradient(to bottom left, #9b46e9, #2b5bba);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -70,7 +70,7 @@ button:focus {
   width: 255px;
   height: 32px;
   background-color: #e0deda;
-  font-family: Poppins;
+  font-family: "Poppins";
   border-radius: 12px;
   margin-bottom: 30px;
 }
