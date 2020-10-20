@@ -12,10 +12,10 @@
   height: 750px;
   min-width: 1000px;
   max-width: 80%;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   border-radius: 15px;
-  box-shadow: 0 0 3px 3px rgba(133, 135, 141, 0.12);
+
 }
 .login_logo_area {
   display: flex;
@@ -29,29 +29,32 @@
   margin-left: 122px;
   justify-content: center;
 }
-.login_form_area {
+.login_form {
   display: flex;
   flex-direction: column;
-  height: inherit;
+  height: 350px;
   width: 350px;
-  margin-left: 122px;
 }
 .login_form_title {
   font-family: Poppins;
   font-size: 32px;
   font-weight: 700;
-  margin-top: 150px;
-  margin-bottom: 60px;
+  margin-bottom: 45px;
 }
-.login_form {
+.login_textfields {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: inherit;
+  justify-content: space-between;
+  height: 200px;
+}
+.login_alert{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 100px;
 }
 .login_btn {
   width: inherit;
-  height: 200px;
+  height: 80px;
   background-color: black;
   color: white;
   font-weight: bold;
@@ -59,9 +62,10 @@
   border-radius: 25px;
   justify-content: center;
   align-items: center;
-  margin-top: 80px;
-  margin-bottom: 170px;
   cursor: pointer;
+}
+.login_btn:hover{
+  color: darkgrey;
 }
 .login_logo_msg {
   color: white;

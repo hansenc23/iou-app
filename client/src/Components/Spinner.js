@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
-import spinner from '../assets/images/loading-spinner-nobg.gif';
+import spinnerSm from '../assets/images/loading-s.svg';
 
-const Spinner = () => {
+const Spinner = ({ width, padding }) => {
   return (
     <Fragment>
-      <img src={spinner} style={{ width: '70px' }} alt='Loading...' />
+      <img src={spinnerSm} style={{ width: width ? width : '70px', padding: padding ? padding : '' }} alt='Loading...' />
     </Fragment>
   );
 };

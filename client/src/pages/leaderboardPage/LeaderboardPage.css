@@ -1,3 +1,43 @@
-.placeholder {
-    padding-top: 20%;
+#Leaderboard{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: calc(100vh - 82px);
+    width: 100vw;
+    padding-top: 80px;
+    background-color: #f3f0ea;
+    transition: 2s;
+}
+.leaderboard_table_container{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border-radius: 7px;
+    min-height: 300px;
+    max-height: 55vh;
+    margin-right: 7vw;
+    margin-left: 7vw;
+}
+.leaderboard_table_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px 0 30px;
+}
+.leaderboard_title{
+    font-family: Poppins;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    word-spacing: 3px;
+}
+.leaderboard_date{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: Poppins;
+    font-size: 30px;
+    font-weight: 700;
+    color: lightgrey;
+    word-spacing: 3px;
 }

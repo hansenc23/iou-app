@@ -6,17 +6,17 @@ import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import AlertMessage from '../AlertMessage';
 import { ImageContext } from '../../context/ImageContext';
 import './AttachProof.css';
+import Collapse from "@material-ui/core/Collapse";
 
 const AttachProof = (props) => {
 
   const { selectedImage, setSelectedImage, uploadImage, setUploadedImageUrl } = useContext(ImageContext);
-  const [errorMsg, setErrorMsg] = useState(null);
   const [successMsg, setSuccessMsg] = useState(null);
   const [alertMessage, setAlertMessage] = useState(null);
   const [uploadSuccess, setUploadSuccess] = useState(false);
-  const [uploadEmpty, setUploadEmpty] = useState(true);
   const [open, setOpen] = React.useState(false);
   const [proofFieldClicked, setProofFieldClicked] = useState('proof_modal_btn_unattached');
+  const [openAlert, setOpenAlert] = useState(false);
 
   // const [selectedImage, setSelectedImage] = useState(null);
   const [imageName, setImageName] = useState('');
@@ -25,7 +25,7 @@ const AttachProof = (props) => {
   useEffect(() => {
     if (alertMessage) {
       setTimeout(() => {
-        setAlertMessage('');
+        setOpenAlert(false);
       }, 2000);
     }
   });
@@ -38,37 +38,19 @@ const AttachProof = (props) => {
     }
   });
 
-  // const showErrorMsg = () => {
-  //   if (true) {
-  //     return setTimeout(() => {
-  //       <AlertMessage severity='error'>Please upload image</AlertMessage>;
-  //     }, 3000);
-  //   }
-  // };
-
   const uploadImageClick = () => {
     document.getElementById('upload-image-input').click();
   };
 
   const fileChangedHandler = (e) => {
-    const previewUrl = URL.createObjectURL(e.target.files[0]);
-    setSelectedImage(e.target.files[0]);
-    setImageName(e.target.files[0].name);
-    setImagePreview(previewUrl);
-  };
+    const previewUrl = e.target.files[0] ? URL.createObjectURL(e.target.files[0]) : '';
+    if(previewUrl){
 
-  const imageUploadHandler = () => {
-    let msg = uploadImage();
-    console.log(msg);
+      setSelectedImage(e.target.files[0]);
+      setImageName(e.target.files[0].name);
+      setImagePreview(previewUrl);
+    }
   };
-
-  // const changeContainerHeight = () => {
-  //   if (imagePreview) {
-  //     document.querySelector('.img_preview').style.height = '220px';
-  //     document.querySelector('.attachProof_modal_container').style.height = '520px';
-  //   }
-  //   return <img src={imagePreview} alt='' />;
-  // };
 
   const handleOpen = () => {
     //open Modal
@@ -86,7 +68,8 @@ const AttachProof = (props) => {
 
   const handleConfirm = () => {
     if (selectedImage === null) {
-      setAlertMessage(<AlertMessage severity='error'>Please select an image</AlertMessage>);
+      setOpenAlert(true);
+      setAlertMessage('Please select an image');
     } else {
       //close Modal
       setOpen(false);
@@ -126,38 +109,37 @@ const AttachProof = (props) => {
       >
         <Slide direction='up' in={open} mountOnEnter unmountOnExit>
           <div className='attachProof_modal_container'>
-            <div className='attach_proof_title'>Where's the Proof?</div>
-            <button onClick={uploadImageClick} className='upload_proof_btn'>
-              {uploadSuccess ? (
-                successMsg
-              ) : (
-                <Fragment>
-                  <PhotoCameraIcon className='upload_proof_icon' fontSize='large' />
-                  <input hidden type='file' accept='image/*' id='upload-image-input' onChange={fileChangedHandler} />
-                  {imageName ? (
-                    <div className='upload_proof_label_dark'> {imageName} </div>
-                  ) : (
-                    <div className='upload_proof_label'> Select an image </div>
-                  )}
-                </Fragment>
-              )}
-            </button>
+            <div className='attach_proof_label'>Where's the Proof?</div>
 
-            <div className='img_preview'>
-              <span className='preview_label'>
-                {/* <img src={imagePreview} alt='' /> */}
-                {imagePreview ? <img src={imagePreview} alt='' /> : 'Image preview'}
-              </span>
-              {alertMessage && alertMessage}
+            <div className='attach_proof_container'>
+              <button onClick={uploadImageClick} className='upload_proof_btn_container'>
+                {uploadSuccess ? (
+                  successMsg
+                ) : (
+                  <Fragment>
+                    <input hidden type='file' accept='image/*' id='upload-image-input' onChange={fileChangedHandler} />
+                    <div className='upload_proof_btn'> <PhotoCameraIcon/> {imageName ? imageName : 'Upload Proof'} </div>
+                  </Fragment>
+                )}
+              </button>
+              <div className='img_preview'>
+                <span className='preview_label'>
+                  {imagePreview ? <img className="img_preview" src={imagePreview} alt='' /> : 'Image preview'}
+                </span>
+              </div>
+              <div className='complete_request_alert'>
+                <Collapse in={openAlert}>
+                  {alertMessage && <AlertMessage severity='error'> {alertMessage} </AlertMessage>}
+                </Collapse>
+              </div>
             </div>
 
-            <div className='buttons'>
-              <button className='cancel_btn' onClick={handleClose}>
+            <div className='attach_proof_buttons'>
+              <button className='attach_proof_cancel_btn' onClick={handleClose}>
                 {' '}
                 <span> Cancel</span>
               </button>
-
-              <button className='confirm_btn' onClick={handleConfirm}>
+              <button className='attach_proof_confirm_btn' onClick={handleConfirm}>
                 {' '}
                 <span>Confirm</span>
               </button>

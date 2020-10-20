@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, {useEffect, useState, useContext, useRef} from 'react';
 import './CreateFavour.css';
 import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
 import InlineText from '../inlineText/InlineText';
@@ -12,7 +12,7 @@ import { ImageContext } from '../../context/ImageContext';
 import axios from 'axios';
 
 const CreateFavour = ({ setType }) => {
-  const { selectedImage, setSelectedImage, uploadImage, uploadedImageUrl, setUploadedImageUrl } = useContext(ImageContext);
+  const { selectedImage, setSelectedImage, uploadImage } = useContext(ImageContext);
   const [usernameInput, setUsernameInput] = useState('@Whom?');
   const [storedFavor, setStoredFavor] = useState('What?');
   const [storedAction, setStoredAction] = useState('Action?');
@@ -28,7 +28,7 @@ const CreateFavour = ({ setType }) => {
 
   function handleSuccess() {
     //clear alerts
-    reset();
+    resetAlerts();
 
     // Display success alert
     setLoading(false);
@@ -36,31 +36,25 @@ const CreateFavour = ({ setType }) => {
     setSuccess('Favour has been created');
 
     // Reset Inputs
-    setStoredFavor('What?');
-    setStoredAction('Action?');
-    setUsernameInput('@Whom?');
-    setTypeFieldClicked('type_field_unclicked');
+    resetInputValues();
   }
 
   function handleClickCancel() {
     //clear alerts
-    reset();
+    resetAlerts();
 
     // Display clear alert
     setOpen(true);
     setInfo('Form cleared');
 
     // Reset Inputs
-    setStoredFavor('What?');
-    setStoredAction('Action?');
-    setUsernameInput('@Whom?');
-    setTypeFieldClicked('type_field_unclicked');
+    resetInputValues();
     setCancelBtnClicked(true);
     setSelectedImage(null);
   }
 
   function handleOnChangeWhom(text, fromSelect = false) {
-    reset();
+
     // Set text input as UsernameInput
     setUsernameInput(text);
     // Clear Username suggestions that i fetch from database
@@ -81,7 +75,7 @@ const CreateFavour = ({ setType }) => {
   }
 
   async function handleCreateFavor() {
-    reset();
+    resetAlerts();
 
     if (storedAction === 'Action?') {
       setOpen(true);
@@ -111,6 +105,7 @@ const CreateFavour = ({ setType }) => {
             setOpen(true);
             setError('Cannot create favour to yourself!');
           } else {
+            disableButton();
             setLoading(true);
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/favors/create`, {
               // Check if it's Ower or Owner
@@ -154,6 +149,7 @@ const CreateFavour = ({ setType }) => {
               setOpen(true);
               setError('Cannot create favour to yourself!');
             } else {
+              disableButton();
               setLoading(true);
               const resImage = await uploadImage();
               if (resImage.error) {
@@ -189,9 +185,17 @@ const CreateFavour = ({ setType }) => {
         }
       }
     }
+    enableButton();
   }
 
-  function reset() {
+  function resetInputValues() {
+    setStoredFavor('What?');
+    setStoredAction('Action?');
+    setUsernameInput('@Whom?');
+    setTypeFieldClicked('type_field_unclicked');
+  }
+
+  function resetAlerts() {
     setError('');
     setInfo('');
     setOpen(false);
@@ -203,6 +207,18 @@ const CreateFavour = ({ setType }) => {
     setLoading(false);
     setOpen(true);
     setError(error);
+  }
+
+  let btnRef = useRef();
+  const disableButton = e => {
+    if(btnRef.current){
+      btnRef.current.setAttribute("disabled", "disabled");
+    }
+  }
+  const enableButton = e => {
+    if(btnRef.current){
+      btnRef.current.removeAttribute("disabled", "");
+    }
   }
 
   //set timeout when alert is displayed
@@ -298,7 +314,7 @@ const CreateFavour = ({ setType }) => {
             <div className='createFavour_fourth_line'>{storedAction === 'Bought' ? <AttachProof cancelClicked={cancelBtnClicked} /> : ''}</div>
           </div>
           <div className='btn_container'>
-            <button className='create_favour_btn' onClick={handleCreateFavor} disabled={isCreating}>
+            <button className='create_favour_btn' ref={btnRef} onClick={handleCreateFavor} disabled={isCreating}>
               <span> Create Favour </span>
             </button>
             <button className='cancel_favour_btn' onClick={handleClickCancel}>

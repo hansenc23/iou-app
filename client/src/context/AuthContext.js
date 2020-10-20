@@ -10,6 +10,7 @@ export const AuthProvider = (props) => {
     id: '',
     firstName: '',
     lastName: '',
+    username: '',
   });
 
   const getUser = async () => {
@@ -24,11 +25,13 @@ export const AuthProvider = (props) => {
         if (res.status === 200) {
           //use local storage to persist state after logging in
           localStorage.setItem('id', data.id);
+          localStorage.setItem('username', data.username);
           localStorage.setItem('firstName', data.firstName);
           localStorage.setItem('lastName', data.lastName);
           setIsAuth(true);
           setUser({
             id: data.id,
+            username: data.username,
             firstName: data.firstName,
             lastName: data.lastName,
           });
@@ -48,14 +51,7 @@ export const AuthProvider = (props) => {
         credentials: 'include',
       });
 
-      const data = await res.json();
-
-      if (res.status === 200) {
-        localStorage.setItem('isAuth', 'false');
-        localStorage.removeItem('id');
-        localStorage.removeItem('firstName');
-        localStorage.removeItem('lastName');
-      }
+      return res;
     } catch (err) {
       console.log(err);
     }

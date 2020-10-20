@@ -2,14 +2,28 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin: 8vh 12vw 0 2vw;
-    width: 100%;
-    max-width: 570px;
-    min-width: 480px;
+    margin: auto 0 auto 2vw;
+    max-width: 30%;
+    min-width: 30%;
     height: calc(100vh - 115px);
     min-height: fit-content;
     max-height: 70vh;
-    padding: 5vh 3vw 5vh 3vw;
+    padding: 6vh 2vw 5vh 3vw;
+}
+.empty_RequestList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /*margin: auto 2vw auto 2vw;*/
+    margin: auto 0 auto 2vw;
+    max-width: 30%;
+    min-width: 30%;
+    height: calc(100vh - 115px);
+    min-height: fit-content;
+    max-height: 70vh;
+    padding: 6vh 2vw 5vh 3vw;
+    font-weight: 400;
+    color: darkgrey;
 }
 .request_title_container{
     display: flex;
@@ -21,23 +35,28 @@
 .request_title_icon{
     color: black;
 }
-.request_title_label{
+.request_name{
     font-family: Poppins;
-    font-size: 45px;
-    font-weight: 700;
-    background: linear-gradient(to bottom left, #8856bf, #4b83e9);
+    font-size: 39px;
+    width: 95%;
+    font-weight: 650;
+    background: linear-gradient(to bottom left, #954de7, #5f86cf);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-align: left;
+    line-height: 1.3;
+    margin-bottom: 9px;
 }
-.request_sub_title_label{
+.request_subtitle{
     font-family: Poppins;
     font-size: 18px;
     font-weight: 500;
     color: black;
+    text-align: left;
 }
 .sub_title_date{
-    font-weight: 350;
-    color: darkgrey;
+    font-weight: 400;
+    color: grey;
 }
 .reward_details_container{
     display: flex;
@@ -59,9 +78,10 @@
     border-radius: 10px 10px 0 0;
     background-color: #eae8e5;
     width: 100%;
-    height: 200px;
-    min-height: 80px;
+    min-height: 130px;
+    max-height: 200px;
     overflow: auto;
+    padding-top: 5px;
 }
 .reward_item{
     display: flex;
@@ -92,29 +112,15 @@
     font-size: 12px;
     font-weight: 300;
 }
-.add_reward_btn_container{
+.edit_reward_btn_container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
     border-radius: 0 0 10px 10px;
     background-color: #eae8e5;
     width: 100%;
-    height: 60px;
-}
-.add_reward_item_btn{
-    background-color: transparent;
-    border-top: thin solid #d4d4d4;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
-    font-size: 14px;
-    font-weight: 400;
-    font-family: "Poppins";
-    color: black;
-    cursor: pointer;
-}
-.add_reward_item_btn:hover{
-    color: black;
+    height: 50px;
 }
 .description_details_container{
     display: inline-block;
@@ -122,7 +128,7 @@
     align-items: flex-start;
     text-align: left;
     height: fit-content;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 .description_detail_header{
     font-family: Poppins;
@@ -136,4 +142,6 @@
     font-family: "Poppins";
     font-size: 14px;
     font-weight: 500;
+    min-height: 60px;
+    max-height: fit-content;
 }

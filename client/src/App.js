@@ -8,6 +8,8 @@ import Favours from './pages/favoursPage/FavoursPage';
 import LeaderboardPage from './pages/leaderboardPage/LeaderboardPage';
 import Login from './pages/loginPage/LoginPage';
 import Signup from './pages/signupPage/SignupPage';
+import Party from './pages/partyPage/PartyPage'
+
 import { AuthProvider } from './context/AuthContext';
 import { ImageProvider } from './context/ImageContext';
 import { AuthContext } from './context/AuthContext';
@@ -28,6 +30,7 @@ const App = () => {
                 <Route path='/leaderboard' component={LeaderboardPage} />
                 <Route path='/login' component={Login} />
                 <Route path='/signup' component={Signup} />
+                <Route path='/party' component={Party} />
                 <Route path='/' component={RequestsPage} />
               </Switch>
             </Router>

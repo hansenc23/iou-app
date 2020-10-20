@@ -10,21 +10,18 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin: 10px 1vw 20px 1vw;
     text-align: left;
-    width: 100%;
-    max-width: 480px;
+    min-width: 80%;
+    max-width: 80%;
     height: 100%;
     min-height: 130px;
     transition: 0.2s;
-    border-radius: 20px;
-    background-image: linear-gradient(to bottom left, #8856bf, #4b83e9);
-    box-shadow: 1px 1px 10px rgb(145, 145, 145);
-    margin-bottom: 35px;
-    padding: 10px 20px 13px 20px;
+    border-radius: 22px;
+    background-image: linear-gradient(to bottom left, #975ade, #355ccf);
+    box-shadow: 1px 1px 5px rgb(119, 118, 118);
+    padding: 20px 20px 23px 20px;
     cursor: pointer;
-}
-.request_card:hover {
-    box-shadow: 1px 1px 14px rgb(100, 100, 100);
 }
 .request_content{
     display: flex;
@@ -44,7 +41,7 @@
 .request_title{
     font-weight: 600;
     color: white;
-    font-size: 22px;
+    font-size: 20px;
     font-family: "Poppins";
     margin-bottom: 4px;
 }
@@ -66,17 +63,17 @@
 .num_of_reward_btn{
     background-color: transparent;
     border: thin solid white;
-    border-radius: 12px;
+    border-radius: 8px;
     width: 100%;
-    max-width: 50px;
+    max-width: 40px;
     height:100%;
-    min-height: 50px;
+    min-height: 40px;
     margin-bottom: 5px;
     margin-top: 5px;
 }
 .num_of_rewards_label{
     margin: auto;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 600;
     font-family: "Helvetica";
     color: white;
@@ -98,7 +95,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
+    width: 99%;
 }
 .button_containers{
     display: flex;
@@ -119,12 +116,12 @@
 .complete_request_btn{
     background-color: transparent;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 530;
     font-family: "Poppins";
-    color: #3cdb66;
+    color: #6bcd83;
 }
 .complete_request_btn:hover{
-    color: #212121;
+    color: #5eca84;
 }
 .request_date_container{
     display: flex;
@@ -136,8 +133,24 @@
     margin-right: 15px;
 }
 .date_label{
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 13px;
+    font-weight: 450;
     font-family: "Poppins";
     color: white;
+}
+.no_request_card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px 1vw 20px 1vw;
+    min-width: 86%;
+    max-width: 86%;
+    height: 100%;
+    min-height: 130px;
+    transition: 0.2s;
+    border-radius: 22px;
+    background: #dedede;
+    padding: 10px 10px 13px 10px;
+    color: darkgrey;
+    font-size: 15px;
 }

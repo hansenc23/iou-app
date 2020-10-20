@@ -1,0 +1,98 @@
+.favour_card_owe {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 20px 10px 20px;
+    width: 420px;
+    min-height: 65px;
+    transition: 0.2s;
+    margin-bottom: 20px;
+    text-align: left;
+    border-radius: 12px;
+    background-image: linear-gradient(to bottom left, #e5e5e5, #dedede);
+    box-shadow: 1px 1px 5px rgb(227, 227, 227);
+}
+
+.favour_card_owe:hover {
+    box-shadow: 1px 1px 8px rgb(195, 195, 195);
+}
+
+.favour_content_owe_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.8;
+}
+
+.user_label_owe {
+    font-family: "Poppins";
+    font-weight: 550;
+    font-size: 17px;
+    color: black;
+}
+
+.value_label_owe {
+    font-family: "Roboto";
+    font-size: 14px;
+    color: #373737;
+    width: 250px;
+}
+
+.favour_content_owe_right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 58px;
+}
+
+.menu_owe_btn{
+    display: flex;
+    font-family: "Poppins";
+    font-size: 14px;
+    color: #515151;
+    background: transparent;
+    margin-top: 5px;
+    transform: translate(15px, -7px);
+    cursor: pointer;
+}
+
+.complete_owe_btn{
+    font-family: "Poppins";
+    font-size: 14px;
+    font-weight: 450;
+    color: black;
+    margin: auto;
+    cursor: pointer;
+}
+
+.complete_owe_btn:hover, .complete_owe_btn:focus, .complete_owe_btn:active{
+    opacity: 0.7;
+    color: #545454;
+    font-weight: 450;
+}
+
+.date_owe {
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 500;
+    color: #515151;
+    margin-top: 10px;
+}
+
+.settled_menu_owe_btn{
+    display: flex;
+    font-family: "Poppins";
+    font-size: 14px;
+    color: #515151;
+    background: transparent;
+    margin-top: 5px;
+    transform: translate(78px, -7px);
+    cursor: pointer;
+}
+
+.settled_date_owe{
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 510;
+    color: #515151;
+}
