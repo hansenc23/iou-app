@@ -30,7 +30,8 @@ const RequestsPage = () => {
           setIsLoading(false);
           setRequestData((prev) => [...prev, ...response.data.requests])
           
-          if(response.data.requests.length === 0){
+          
+          if(response.data.requests.length < limit){
             setIsEmpty(true);
             console.log('no more requests to fetch');
             
