@@ -112,20 +112,19 @@ const AttachProof = (props) => {
             <div className='attach_proof_label'>Where's the Proof?</div>
 
             <div className='attach_proof_container'>
-              <button onClick={uploadImageClick} className='upload_proof_btn'>
+              <button onClick={uploadImageClick} className='upload_proof_btn_container'>
                 {uploadSuccess ? (
                   successMsg
                 ) : (
                   <Fragment>
-                    <PhotoCameraIcon/>
                     <input hidden type='file' accept='image/*' id='upload-image-input' onChange={fileChangedHandler} />
-                    <div className='upload_proof_text'>{imageName ? imageName : 'Upload Proof'} </div>
+                    <div className='upload_proof_btn'> <PhotoCameraIcon/> {imageName ? imageName : 'Upload Proof'} </div>
                   </Fragment>
                 )}
               </button>
               <div className='img_preview'>
                 <span className='preview_label'>
-                  {imagePreview ? <img className="attach_proof_img_preview" src={imagePreview} alt='' /> : 'Image preview'}
+                  {imagePreview ? <img className="img_preview" src={imagePreview} alt='' /> : 'Image preview'}
                 </span>
               </div>
               <div className='complete_request_alert'>
