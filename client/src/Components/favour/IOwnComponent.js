@@ -6,9 +6,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Menu from "@material-ui/core/Menu";
 import "./IOwnComponent.css";
 
-const IOwnComponent = ({ each }) => {
+const IOwnComponent = ({ each, setType }) => {
 
-    const Unsettled = ({ each, setType }) => {
+    const Unsettled = ({ each }) => {
 
         const [anchorEl, setAnchorEl] = React.useState(null);
 
