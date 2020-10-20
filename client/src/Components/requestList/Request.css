@@ -6,6 +6,9 @@
     justify-content: flex-start;
     align-items: center;
 }
+#request::-webkit-scrollbar {
+    display: none;
+}
 .request_card{
     display: flex;
     flex-direction: column;
@@ -18,7 +21,7 @@
     min-height: 130px;
     transition: 0.2s;
     border-radius: 22px;
-    background-image: linear-gradient(to bottom left, #984fec, #4980e5);
+    background-image: linear-gradient(to bottom left, #975ade, #355ccf);
     box-shadow: 1px 1px 5px rgb(119, 118, 118);
     padding: 20px 20px 23px 20px;
     cursor: pointer;
