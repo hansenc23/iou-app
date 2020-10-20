@@ -2,22 +2,17 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 16vw;
-  margin-right: 12vw;
   margin-top: 80px;
-  min-width: fit-content;
-  max-width: 680px;
-  width: 100%;
-  max-height: 900px;
-  min-height: 550px;
-  height: 90%;
+  min-width: 25vw;
+  max-width: 45vw;
+  min-height: 40vh;
+  max-height: 80vh;
 }
 .createFavour_card {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 180px;
   height: 80%;
   box-shadow: 0 0 4px 3px rgba(133, 135, 141, 0.12);
   background-color: transparent;
@@ -53,12 +48,12 @@
   transition: all 0.35s;
   justify-content: center;
   align-items: center;
-  width: 165px;
-  height: 42px;
+  width: 150px;
+  height: 39px;
   background-color: hotpink;
   color: white;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 13px;
   border-radius: 25px;
   cursor: pointer;
 }
@@ -99,14 +94,14 @@
   width: inherit;
   font-family: Poppins;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 34px;
 }
 .createFavour_second_line {
   display: flex;
   align-content: flex-start;
   font-family: Poppins;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 34px;
   margin-top: 3px;
 }
 .createFavour_third_line {
@@ -114,19 +109,19 @@
   flex-direction: row;
   font-family: Poppins;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 34px;
   margin-top: 4px;
 }
 .i_text {
   font-family: Poppins;
   font-weight: bold;
-  font-size: 37px;
+  font-size: 35px;
   padding-right: 6px;
 }
 .a_text {
   font-family: Poppins;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 34px;
   padding-right: 10px;
 }
 .type_field_unclicked {
@@ -137,7 +132,7 @@
   position: relative;
   overflow: hidden;
   text-decoration: none;
-  font-size: 36px;
+  font-size: 34px;
   font-weight: bold;
   outline: none;
   color: darkgrey;
@@ -155,7 +150,7 @@
   position: relative;
   overflow: hidden;
   text-decoration: none;
-  font-size: 36px;
+  font-size: 34px;
   font-weight: bold;
   outline: none;
   color: hotPink;
@@ -166,13 +161,13 @@
   color: darkgrey;
 }
 .what_menu_label {
-  font-size: 36px;
+  font-size: 34px;
   font-family: Poppins;
   font-weight: bold;
   color: darkgrey;
 }
 .what_value_label {
-  font-size: 36px;
+  font-size: 34px;
   font-family: Poppins;
   font-weight: bold;
   color: hotpink;

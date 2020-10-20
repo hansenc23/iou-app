@@ -12,17 +12,13 @@
   width: inherit;
   font-family: Poppins;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 34px;
 }
 .here_text {
   font-family: Poppins;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 34px;
   padding-right: 8px;
-}
-.attachProof_modal {
-  display: flex;
-  flex-direction: column;
 }
 .attachProof_modal_container {
   position: absolute;
@@ -36,20 +32,6 @@
   height: fit-content;
   max-height: 100%;
   text-align: center;
-}
-.createFavour_fourth_line {
-  display: flex;
-  align-content: flex-start;
-  width: inherit;
-  font-family: Poppins;
-  font-weight: bold;
-  font-size: 36px;
-}
-.here_text {
-  font-family: Poppins;
-  font-weight: bold;
-  font-size: 36px;
-  padding-right: 6px;
 }
 .proof_modal_btn_unattached {
   font-family: Poppins;
