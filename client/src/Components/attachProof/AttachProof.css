@@ -23,19 +23,17 @@
 .attachProof_modal {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 .attachProof_modal_container {
   position: absolute;
   background-color: #f3f0ea;
   box-shadow: 0 0 4px 4px rgba(133, 135, 141, 0.12);
-  padding: 30px;
+  padding: 60px;
   outline: none;
   border-radius: 10px;
   width: 20%;
-  min-width: 400px;
-  height: 500px;
+  min-width: 350px;
+  height: fit-content;
   max-height: 100%;
   text-align: center;
 }
@@ -73,23 +71,28 @@
 .proof_modal_btn_attached:hover {
   color: darkgrey;
 }
-.attach_proof_title {
+.attach_proof_label {
   font-family: Poppins;
   font-weight: bold;
   font-size: 30px;
   color: black;
+  margin-bottom: 40px;
+  text-align: left;
+}
+.attach_proof_container{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: fit-content;
+  margin-bottom: 10px;
 }
 .upload_proof_btn {
   display: flex;
-  flex-direction: column;
-  background-color: #eaeae5;
-  border-radius: 10px;
-  height: 140px;
-  width: 85%;
-  align-items: center;
-  justify-content: center;
-  color: black;
-  margin: 34px auto 15px;
+  flex-direction: row;
+  text-align: left;
+  margin-bottom: 2px;
+  background: transparent;
+  cursor: pointer;
 }
 .upload_proof_btn:hover {
   color: darkgrey;
@@ -99,17 +102,16 @@
   font-weight: 550;
   font-size: 12px;
   color: #b8b8b8;
-  margin-top: 8px;
 }
 .img_preview {
+  background-color: #e2e2e2;
+  border-radius: 7px;
+  height: 200px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  color: #b8b8b8;
-  background-color: #eaeae5;
-  border-radius: 10px;
-  width: 85%;
-  height: 190px;
-  margin: 15px auto 30px;
+  justify-content: center;
+  vertical-align: center;
 }
 
 .img_preview img {
@@ -124,33 +126,40 @@
   font-weight: 550;
   font-size: 15px;
 }
-.buttons {
+.attach_proof_buttons {
+  display: flex;
   flex-direction: row;
+  align-items: flex-end;
+  width: fit-content;
+  margin-left: 160px;
 }
-.cancel_btn {
-  width: 10em;
-  height: 35px;
+.attach_proof_cancel_btn {
+  width: 45px;
+  height: 40px;
   background-color: transparent;
-  color: black;
-  border: thin solid black;
-  font-weight: bold;
-  font-size: 14px;
+  border: thin solid transparent;
+  color: #484848;
+  font-weight: 600;
+  font-size: 13px;
   border-radius: 20px;
   display: table-cell;
   cursor: pointer;
-  margin-left: auto;
-  margin-right: 12px;
+  margin-right: 25px;
 }
-.confirm_btn {
-  width: 10em;
-  height: 35px;
+.attach_proof_confirm_btn {
+  position: relative;
+  transition: all 0.35s;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 38px;
   background-color: black;
   color: white;
-  border: thin solid black;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 13px;
   border-radius: 20px;
-  display: table-cell;
   cursor: pointer;
-  margin-left: 12px;
+}
+.attach_proof_confirm_btn:hover, .attach_proof_cancel_btn:hover{
+  color: grey;
 }
