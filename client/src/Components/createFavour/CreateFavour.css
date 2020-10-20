@@ -3,9 +3,9 @@
   flex-direction: column;
   justify-content: center;
   margin-top: 80px;
-  min-width: 25vw;
+  min-width: 30vw;
   max-width: 45vw;
-  min-height: 40vh;
+  min-height: 500px;
   max-height: 80vh;
 }
 .createFavour_card {
@@ -14,12 +14,12 @@
   justify-content: center;
   align-items: center;
   height: 80%;
-  box-shadow: 0 0 4px 3px rgba(133, 135, 141, 0.12);
+  box-shadow: 0 0 4px 3px rgba(183, 185, 188, 0.12);
   background-color: transparent;
   border-radius: 12px;
 }
 .createFavour_card:hover {
-  box-shadow: 0 0 10px 4px rgba(121, 121, 131, 0.12);
+  box-shadow: 0 0 10px 4px rgba(161, 161, 165, 0.12);
 }
 .createFavour_content {
   width: fit-content;
@@ -48,8 +48,8 @@
   transition: all 0.35s;
   justify-content: center;
   align-items: center;
-  width: 150px;
-  height: 39px;
+  width: 140px;
+  height: 37px;
   background-color: hotpink;
   color: white;
   font-weight: bold;
@@ -67,7 +67,7 @@
   left: 0;
   width: 0;
   height: 100%;
-  background: linear-gradient(to bottom left, #7e51d0, #4b83e9);
+  background: linear-gradient(to bottom left, #a035ee, #588ce9);
   border-radius: 25px;
   transition: all 0.35s;
 }
@@ -83,7 +83,6 @@
   background-color: transparent;
   color: black;
   margin-left: 8px;
-  margin-top: 2px;
 }
 .cancel_favour_btn:hover {
   color: dimgrey;
@@ -94,14 +93,14 @@
   width: inherit;
   font-family: Poppins;
   font-weight: bold;
-  font-size: 34px;
+  font-size: 32px;
 }
 .createFavour_second_line {
   display: flex;
   align-content: flex-start;
   font-family: Poppins;
   font-weight: bold;
-  font-size: 34px;
+  font-size: 32px;
   margin-top: 3px;
 }
 .createFavour_third_line {
@@ -109,19 +108,19 @@
   flex-direction: row;
   font-family: Poppins;
   font-weight: bold;
-  font-size: 34px;
+  font-size: 32px;
   margin-top: 4px;
 }
 .i_text {
   font-family: Poppins;
   font-weight: bold;
-  font-size: 35px;
+  font-size: 33px;
   padding-right: 6px;
 }
 .a_text {
   font-family: Poppins;
   font-weight: bold;
-  font-size: 34px;
+  font-size: 32px;
   padding-right: 10px;
 }
 .type_field_unclicked {
@@ -132,7 +131,7 @@
   position: relative;
   overflow: hidden;
   text-decoration: none;
-  font-size: 34px;
+  font-size: 32px;
   font-weight: bold;
   outline: none;
   color: darkgrey;
@@ -150,7 +149,7 @@
   position: relative;
   overflow: hidden;
   text-decoration: none;
-  font-size: 34px;
+  font-size: 32px;
   font-weight: bold;
   outline: none;
   color: hotPink;
@@ -161,13 +160,13 @@
   color: darkgrey;
 }
 .what_menu_label {
-  font-size: 34px;
+  font-size: 32px;
   font-family: Poppins;
   font-weight: bold;
   color: darkgrey;
 }
 .what_value_label {
-  font-size: 34px;
+  font-size: 32px;
   font-family: Poppins;
   font-weight: bold;
   color: hotpink;

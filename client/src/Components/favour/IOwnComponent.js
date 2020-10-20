@@ -1,143 +1,115 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
-import Grid from '@material-ui/core/Grid';
-import CloseIcon from '@material-ui/icons/Close';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import LinkIcon from '@material-ui/icons/Link';
+import React from 'react';
 import moment from 'moment';
-
 import axios from 'axios';
-import DoneIcon from '@material-ui/icons/Done';
+import ViewFavourProof from "../viewFavourProof/ViewFavourProof";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Menu from "@material-ui/core/Menu";
+import "./IOwnComponent.css";
 
-export default function IOwncomponent({ each, setType }) {
-  const handleClickDeleteFavour = (event) => {
-    if (window.confirm('Are you sure you want to delete this favor?')) {
-      axios
-        .post(
-          `${process.env.REACT_APP_API_URL}/favors/update`,
-          {
-            id: each._id,
-            end_time: Date.now(),
-            picture_proof_id: 'null',
-          },
-          {
-            withCredentials: true,
-          }
+const IOwnComponent = ({ each }) => {
+
+    const Unsettled = ({ each, setType }) => {
+
+        const [anchorEl, setAnchorEl] = React.useState(null);
+
+        const handleClick = (event) => {
+            setAnchorEl(event.currentTarget);
+        };
+
+        const handleClose = () => {
+            setAnchorEl(null);
+        };
+
+        const handleClickDeleteFavour = (event) => {
+            if (window.confirm('Are you sure you want to delete this favor?')) {
+                axios
+                    .post(
+                        `${process.env.REACT_APP_API_URL}/favors/update`,
+                        {
+                            id: each._id,
+                            end_time: Date.now(),
+                            picture_proof_id: 'null',
+                        },
+                        {
+                            withCredentials: true,
+                        }
+                    )
+                    .then((response) => {
+                        if (response.data.success === true) {
+                            // Update the favors
+                            setType('loading');
+                            setType('all');
+                        }
+                    });
+            } else {
+                return;
+            }
+        };
+
+        return (
+            <div>
+                <button className='menu_own_btn' aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                    <ExpandMoreIcon/>
+                </button>
+                <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                >
+                    <button className='delete_own_btn' onClick={handleClickDeleteFavour}> Delete </button>
+                    <ViewFavourProof proofId={each.picture_proof_id} />
+                </Menu>
+                <span className='date_own'> {moment(each.create_time).format('DD MMM')} </span>
+            </div>
         )
-        .then((response) => {
-          if (response.data.success === true) {
-            // Update the favors
-            setType('loading');
-            setType('all');
-          }
-        });
-    } else {
-      return;
     }
-  };
 
-  return (
-    <div className='favour_card_right'>
-      <Grid container>
-        <Grid
-          item
-          xs={12}
-          sm={4}
-          className='text-left'
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {each.picture_proof_id === 'null' ? (
-            ''
-          ) : (
-            <img id='image_proof' src={each.picture_proof_id} style={{ userSelect: 'none', height: '100%', objectFit: 'cover' }} />
-          )}
-        </Grid>
-        <Grid item sm={1}></Grid>
-        <Grid item xs={12} sm={6}>
-          <div className='value_label_right'>
-            <div className='user_label_right'>@{each.ower.username}</div>
-            <span>
-              Owes <strong>@You</strong> {each.favor_detail}
-            </span>
-            <br />
-            <br />
-            {!each.end_time ? <UnsettleFavors each={each} handleClickDeleteFavour={handleClickDeleteFavour} /> : <SettledFavors each={each} />}
+    const Settled = ({ each }) => {
+
+        const [anchorEl, setAnchorEl] = React.useState(null);
+
+        const handleClick = (event) => {
+            setAnchorEl(event.currentTarget);
+        };
+
+        const handleClose = () => {
+            setAnchorEl(null);
+        };
+
+        return (
+            <div>
+                <button className='settled_menu_own_btn' aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                    <ExpandMoreIcon/>
+                </button>
+                <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                >
+                    <ViewFavourProof proofId={each.picture_proof_id} />
+                </Menu>
+                <span className='settled_date_own'> settled on <strong>{moment(each.end_time).format('DD MMM')}</strong></span>
+            </div>
+
+        )
+    }
+
+    return (
+      <div>
+          <div className='favour_card_own'>
+              <div className="favour_content_own_left">
+                  {!each.end_time ? <Unsettled each={each}/> : <Settled each={each}/> }
+              </div>
+              <div className='favour_content_own_right'>
+                  <div className='user_label_own'> @{each.ower.username} </div>
+                  <span className='value_label_own'> Owes <strong>@you</strong> {each.favor_detail} </span>
+              </div>
           </div>
-        </Grid>
-      </Grid>
-    </div>
-  );
+      </div>
+    );
 }
-
-const UnsettleFavors = ({ each, handleClickDeleteFavour }) => {
-  return (
-    <Grid justify='flex-end' container>
-      <Grid item xs={4}>
-        <span onClick={handleClickDeleteFavour} className='iconAlignVertically_right spanNoSelectPointer' style={{ justifyContent: 'flex-end' }}>
-          <CloseIcon fontSize='small' style={{ marginRight: '5px' }} />
-          <span className='textAlignVertically_right'> Delete </span>
-        </span>
-      </Grid>
-      <Grid item xs={4}>
-        <span className='iconAlignVertically_right' style={{ justifyContent: 'flex-end' }}>
-          <AccessTimeIcon fontSize='small' style={{ marginRight: '5px' }} />
-          <span className='textAlignVertically_right'> {moment(each.create_time).format('DD MMM')} </span>
-        </span>
-      </Grid>
-    </Grid>
-  );
-};
-
-const SettledFavors = ({ each }) => {
-  return (
-    <Grid justify='flex-end' container>
-      {/* Start Time */}
-      <Grid item xs={5}>
-        <span className='settledTextFields'>Created:</span>
-      </Grid>
-      <Grid item xs={4}>
-        <span className='iconAlignVertically_right' style={{ justifyContent: 'flex-end' }}>
-          <AccessTimeIcon fontSize='small' style={{ marginRight: '5px' }} />
-          <span className='textAlignVertically_right'> {moment(each.create_time).format('DD MMM')} </span>
-        </span>
-      </Grid>
-
-      {/* End Time */}
-
-      <Grid item xs={5}>
-        <span className='settledTextFields'>Completed:</span>
-      </Grid>
-      <Grid item xs={4}>
-        <span className='iconAlignVertically_right' style={{ justifyContent: 'flex-end' }}>
-          <AccessTimeIcon fontSize='small' style={{ marginRight: '5px' }} />
-          <span className='textAlignVertically_right'>{moment(each.end_time).format('DD MMM')} </span>
-        </span>
-      </Grid>
-
-      {/* Link */}
-
-      {each.picture_proof_id === 'null' ? (
-        ''
-      ) : (
-        <>
-          <Grid item xs={5}>
-            <span className='settledTextFields'>Proof:</span>
-          </Grid>
-          <Grid item xs={4}>
-            <a
-              className='iconAlignVertically_right'
-              style={{ justifyContent: 'flex-end', color: 'gray' }}
-              target='_blank'
-              href={each.picture_proof_id}
-            >
-              <LinkIcon fontSize='small' style={{ marginRight: '5px' }} /> Link
-            </a>
-          </Grid>
-        </>
-      )}
-    </Grid>
-  );
-};
+export default IOwnComponent

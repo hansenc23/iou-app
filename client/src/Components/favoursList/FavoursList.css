@@ -9,7 +9,7 @@
 .favours_title {
     font-weight: 660;
     color: #000000;
-    font-size: 46px;
+    font-size: 44px;
     font-family: "Poppins";
     padding-left: 18px;
     margin-top: 20px;
@@ -26,8 +26,8 @@
 }
 .all_favours_btn, .owe_btn, .owing_btn, .settled_btn {
     height: 30px;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 17px;
+    font-weight: 570;
     font-family: "Roboto";
     background-color: transparent;
     color: black;
@@ -40,6 +40,5 @@ button {
     transition: all 200ms ease-in-out;
 }
 button:focus {
-    font-weight: bold;
     outline:0;
 }

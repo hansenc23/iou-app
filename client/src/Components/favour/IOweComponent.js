@@ -1,183 +1,140 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
-import Grid from '@material-ui/core/Grid';
-import DoneIcon from '@material-ui/icons/Done';
-import CloseIcon from '@material-ui/icons/Close';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import LinkIcon from '@material-ui/icons/Link';
 import moment from 'moment';
 import axios from 'axios';
 import { ImageContext } from '../../context/ImageContext';
+import ViewFavourProof from "../viewFavourProof/ViewFavourProof";
+import "./IOweComponent.css";
+import Menu from '@material-ui/core/Menu';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-export default function IOweComponent({ each, setType }) {
-  const { setSelectedImage, uploadImage } = useContext(ImageContext);
+const IOweComponent = ({ each, setType }) => {
 
-  const hiddenFileInput = useRef(null);
+    const Unsettled = ({ each }) => {
 
-  const [imageUploaded, setImageUploaded] = useState(false);
-  const [showUploadProofOption, setShowUploadProofOption] = useState(false);
+        const [imageUploaded, setImageUploaded] = useState(false);
+        const { setSelectedImage, uploadImage } = useContext(ImageContext);
+        const [anchorEl, setAnchorEl] = React.useState(null);
+        const hiddenFileInput = useRef(null);
 
-  const handleInputFileChange = (event) => {
-    const fileUploaded = event.target.files[0];
-    setSelectedImage(fileUploaded);
-    setImageUploaded(true);
-  };
+        const handleInputFileChange = (event) => {
+            const fileUploaded = event.target.files[0];
+            setSelectedImage(fileUploaded);
+            setImageUploaded(true);
+        };
 
-  // Listen to if imageUploaded is true
-  useEffect(() => {
-    if (imageUploaded) {
-      if (window.confirm('Are you sure you want to upload your proof?')) {
-        uploadImage().then((response) => {
-          if (response.error) {
-            // Set error here
-            alert('Invalid file type or size is too large. (Max: 2MB)');
-            return;
-          }
-          axios
-            .post(
-              `${process.env.REACT_APP_API_URL}/favors/update`,
-              {
-                id: each._id,
-                end_time: Date.now(),
-                picture_proof_id: response.location,
-              },
-              {
-                withCredentials: true,
-              }
-            )
-            .then((favourResponse) => {
-              if (favourResponse.data.success === true) {
-                // Update the favors
-                setType('loading');
-                setType('all');
-              }
-            });
-        });
-        setImageUploaded(false);
-        setSelectedImage(null);
-      }
-      setImageUploaded(false);
-      setSelectedImage(null);
+        const handleClick = (event) => {
+            setAnchorEl(event.currentTarget);
+        };
+
+        const handleClose = () => {
+            setAnchorEl(null);
+        };
+
+        // Listen to if imageUploaded is true
+        useEffect(() => {
+            if (imageUploaded) {
+                if (window.confirm('Are you sure you want to upload your proof?')) {
+                    uploadImage().then((response) => {
+                        if (response.error) {
+                            // Set error here
+                            alert('Invalid file type or size is too large. (Max: 2MB)');
+                            return;
+                        }
+                        axios
+                            .post(
+                                `${process.env.REACT_APP_API_URL}/favors/update`,
+                                {
+                                    id: each._id,
+                                    end_time: Date.now(),
+                                    picture_proof_id: response.location,
+                                },
+                                {
+                                    withCredentials: true,
+                                }
+                            )
+                            .then((favourResponse) => {
+                                if (favourResponse.data.success === true) {
+                                    // Update the favors
+                                    setType('loading');
+                                    setType('all');
+                                }
+                            });
+                    });
+                    setImageUploaded(false);
+                    setSelectedImage(null);
+                }
+                setImageUploaded(false);
+                setSelectedImage(null);
+            }
+        }, [imageUploaded]);
+
+        return(
+            <div>
+                <button className='menu_owe_btn' aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                    <ExpandMoreIcon/>
+                </button>
+                <Menu
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                >
+                    <button className='complete_owe_btn' onClick={() => {hiddenFileInput.current.click();}}>
+                        Complete <input hidden type='file' accept='image/*' ref={hiddenFileInput} onChange={handleInputFileChange} />
+                    </button>
+                    <ViewFavourProof proofId={each.picture_proof_id} />
+                </Menu>
+                <span className='date_owe'> {moment(each.create_time).format('DD MMM')} </span>
+            </div>
+        )
     }
-  }, [imageUploaded]);
 
-  return (
-    <div className='favour_card_left'>
-      <Grid container alignItems='center' style={{ flexDirection: 'row-reverse' }}>
-        <Grid
-          item
-          sm={4}
-          className='text-right'
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {each.picture_proof_id === 'null' ? (
-            ''
-          ) : (
-            <img
-              id='image_proof'
-              src={each.picture_proof_id}
-              className='float-right'
-              style={{
-                userSelect: 'none',
-                height: '100%',
-                objectFit: 'cover',
-              }}
-            />
-          )}
-        </Grid>
-        <Grid item sm={2}></Grid>
-        <Grid item sm={6}>
-          <div className='value_label_left'>
-            <div className='user_label_left'>@You</div>
-            <span>
-              Owe <strong>@{each.owner.username}</strong> {each.favor_detail}
-            </span>
-            <br />
-            <br />
-            {!each.end_time ? <UnsettleFavors each={each} setShowUploadProofOption={setShowUploadProofOption} /> : <SettledFavors each={each} />}
-          </div>
-        </Grid>
-      </Grid>
-      {/* {Show Proof Here} */}
-      {showUploadProofOption && (
+    const Settled = ({ each }) => {
+
+        const [anchorEl, setAnchorEl] = React.useState(null);
+
+        const handleClick = (event) => {
+            setAnchorEl(event.currentTarget);
+        };
+
+        const handleClose = () => {
+            setAnchorEl(null);
+        };
+
+        return(
+            <div>
+                <button className='settled_menu_owe_btn' aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                    <ExpandMoreIcon/>
+                </button>
+                <Menu
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                >
+                    <ViewFavourProof proofId={each.picture_proof_id} />
+                </Menu>
+                <span className='settled_date_owe'> settled on <strong>{moment(each.end_time).format('DD MMM')}</strong></span>
+            </div>
+        )
+    }
+
+    return (
         <div>
-          <br />
-          <span
-            className='spanNoSelectPointer'
-            onClick={() => {
-              hiddenFileInput.current.click();
-            }}
-          >
-            <b>Upload My Proof</b>
-          </span>
-          <input hidden type='file' accept='image/*' ref={hiddenFileInput} onChange={handleInputFileChange} />
-          <span className='spanNoSelectPointer float-right' onClick={() => setShowUploadProofOption(false)}>
-            <b className='iconAlignVertically_left'>
-              <CloseIcon /> Close
-            </b>
-          </span>
+            <div className='favour_card_owe'>
+                <div className='favour_content_owe_left'>
+                    <div className='user_label_owe'> @you </div>
+                    <span className='value_label_owe'> Owe <strong>@{each.owner.username}</strong> {each.favor_detail} </span>
+                </div>
+                <div className="favour_content_owe_right">
+                    {!each.end_time ? <Unsettled each={each}/> : <Settled each={each}/> }
+                </div>
+            </div>
         </div>
-      )}
-    </div>
-  );
+    );
 }
 
-const UnsettleFavors = ({ each, setShowUploadProofOption }) => {
-  return (
-    <Grid container>
-      <Grid item xs={4}>
-        <span className='iconAlignVertically_left'>
-          <AccessTimeIcon fontSize='small' style={{ marginRight: '5px' }} /> {moment(each.create_time).format('DD MMM')}
-        </span>
-      </Grid>
-      <Grid item xs={3}>
-        <span className='iconAlignVertically_left spanNoSelectPointer' onClick={() => setShowUploadProofOption(true)}>
-          <DoneIcon fontSize='small' style={{ marginRight: '5px' }} /> Complete
-        </span>
-      </Grid>
-    </Grid>
-  );
-};
+export default IOweComponent;
 
-const SettledFavors = ({ each }) => {
-  return (
-    <Grid container>
-      {/* Start Time */}
-      <Grid item xs={4}>
-        <span className='settledTextFields'>Created:</span>
-      </Grid>
-      <Grid item xs={5}>
-        <span className='iconAlignVertically_left'>
-          <AccessTimeIcon fontSize='small' style={{ marginRight: '5px' }} /> {moment(each.create_time).format('DD MMM')}
-        </span>
-      </Grid>
 
-      {/* End Time */}
-      <Grid item xs={4}>
-        <span className='settledTextFields'>Completed:</span>
-      </Grid>
-      <Grid item xs={5}>
-        <span className='iconAlignVertically_left'>
-          <AccessTimeIcon fontSize='small' style={{ marginRight: '5px' }} /> {moment(each.end_time).format('DD MMM')}
-        </span>
-      </Grid>
 
-      {/* Link */}
-      {each.picture_proof_id && (
-        <>
-          <Grid item xs={4}>
-            <span className='settledTextFields'>Proof:</span>
-          </Grid>
-          <Grid item xs={5}>
-            <a target='_blank' className='iconAlignVertically_left' href={each.picture_proof_id} style={{ color: 'gray' }}>
-              <LinkIcon fontSize='small' style={{ marginRight: '5px' }} /> Link
-            </a>
-          </Grid>
-        </>
-      )}
-    </Grid>
-  );
-};
