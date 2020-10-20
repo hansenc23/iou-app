@@ -80,7 +80,7 @@
 }
 .create_favour_btn:disabled {
   background: lightgrey;
-  color: black;
+  color: darkgrey;
 }
 .cancel_favour_btn {
   position: relative;

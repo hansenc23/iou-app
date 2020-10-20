@@ -105,6 +105,7 @@ const CreateFavour = ({ setType }) => {
             setOpen(true);
             setError('Cannot create favour to yourself!');
           } else {
+            disableButton();
             setLoading(true);
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/favors/create`, {
               // Check if it's Ower or Owner
@@ -148,6 +149,7 @@ const CreateFavour = ({ setType }) => {
               setOpen(true);
               setError('Cannot create favour to yourself!');
             } else {
+              disableButton();
               setLoading(true);
               const resImage = await uploadImage();
               if (resImage.error) {
@@ -183,6 +185,7 @@ const CreateFavour = ({ setType }) => {
         }
       }
     }
+    enableButton();
   }
 
   function resetInputValues() {
@@ -204,6 +207,18 @@ const CreateFavour = ({ setType }) => {
     setLoading(false);
     setOpen(true);
     setError(error);
+  }
+
+  let btnRef = useRef();
+  const disableButton = e => {
+    if(btnRef.current){
+      btnRef.current.setAttribute("disabled", "disabled");
+    }
+  }
+  const enableButton = e => {
+    if(btnRef.current){
+      btnRef.current.removeAttribute("disabled", "");
+    }
   }
 
   //set timeout when alert is displayed
@@ -299,7 +314,7 @@ const CreateFavour = ({ setType }) => {
             <div className='createFavour_fourth_line'>{storedAction === 'Bought' ? <AttachProof cancelClicked={cancelBtnClicked} /> : ''}</div>
           </div>
           <div className='btn_container'>
-            <button className='create_favour_btn' onClick={handleCreateFavor} disabled={isCreating}>
+            <button className='create_favour_btn' ref={btnRef} onClick={handleCreateFavor} disabled={isCreating}>
               <span> Create Favour </span>
             </button>
             <button className='cancel_favour_btn' onClick={handleClickCancel}>
