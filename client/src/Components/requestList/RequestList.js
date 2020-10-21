@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
 
-const RequestsList = ({ onscroll, requestData, selectRequestId, setSelectedRequestID, isLoading }) => {
+const RequestsList = ({ isEmpty, onscroll, requestData, selectRequestId, setSelectedRequestID, isLoading }) => {
   const [date] = useState(Moment().format('Do MMMM YYYY'));
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -99,6 +99,9 @@ const RequestsList = ({ onscroll, requestData, selectRequestId, setSelectedReque
             );
           }) : (<div className="no_request_card">No Requests Found</div>)
         )}
+
+        {isEmpty ? '' : <Spinner />}
+        
       </div>
     </div>
   );

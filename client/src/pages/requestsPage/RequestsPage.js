@@ -32,9 +32,7 @@ const RequestsPage = () => {
           
           
           if(response.data.requests.length < limit){
-            setIsEmpty(true);
-            console.log('no more requests to fetch');
-            
+            setIsEmpty(true);    
           }
         } else {
           console.log('Failed to get request data');
@@ -50,13 +48,13 @@ const RequestsPage = () => {
     setSelectedRequestID(selectedID);
   });
 
+
   const handleScroll = (e) =>{
     const {scrollTop, clientHeight, scrollHeight} = e.currentTarget;
-    if(Math.round(scrollHeight - scrollTop) === clientHeight + 1 && isEmpty === false){
+    if(Math.round(scrollHeight - scrollTop) === clientHeight && isEmpty === false){
       setSkip(limit + skip);
     }
   }
-
 
 
   useEffect(() => {
@@ -64,7 +62,6 @@ const RequestsPage = () => {
   }, []);
 
   useEffect(() => {
-    setIsLoading(true);
     fetchRequest(limit, skip);
     
   }, [limit, skip]);
@@ -73,14 +70,13 @@ const RequestsPage = () => {
 
   return (
     <div id='RequestsPage' className=''>
-      <RequestsList onscroll={(e) => {handleScroll(e)}} requestData={requestData} selectRequestId={selectRequestId} setSelectedRequestID={setSelectedRequestID} isLoading={isLoading} />
+      <RequestsList isEmpty={isEmpty} onscroll={(e) => {handleScroll(e)}} requestData={requestData} selectRequestId={selectRequestId} setSelectedRequestID={setSelectedRequestID} isLoading={isLoading} />
       
       {requestData && selectedRequest ? (
         <RequestDetail selectedRequest={selectedRequest} requestData={requestData} />
       ) : (
         <div className='empty_RequestList'> Select a request to view more details </div>
       )}
-      
     </div>
   );
 };
