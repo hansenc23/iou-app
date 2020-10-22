@@ -52,7 +52,7 @@ function checkFileType(file, cb) {
 
 imageUpload = (req, res) => {
   imageProofUpload(req, res, (error) => {
-    console.log('requestOkokok', req.file);
+    console.log('requestOk', req.file);
     console.log('error', error);
     if (error) {
       console.log('errors', error);

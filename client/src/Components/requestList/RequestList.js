@@ -100,7 +100,7 @@ const RequestsList = ({ isEmpty, onscroll, requestData, selectRequestId, setSele
           }) : (<div className="no_request_card">No Requests Found</div>)
         )}
 
-        {isEmpty ? '' : <Spinner />}
+        {isEmpty || filteredRequests.length < 4 ? '' : <Spinner />}
         
       </div>
     </div>

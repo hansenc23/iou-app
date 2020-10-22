@@ -204,6 +204,7 @@ const getById = async (req, res) => {
   }
 };
 
+//GET /requests/get_completed
 const getCompleted = async (req, res) => {
   try {
     const response = await Completed.aggregate([
@@ -259,7 +260,8 @@ const getRequestReward = async (req, res) => {
   }
 };
 
-//POST /request/delete/reward/delete
+//POST /request/reward/delete
+//route to delete a specific reward
 const deleteReward = async (req, res) => {
   const { request_id, reward_id } = req.body;
 
@@ -276,6 +278,7 @@ const deleteReward = async (req, res) => {
   }
 };
 
+//POST /request/delete
 const deleteRequest = async (req, res) => {
   const { request_id } = req.body;
 

@@ -15,6 +15,8 @@ const cookie_config =
         secure: true,
       };
 
+
+//POST /auth/register
 register = async (req, res, next) => {
   const { username, firstName, lastName, email, password } = req.body;
 
@@ -60,6 +62,8 @@ register = async (req, res, next) => {
   }
 };
 
+
+//POST /auth/login
 login = async (req, res, next) => {
   const { emailOrUsername, password } = req.body;
   // console.log(req.body);
@@ -112,6 +116,8 @@ login = async (req, res, next) => {
   // return res.status(200).header('auth-token', token).json(token);
 };
 
+//GET /auth/getCurrentUser
+//route to get logged in user
 getCurrentUser = async (req, res, next) => {
   const userId = req.user._id;
 
@@ -134,6 +140,7 @@ getCurrentUser = async (req, res, next) => {
   }
 };
 
+//GET /auth/getUser/:id
 getUser = async (req, res, next) => {
   const { id } = req.params;
   try {
@@ -154,6 +161,8 @@ getUser = async (req, res, next) => {
   }
 };
 
+
+//POST /auth/delete
 deleteUser = async (req, res, next) => {
   const { id } = req.body;
   try {
@@ -168,11 +177,15 @@ deleteUser = async (req, res, next) => {
   }
 };
 
+
+//GET /auth/logout
 logout = (req, res, next) => {
   return res.status(200).clearCookie('jwt').json('logged out');
 };
 
 // Post Request
+//POST /auth/username_predict
+//route to get a list of usernames to be used as dropdown values in frontend
 usernamePredict = async (req, res) => {
   const { username } = req.body;
 

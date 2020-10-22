@@ -8,7 +8,7 @@ router.post('/register', authController.register);
 
 router.post('/login', authController.login);
 
-router.post('/delete', authController.deleteUser);
+router.post('/delete', verifyToken, authController.deleteUser);
 
 router.get('/logout', verifyToken, authController.logout);
 
