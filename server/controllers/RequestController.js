@@ -141,6 +141,8 @@ const getAll = async (req, res) => {
   const completed = req.query.completed === 'true' ? true : false;
   const sortBy = req.query.order === 'asc' ? { createdAt: 1 } : { createdAt: -1 };
 
+  const populateFields = ['email', 'username', 'firstName', 'lastName'];
+
   try {
     const response = await Requests.find({
       completedBy: completed ? { $ne: null } : null,
@@ -148,7 +150,7 @@ const getAll = async (req, res) => {
       .skip(skip)
       .limit(limit)
       .sort(sortBy)
-      .populate('request_owner')
+      .populate('request_owner', populateFields)
       .populate('rewards')
       .populate({
         path: 'rewards',
