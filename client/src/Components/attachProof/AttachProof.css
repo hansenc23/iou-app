@@ -88,7 +88,7 @@
 .upload_proof_btn:hover, .upload_proof_label:hover {
   color: darkgrey;
 }
-.img_preview {
+.favor_proof_img_preview {
   display: flex;
   flex-direction: column;
   background-color: #e2e2e2;
@@ -100,13 +100,7 @@
   vertical-align: center;
 }
 
-.attach_proof_img_preview{
-  border-radius: 7px;
-  width: 100%;
-  height: 100%;
-}
-
-.img_preview img {
+.favor_proof_img_preview img {
   border-radius: 7px;
   margin-top: 2px;
   height: auto;

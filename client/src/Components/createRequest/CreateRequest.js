@@ -159,7 +159,7 @@ const CreateRequest = () => {
           </div>
         </div>
         <div className='requested_by_text'>
-          Requested by <strong> {`${user.username}`} </strong>
+          Requested by <strong> @{`${user.username}`} </strong>
         </div>
       </div>
       <div className='request_description_container'>
