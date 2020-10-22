@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     height: calc(100vh - 82px);
+    min-width: 1200px;
     width: 100vw;
     padding-top: 80px;
     background-color: #f3f0ea;
