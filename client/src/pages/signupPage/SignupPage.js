@@ -67,11 +67,13 @@ const SignupPage = () => {
 
   const postUserData = async () => {
     setIsLoading(true);
+    
+    //trim leading and trailing whitespaces
     const userData = {
-      firstName,
-      lastName,
-      username,
-      email,
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+      username: username.trim(),
+      email: email.trim(),
       password,
     };
 
