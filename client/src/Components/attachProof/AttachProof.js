@@ -122,9 +122,9 @@ const AttachProof = (props) => {
                   </Fragment>
                 )}
               </button>
-              <div className='img_preview'>
+              <div className='favor_proof_img_preview'>
                 <span className='preview_label'>
-                  {imagePreview ? <img className="img_preview" src={imagePreview} alt='' /> : 'Image preview'}
+                  {imagePreview ? <img className="favor_proof_img_preview" src={imagePreview} alt='' /> : 'Image preview'}
                 </span>
               </div>
               <div className='complete_request_alert'>

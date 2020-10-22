@@ -164,7 +164,7 @@ const CompleteRequest = (props) => {
                 <span className="complete_request_title"> Complete Request </span>
                 <div className='complete_request_name'> {props.requestName} </div>
                 <div className='complete_request_details_container'>
-                    <span className='complete_request_owner'> requested by <strong>{props.requestOwner}</strong>
+                    <span className='complete_request_owner'> requested by <strong>@{props.requestOwner}</strong>
                         <span className="complete_request_date"> on <strong>{moment(props.requestDate).format('DD MMM')}</strong></span>
                     </span>
                 </div>
@@ -182,10 +182,10 @@ const CompleteRequest = (props) => {
                     )}
                 </button>
                 <div className='request_proof_img_preview'>
-                              <span className='preview_label'>
-                                {/* <img src={imagePreview} alt='' /> */}
-                                  {imagePreview ? <img className='complete_request_img_preview'src={imagePreview} alt='' /> : 'Image preview'}
-                              </span>
+                      <span className='preview_label'>
+                        {/* <img src={imagePreview} alt='' /> */}
+                          {imagePreview ? <img className='request_proof_img_preview'src={imagePreview} alt='' /> : 'Image preview'}
+                      </span>
                 </div>
                 <div className='complete_request_alert'>
                     <Collapse in={openAlert}>
