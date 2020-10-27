@@ -10,19 +10,13 @@ import { Link } from 'react-router-dom';
 
 const rewardItems = ['Coffee', 'Chocolate', 'Pizza', 'Cupcake', 'Mint'];
 
-const DeleteRewards = ({ rewardList, selectedRequest, requestData }) => {
+const DeleteRewards = ({ rewardList, selectedRequest }) => {
   const { isAuth, user } = useContext(AuthContext);
-
-  const [storedReward, setStoredReward] = useState([]);
 
   const [open, setOpen] = React.useState(false);
   const [openAlert, setOpenAlert] = useState(false);
 
   const [alertMessage, setAlertMessage] = useState(null);
-
-  const handleChangeRewards = (event) => {
-    setStoredReward(event.target.value);
-  };
 
   const handleOpen = () => {
     //open Modal

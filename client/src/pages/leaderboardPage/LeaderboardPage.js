@@ -8,13 +8,12 @@ import axios from "axios";
 
 function LeaderboardPage() {
 
-    const { isAuth, getUser } = useContext(AuthContext);
+    const { getUser } = useContext(AuthContext);
 
     const [date] = useState(Moment().format('Do MMMM'));
     const [isLoading, setIsLoading] = useState(false);
 
     const [completedRequestData, setCompletedRequestData] = useState([]);
-    const [userCompleted, setUserComplete] = useState([{fullName: '', username: '', completed: 0}]);
 
     useEffect(() =>{
        getUser();

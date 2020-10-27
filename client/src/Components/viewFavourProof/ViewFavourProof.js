@@ -38,9 +38,8 @@ const ViewFavourProof = ({proofId}) => {
                         { proofId === 'null' ?
                             <div className='no_proof'> This favour does not have a proof </div> :
                             <img
-                                id='image_proof'
+                                className='image_proof'
                                 src={proofId}
-                                className='float-right'
                                 style={{
                                     userSelect: 'none',
                                     objectFit: 'cover',
