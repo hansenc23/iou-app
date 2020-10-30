@@ -3,13 +3,15 @@ const RequestRewards = require('../models/RequestRewards');
 const Completed = require('../models/Completed');
 const Users = require('../models/User');
 
-// POST /request/create
-// {
-//   title: required | string
-//   owner: required | string
-//   description: required | string
-//   reward: required | [] | string
-// }
+/*
+    POST /request/create
+    {
+      title: required | string
+      owner: required | string
+      description: required | string
+      reward: required | [] | string
+    }
+ */
 
 const create = async (req, res) => {
   // string , string, string, string
@@ -68,14 +70,16 @@ const create = async (req, res) => {
   }
 };
 
-// POST /request/add_reward
-// {
-//   request_id: required,
-//   reward: required,
-//   reward_owner: {
-//     default: request_id
-//   }
-// }
+/* 
+  POST /request/add_reward
+    {
+    request_id: required,
+    reward: required,
+    reward_owner: {
+      default: request_id
+    }
+  }
+ */
 
 const addReward = async (req, res) => {
   const { request_id, reward } = req.body;
@@ -102,12 +106,16 @@ const addReward = async (req, res) => {
     return res.status(400).json({ success: false, error: error.message });
   }
 };
-// POST /request/complete
-// {
-//   request_id: required
-//   completer_id: required
-//   picture_proof_url: required
-// }
+
+/* 
+  POST /request/complete
+  {
+    request_id: required
+    completer_id: required
+    picture_proof_url: required
+  }
+ */
+
 const complete = async (req, res) => {
   const { request_id, completer_id, picture_proof_url } = req.body;
 
@@ -207,15 +215,16 @@ const getById = async (req, res) => {
 };
 
 //GET /requests/get_completed
+//get completed requests
 const getCompleted = async (req, res) => {
   try {
     const response = await Completed.aggregate([
       //group user id and count the number of occurences
       {
-        $group:{
+        $group: {
           _id: '$user',
-          count: {$sum: 1}
-        }
+          count: { $sum: 1 },
+        },
       },
       //use the grouped user id to join 'Users' collection to get user info
       {
@@ -223,24 +232,24 @@ const getCompleted = async (req, res) => {
           from: 'users',
           localField: '_id',
           foreignField: '_id',
-          as: 'user_data'
-        }
+          as: 'user_data',
+        },
       },
       //specify the needed fields to be returned
       {
         $project: {
           count: 1,
-          user_data:{
+          user_data: {
             _id: 1,
             firstName: 1,
             lastName: 1,
-            username: 1
-          }
-        }
+            username: 1,
+          },
+        },
       },
       //sort by descending order based on the number of count
-      {$sort: {count: -1}}
-    ])
+      { $sort: { count: -1 } },
+    ]);
 
     return res.status(200).json({ success: true, requests: response });
   } catch (error) {

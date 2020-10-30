@@ -12,15 +12,13 @@ const app = express();
 // Check database connection errors
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-// Middlewares
-// app.use(
-//   cors({
-//     credentials: true,
-//   })
-// );
-
 console.log(process.env.NODE_ENV);
 
+//set up CORS
+/*
+  couldn't use react proxy in production because frontend is deployed to Netlify which requires extra configuration to 
+  make react proxy work. Tried it many times, but it didn't work.
+*/
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Origin', req.headers.origin);
@@ -28,6 +26,7 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
   next();
 });
+
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cookieParser());

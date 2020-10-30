@@ -15,6 +15,9 @@ const cookie_config =
         secure: true,
       };
 
+/*
+    this authentication process is based on a youtube video: https://www.youtube.com/watch?v=2jqok-WgelI&t=2s
+*/
 
 //POST /auth/register
 register = async (req, res, next) => {
@@ -61,7 +64,6 @@ register = async (req, res, next) => {
     res.status(400).json(err);
   }
 };
-
 
 //POST /auth/login
 login = async (req, res, next) => {
@@ -161,7 +163,6 @@ getUser = async (req, res, next) => {
   }
 };
 
-
 //POST /auth/delete
 deleteUser = async (req, res, next) => {
   const { id } = req.body;
@@ -176,7 +177,6 @@ deleteUser = async (req, res, next) => {
     return res.status(400).json(err);
   }
 };
-
 
 //GET /auth/logout
 logout = (req, res, next) => {

@@ -1,6 +1,7 @@
 const FavorModel = require('../models/Favors');
 const mongoose = require('mongoose');
 
+//GET /favors/:id
 getFavorById = (req, res) => {
   const { id } = req.params;
 
@@ -12,6 +13,7 @@ getFavorById = (req, res) => {
   });
 };
 
+//GET /favors/all/:type/:id/:end
 getAllByTypeAndId = async (req, res) => {
   let findCondition = req.params.type === 'ower' ? { ower: req.params.id } : { owner: req.params.id };
   findCondition.end_time = req.params.end === 'false' ? null : { $ne: null };
@@ -28,6 +30,7 @@ getAllByTypeAndId = async (req, res) => {
     });
 };
 
+//POST /favors/create
 createNewFavors = async (req, res) => {
   const { ower, owner, favor_detail, picture_proof_id } = req.body;
 
@@ -60,6 +63,7 @@ createNewFavors = async (req, res) => {
   }
 };
 
+//POST /favors/update
 updateFavorStatus = (req, res) => {
   const { id, end_time, picture_proof_id } = req.body;
 
@@ -72,6 +76,7 @@ updateFavorStatus = (req, res) => {
   });
 };
 
+//POST /favors/delete
 deleteFavorById = (req, res) => {
   const { id } = req.body;
 
